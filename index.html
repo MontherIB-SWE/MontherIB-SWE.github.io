@@ -1,10 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monder's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <a href="#contact" class="floating-contact-btn" title="Contact Me">
+        <i class="fa-solid fa-envelope"></i>
+    </a>
 </head>
 <body>
+    <header class="header">
+    <h1>Monder's Portfolio</h1>
+
+    <input type="checkbox" id="menu-toggle" class="menu-toggle">
     
+    <label for="menu-toggle" class="hamburger-btn">
+        <span></span> <span></span>
+        <span></span>
+    </label>
+    
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+    
+    <main>
+        <section id="intro" class="intro">
+             <div>
+                <h2>
+                    Software Engineering Student
+                </h2>
+                <p>
+                    A software engineering student with a passion for building applications from scratch and architecting elegant solutions to real-world problems.
+                </p>
+            </div>
+            <img class="avatar" src="avatar.png" alt="A profile picture of Monder">
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>
+                My passion for software engineering is driven by a blend of creativity and systematic problem-solving. I thrive on the challenge of building complex systems from the ground up and enjoy the process of transforming tangible, real-world issues into robust and efficient software. My goal is to continuously learn and apply my skills to create applications that are both functional and impactful.
+            </p>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+            <h3>Software Developer Intern</h3>
+            <p><strong>Ceeras IT Services | Remote</strong></p>
+            <p><em>Feb 2025 - June 2025</em></p>
+            <p>
+                During my internship, I was an integral part of a dedicated backend development team. While project specifics are confidential, my role involved taking ownership of key backend components and contributing to a highly collaborative, agile environment. Our team effectively managed workflow by assigning clear roles and setting weekly development goals, a process that ensured we consistently met our milestones. This experience was invaluable for honing my ability to navigate technical challenges and contribute effectively within a professional team setting.
+            </p>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <h3>BSc in Software Engineering</h3>
+            <p><strong>Kinneret College</strong></p>
+            <p><em>October 2022 - Present</em></p>
+            <p>
+                My academic journey has been defined by several cornerstone courses that shaped my developer mindset. Courses like Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming were particularly rewarding, providing me with the core skills I use today. My coursework went beyond theory with practical application:
+            </p>
+            <ul>
+                <li><strong>In Introduction to Systems Programming,</strong> I applied my skills directly by developing a factory production control system using Java and MySQL.</li>
+                <li><strong>In Software-Intensive Systems Engineering,</strong> I worked with a team to manage an entire software development lifecycle, from creating SRS and SAD documents to defining user stories. This provided a macro-level perspective on development and the processes that ensure software quality and reliability.</li>
+                 <li><strong>In Object-Oriented Programming,</strong> we focused on modeling and solving real-world problems through code, solidifying my ability to write clean, structured, and maintainable Java applications.</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project-item">
+                <h4>Chat App</h4>
+                <p>This project involved creating a real-time messaging platform. A key technical decision was migrating the backend from a self-hosted MySQL database to Google's Firebase. This strategic move streamlined development by leveraging Firebase's integrated hosting for both the database and the application, allowing for rapid deployment and scalability. This project was also an excellent opportunity to practice modern development workflows, including leveraging AI-powered tools to accelerate coding and problem-solving.</p>
+            </div>
+            <div class="project-item">
+                <h4>Factory System</h4>
+                <p>This Java-based desktop application was designed to serve as a production control system. The core functionality involved managing and presenting production data in a clear, tabular format. I implemented robust filtering capabilities, allowing users to query and isolate specific information based on various production requirements, thereby improving data accessibility and workflow efficiency.</p>
+            </div>
+            <div class="project-item">
+                <h4>Car Rental Website (Design Stage)</h4>
+                <p>This project, currently in the UI/UX design phase in Figma, is a web platform for car rentals. The user flow is designed for simplicity: potential renters can browse vehicles and directly contact owners for details without needing to register. The platform also includes a separate, secure administrative interface where vehicle owners can perform full CRUD (Create, Read, Update, Delete) operations on their car listings. Future iterations are planned to include more advanced features.</p>
+            </div>
+            <div class="project-item">
+                <h4>Java Games (Chess, Minesweeper)</h4>
+                <p>This collection of games demonstrates my command of core programming logic and object-oriented principles. The most complex of these was the Chess application. The primary challenge was architecting the game engine to accurately enforce the complete set of official chess rules, including complex maneuvers like en passant captures and castling. This required careful design of the game state representation and move validation algorithms.</p>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <ul>
+                <li><strong>Programming Languages:</strong> C, Java, JavaScript</li>
+                <li><strong>Frameworks/Tools:</strong> JavaFX, Node.js, React, Firebase, Figma</li>
+                <li><strong>Databases:</strong> MySQL, PostgreSQL</li>
+                <li><strong>Front-End Technologies:</strong> HTML, CSS</li>
+                <li><strong>Version Control:</strong> Git</li>
+            </ul>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact</h2>
+            <ul class="contact-info">
+                <li><strong>Email:</strong> <a href="mailto:mndr6702@gmail.com">mndr6702@gmail.com</a></li>
+                <li><strong>Phone:</strong> +972 503019542</li>
+                <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank">View Profile</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank">View Projects</a></li>
+            </ul>
+        </section>
+    </main>
 </body>
 </html>
