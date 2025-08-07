@@ -3,58 +3,539 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monder's Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="icon1.png" />
-
+    <meta name="description" content="Portfolio for Monther Ibrahem, a software engineering student specializing in Java, Spring Boot, and full-stack web development with React and Firebase.">
+    <title>Monther Ibrahem | Software Engineering Student</title>
     
-    <link rel="stylesheet" href="style.css">
+    <!-- Favicon - Using a simple emoji as a placeholder -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            /* Palette: "Cosmic Echo" */
+            --background-dark: #111827;      /* Deep, rich Indigo */
+            --section-bg: #1F2937;           /* Lighter muted Indigo */
+            --primary-accent: #38BDF8;       /* Vibrant Sky Blue for key elements */
+            --secondary-accent: #818CF8;     /* Softer Indigo for secondary highlights */
+            --highlight-accent: #F472B6;     /* A pop of Pink for contrast */
+
+            --text-primary: #E5E7EB;         /* Crisp, readable light gray */
+            --text-secondary: #9CA3AF;       /* Muted gray for secondary text */
+            --header-bg: rgba(17, 24, 39, 0.8); /* Semi-transparent indigo header */
+
+            /* Typography */
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Roboto Mono', monospace;
+
+            /* Spacing */
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 4rem;
+
+            /* Effects */
+            --border-radius: 16px;
+            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        html {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            color: var(--text-primary);
+            background-color: var(--background-dark);
+            background-image: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1), transparent 30%),
+                              radial-gradient(circle at 80% 70%, rgba(129, 140, 248, 0.1), transparent 30%);
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        body::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+        }
+
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 100px var(--spacing-lg) 0 var(--spacing-lg);
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 0 var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 1.75rem var(--spacing-md);
+            font-weight: 600;
+            position: relative;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 1.25rem;
+            left: var(--spacing-md);
+            right: var(--spacing-md);
+            height: 2px;
+            background-color: var(--primary-accent);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+        .hamburger-btn {
+            display: none;
+            z-index: 1001;
+        }
+
+
+        /* --- Typography --- */
+        h2 {
+            font-family: var(--font-heading);
+            font-size: 2.75rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: var(--primary-accent);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        p, li {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        p strong, li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* --- Sections & Content --- */
+        section {
+            padding: var(--spacing-xl) 0;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        #intro {
+            padding-top: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--spacing-xl);
+            min-height: 60vh;
+        }
+
+        #intro h2 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+        }
+
+        #intro p {
+            font-size: 1.15rem;
+            max-width: 60ch;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .avatar {
+            width: 175px;
+            height: 175px;
+            border-radius: 20px;
+            border: 4px solid var(--primary-accent);
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+        }
+        
+        .intro-buttons a {
+            text-decoration: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all var(--transition-speed) ease;
+        }
+        .intro-buttons a.primary {
+            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+        }
+        .intro-buttons a.primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+        }
+        .intro-buttons a.secondary {
+            background-color: var(--section-bg);
+            border: 1px solid var(--primary-accent);
+        }
+        .intro-buttons a.secondary:hover {
+            background-color: var(--primary-accent);
+            color: var(--background-dark);
+        }
+
+
+        /* --- Projects --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .project-item {
+            background: var(--section-bg);
+            border: 1px solid rgba(229, 231, 235, 0.1);
+            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-accent);
+        }
+        .project-item .description {
+            flex-grow: 1;
+        }
+        .project-item .tech-stack, .project-item .project-links {
+            margin-top: var(--spacing-md);
+        }
+        .project-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: var(--spacing-md);
+            transition: color var(--transition-speed) ease;
+        }
+        .project-links a:hover {
+            color: var(--primary-accent);
+        }
+        .project-links a i {
+            margin-right: var(--spacing-sm);
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+        .tech-tags span {
+            background-color: var(--background-dark);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+
+        /* --- Skills --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        .skills-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .skills-list li {
+            background-color: var(--section-bg);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            border: 1px solid transparent;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .skills-list li:hover {
+            color: var(--background-dark);
+            background-color: var(--primary-accent);
+            transform: translateY(-2px);
+        }
+
+        .skill-category h4 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+
+        /* --- Contact Section --- */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .contact-info a {
+            display: inline-block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-accent);
+            transform: translateX(4px);
+        }
+
+        .contact-info a i {
+            margin-right: var(--spacing-sm);
+            color: var(--primary-accent);
+            font-size: 1.1rem;
+            width: 25px;
+            text-align: center;
+        }
+        
+        .disabled-link {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* --- Floating Action Button --- */
+        .floating-contact-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+            color: var(--text-primary);
+            border-radius: 50%;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        }
+
+        .floating-contact-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            main {
+                padding: 80px var(--spacing-md) 0 var(--spacing-md);
+            }
+            section {
+                padding: var(--spacing-lg) 0;
+            }
+            .header {
+                padding: 1rem 1.5rem;
+            }
+            .hamburger-btn {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                width: 28px;
+                height: 24px;
+                cursor: pointer;
+            }
+            .hamburger-btn span {
+                width: 100%;
+                height: 3px;
+                background-color: var(--text-primary);
+                border-radius: 3px;
+                transition: all 0.3s ease-in-out;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--header-bg);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                align-items: center;
+                border-bottom: 1px solid rgba(229, 231, 235, 0.1);
+            }
+            .nav-links a {
+                padding: var(--spacing-md);
+                width: 100%;
+                text-align: center;
+                border-top: 1px solid rgba(229, 231, 235, 0.1);
+            }
+            .nav-links a::after {
+                display: none; /* Hide underline effect on mobile nav */
+            }
+            .menu-toggle:checked ~ nav .nav-links {
+                display: flex;
+            }
+            .menu-toggle:checked + .hamburger-btn span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            .menu-toggle:checked + .hamburger-btn span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle:checked + .hamburger-btn span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            h2, #intro h2 {
+                font-size: 2.25rem; 
+            }
+            h3 {
+                font-size: 1.25rem;
+            }
+            #intro {
+                flex-direction: column-reverse;
+                text-align: center;
+                min-height: auto;
+                padding-top: var(--spacing-lg);
+            }
+            .avatar {
+                width: 140px;
+                height: 140px;
+            }
+            .floating-contact-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Monther Ibrahem</h1>
+        
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <a href="#contact" class="floating-contact-btn" title="Contact Me">
         <i class="fa-solid fa-envelope"></i>
     </a>
-</head>
-<body>
-    <header class="header">
-    <h1>Monder's Portfolio</h1>
 
-    <input type="checkbox" id="menu-toggle" class="menu-toggle">
-    
-    <label for="menu-toggle" class="hamburger-btn">
-        <span></span> <span></span>
-        <span></span>
-    </label>
-    
-    <nav>
-        <ul class="nav-links">
-            <li><a href="#about">About Me</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-</header>
-
-    
     <main>
-        <section id="intro" class="intro">
-             <div>
-                <h2>
-                    Software Engineering Student
-                </h2>
+        <section id="intro">
+            <div>
+                <h2>Software Engineering Student</h2>
                 <p>
-                    A software engineering student with a passion for building applications from scratch and architecting elegant solutions to real-world problems.
+                    A passionate developer focused on building applications from scratch and architecting elegant solutions to real-world problems.
                 </p>
+                <div class="intro-buttons" style="display: flex; gap: 1rem;">
+                    <a href="#contact" class="primary">Get In Touch</a>
+                    <a href="#" class="secondary disabled-link" title="Resume coming soon!">Download Resume</a>
+                </div>
             </div>
-            <img class="avatar" src="avatar.png" alt="A profile picture of Monder">
+            <img class="avatar" src="./avatar.png" alt="A profile picture of Monther Ibrahem" onerror="this.onerror=null;this.src='https://placehold.co/320x320/1F2937/38BDF8?text=MI';">
         </section>
 
         <section id="about">
@@ -66,124 +547,154 @@
 
         <section id="experience">
             <h2>Experience</h2>
-            <h3>Software Developer Intern</h3>
-            <p><strong>Ceeras IT Services | Remote</strong></p>
-            <p><em>Feb 2025 - June 2025</em></p>
-            <p>
-                During my internship, I was an integral part of a dedicated backend development team. While project specifics are confidential, my role involved taking ownership of key backend components and contributing to a highly collaborative, agile environment. Our team effectively managed workflow by assigning clear roles and setting weekly development goals, a process that ensured we consistently met our milestones. This experience was invaluable for honing my ability to navigate technical challenges and contribute effectively within a professional team setting.
-            </p>
+            <div class="project-item">
+                <h3>Software Developer Intern</h3>
+                <p><strong>Ceeras IT Services | Remote</strong></p>
+                <p><em>Feb 2025 - June 2025</em></p>
+                <p class="description">
+                    During my internship, I was an integral part of a dedicated backend development team. While project specifics are confidential, my role involved taking ownership of key backend components using <strong>Java, Spring Boot, and PostgreSQL</strong>. I contributed to a highly collaborative, agile environment, helping to manage workflow and meet weekly development goals.
+                </p>
+            </div>
         </section>
-
+        
         <section id="education">
             <h2>Education</h2>
-            <h3>BSc in Software Engineering</h3>
-            <p><strong>Kinneret College</strong></p>
-            <p><em>October 2022 - Present</em></p>
-            <p>
-                My academic journey has been defined by several cornerstone courses that shaped my developer mindset. Courses like Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming were particularly rewarding, providing me with the core skills I use today. My coursework went beyond theory with practical application:
-            </p>
-            <ul>
-                <li><strong>In Introduction to Systems Programming,</strong> I applied my skills directly by developing a factory production control system using Java and MySQL.</li>
-                <li><strong>In Software-Intensive Systems Engineering,</strong> I worked with a team to manage an entire software development lifecycle, from creating SRS and SAD documents to defining user stories. This provided a macro-level perspective on development and the processes that ensure software quality and reliability.</li>
-                 <li><strong>In Object-Oriented Programming,</strong> we focused on modeling and solving real-world problems through code, solidifying my ability to write clean, structured, and maintainable Java applications.</li>
-            </ul>
+            <div class="project-item">
+                <h3>BSc in Software Engineering</h3>
+                <p><strong>Kinneret College</strong></p>
+                <p><em>October 2022 - August 2026 (Expected)</em></p>
+                <p class="description">
+                    My academic journey has been defined by several cornerstone courses that shaped my developer mindset. Courses like Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming were particularly rewarding, providing me with the core skills I use today.
+                </p>
+            </div>
         </section>
 
         <section id="projects">
             <h2>Projects</h2>
-            <div class="project-item">
-                <h4>Chat App</h4>
-                <p>This project involved creating a real-time messaging platform. A key technical decision was migrating the backend from a self-hosted MySQL database to Google's Firebase. This strategic move streamlined development by leveraging Firebase's integrated hosting for both the database and the application, allowing for rapid deployment and scalability. This project was also an excellent opportunity to practice modern development workflows, including leveraging AI-powered tools to accelerate coding and problem-solving.</p>
-            </div>
-            <div class="project-item">
-                <h4>Factory System</h4>
-                <p>This Java-based desktop application was designed to serve as a production control system. The core functionality involved managing and presenting production data in a clear, tabular format. I implemented robust filtering capabilities, allowing users to query and isolate specific information based on various production requirements, thereby improving data accessibility and workflow efficiency.</p>
-            </div>
-            <div class="project-item">
-                <h4>Car Rental Website (in progress)</h4>
-                <p>This project, currently in the UI/UX design phase in Figma, is a web platform for car rentals. The user flow is designed for simplicity: potential renters can browse vehicles and directly contact owners for details without needing to register. The platform also includes a separate, secure administrative interface where vehicle owners can perform full CRUD (Create, Read, Update, Delete) operations on their car listings. Future iterations are planned to include more advanced features.</p>
-            </div>
-            <div class="project-item">
-                <h4>Java Games (Chess, Minesweeper)</h4>
-                <p>This collection of games demonstrates my command of core programming logic and object-oriented principles. The most complex of these was the Chess application. The primary challenge was architecting the game engine to accurately enforce the complete set of official chess rules, including complex maneuvers like en passant captures and castling. This required careful design of the game state representation and move validation algorithms.</p>
+            <div class="project-grid">
+                <div class="project-item">
+                    <h4>Real-Time Chat App</h4>
+                    <p class="description">A real-time messaging platform built from the ground up, featuring a backend migration to Google's Firebase for streamlined development and scalability.</p>
+                    <div class="tech-stack">
+                        <div class="tech-tags">
+                            <span>React</span>
+                            <span>Firebase</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                        <a href="#" class="disabled-link" title="Deployment in progress"><i class="fas fa-external-link-alt"></i>Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h4>Factory Production Control System</h4>
+                    <p class="description">A Java-based desktop application designed to manage production data. Features robust filtering capabilities to query and isolate information, improving workflow efficiency.</p>
+                    <div class="tech-stack">
+                        <div class="tech-tags">
+                           <span>Java</span>
+                           <span>JavaFX</span>
+                           <span>MySQL</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                        <a href="#" class="disabled-link" title="Desktop application"><i class="fas fa-times-circle"></i>No Demo</a>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <h4>Car Rental Website (In Progress)</h4>
+                    <p class="description">A web platform for car rentals designed in Figma. Includes a public-facing vehicle browser and a secure admin interface for owners to manage listings.</p>
+                    <div class="tech-stack">
+                        <div class="tech-tags">
+                            <span>React</span>
+                            <span>Vite</span>
+                            <span>Firebase</span>
+                            <span>CSS</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/MontherIB-SWE/AJ_Motors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                        <a href="#" class="disabled-link" title="Deployment coming soon"><i class="fas fa-external-link-alt"></i>Live Demo</a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h4>Java Logic Games (Chess & Minesweeper)</h4>
+                    <p class="description">A collection of games demonstrating core programming logic and OOP. The Chess application features a game engine that enforces all official rules.</p>
+                    <div class="tech-stack">
+                        <div class="tech-tags">
+                           <span>Java</span>
+                           <span>JavaFX</span>
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
+                        <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Minesweeper</a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="skills">
-    <h2>Technical Skills</h2>
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Languages</h4>
+                    <ul class="skills-list"><li>C</li><li>Java</li><li>JavaScript</li></ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Frameworks/Libraries</h4>
+                    <ul class="skills-list"><li>Express.js</li><li>React</li><li>Node.js</li><li>JavaFX</li><li>Spring Boot</li></ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Databases</h4>
+                    <ul class="skills-list"><li>MySQL</li><li>PostgreSQL</li><li>Firebase</li></ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Tools & Platforms</h4>
+                    <ul class="skills-list"><li>Git & GitHub</li><li>Postman</li><li>Maven</li><li>Figma</li><li>Google Cloud</li><li>Windows & Linux</li></ul>
+                </div>
+            </div>
+        </section>
 
-    <div class="skill-category">
-        <h4>Programming Languages</h4>
-        <ul class="skills-list">
-            <li>C</li>
-            <li>Java</li>
-            <li>JavaScript</li>
-        </ul>
-    </div>
-
-    <div class="skill-category">
-        <h4>Frameworks & Libraries</h4>
-        <ul class="skills-list">
-            <li>Express.js</li>
-            <li>React</li>
-            <li>Node.js</li>
-            <li>JavaFX</li>
-        </ul>
-    </div>
-
-    <div class="skill-category">
-        <h4>Databases</h4>
-        <ul class="skills-list">
-            <li>MySQL</li>
-            <li>PostgreSQL</li>
-            <li>Firebase (NoSQL)</li>
-        </ul>
-    </div>
-
-    <div class="skill-category">
-        <h4>Cloud & Hosting</h4>
-        <ul class="skills-list">
-            <li>Google Cloud</li>
-            <li>Firebase</li>
-        </ul>
-    </div>
-
-    <div class="skill-category">
-        <h4>Developer Tools & Environments</h4>
-        <ul class="skills-list">
-            <li>Git</li>
-            <li>Postman</li>
-            <li>Maven</li>
-            <li>Figma</li>
-            <li>Windows</li>
-            <li>Linux</li>
-        </ul>
-    </div>
-
-    <div class="skill-category">
-        <h4>Methodologies & Practices</h4>
-        <ul class="skills-list">
-            <li>Problem-Solving</li>
-            <li>Team Collaboration</li>
-            <li>Code Review</li>
-            <li>Project Planning</li>
-            <li>Technical Documentation</li>
-            <li>Clean Code Practices</li>
-            <li>UI/UX Principles</li>
-            <li>Attention to Detail</li>
-        </ul>
-    </div>
-</section>
-
-        <section id="contact" class="contact">
-            <h2>Contact</h2>
-           <ul class="contact-info">
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <p>
+                I'm currently seeking new opportunities and am open to collaboration. Feel free to reach out!
+            </p>
+            <ul class="contact-info">
                 <li><a href="mailto:mndr6702@gmail.com"><i class="fa-solid fa-envelope"></i> mndr6702@gmail.com</a></li>
-                <li><a href="tel:+972503019542"><i class="fa-solid fa-phone"></i> +972 503019543</a></li>
-                <li><a href="https://www.linkedin.com/in/mibrahem1/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn Profile</a></li>
-                <li><a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank"><i class="fa-brands fa-github"></i> GitHub Projects</a></li>
+                <li><a href="tel:+972503019543"><i class="fa-solid fa-phone"></i> +972 50-301-9543</a></li>
+                <li><a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn Profile</a></li>
+                <li><a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub Projects</a></li>
             </ul>
         </section>
     </main>
+    
+    <footer style="text-align: center; padding: var(--spacing-lg); color: var(--text-secondary); font-size: 0.9rem;">
+        <p>&copy; 2024 Monther Ibrahem. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 </body>
 </html>
