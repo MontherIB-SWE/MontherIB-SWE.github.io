@@ -6,7 +6,7 @@
     <meta name="description" content="Portfolio for Monther Ibrahem, a software engineering student specializing in Java, Spring Boot, and full-stack web development with React and Firebase.">
     <title>Monther Ibrahem | Software Engineering Student</title>
     
-    <!-- Favicon - Using a simple emoji as a placeholder -->
+    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
 
     <!-- Stylesheets -->
@@ -29,8 +29,7 @@
 
             --text-primary: #E5E7EB;         /* Crisp, readable light gray */
             --text-secondary: #9CA3AF;       /* Muted gray for secondary text */
-            --header-bg: rgba(17, 24, 39, 0.8); /* Semi-transparent indigo header */
-
+            
             /* Typography */
             --font-main: 'Inter', sans-serif;
             --font-heading: 'Roboto Mono', monospace;
@@ -50,103 +49,179 @@
 
         html {
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
 
         *, *::before, *::after {
             box-sizing: inherit;
         }
 
-        body {
+        html, body {
+            height: 100%;
+            overflow: hidden; /* Prevent the main body from scrolling */
             margin: 0;
             padding: 0;
             font-family: var(--font-main);
             color: var(--text-primary);
             background-color: var(--background-dark);
-            background-image: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.1), transparent 30%),
-                              radial-gradient(circle at 80% 70%, rgba(129, 140, 248, 0.1), transparent 30%);
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
         }
 
-        body::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
-        }
-
-        main {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 100px var(--spacing-lg) 0 var(--spacing-lg);
-        }
-
-        /* --- Header & Navigation --- */
-        .header {
-            background-color: var(--header-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 0 var(--spacing-lg);
+        .site-container {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(229, 231, 235, 0.1);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
+            height: 100vh; /* Ensure the container takes full viewport height */
         }
 
-        .header h1 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--text-primary);
+        /* --- Left Fixed Panel --- */
+        #left-panel {
+            width: 40%;
+            max-width: 550px;
+            min-width: 400px;
+            display: flex;
+            flex-direction: column;
+            padding: 0 var(--spacing-lg);
+            background-image: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.05), transparent 40%);
+        }
+
+        #left-panel h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
         }
         
-        .nav-links {
+        .intro-subtitle {
+            font-family: var(--font-main);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: var(--spacing-sm) 0 var(--spacing-md) 0;
+            padding: 0;
+            background: none;
+            -webkit-text-fill-color: inherit;
+            border: none;
+        }
+        
+        .personal-details {
+            margin-top: var(--spacing-md);
+            color: var(--text-secondary);
+        }
+
+        .detail-item {
             display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1rem;
+        }
+
+        .detail-item i {
+            color: var(--primary-accent);
+            width: 16px;
+            text-align: center;
+        }
+
+        .nav-links {
             list-style-type: none;
             padding: 0;
-            margin: 0;
+            margin: 3rem 0;
+        }
+
+        .nav-links li {
+            margin-bottom: var(--spacing-sm);
         }
 
         .nav-links a {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
             color: var(--text-secondary);
             text-decoration: none;
-            padding: 1.75rem var(--spacing-md);
+            padding: var(--spacing-sm) 0;
             font-weight: 600;
             position: relative;
-            transition: color var(--transition-speed) ease;
+            transition: all var(--transition-speed) ease;
         }
-
         .nav-links a:hover {
-            color: var(--primary-accent);
+            color: var(--text-primary);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 1.25rem;
-            left: var(--spacing-md);
-            right: var(--spacing-md);
+        .nav-links a .nav-indicator {
+            width: 30px;
             height: 2px;
+            background-color: var(--text-secondary);
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .nav-links a:hover .nav-indicator,
+        .nav-links a.active .nav-indicator {
+            width: 60px;
             background-color: var(--primary-accent);
-            transform: scaleX(0);
-            transform-origin: center;
-            transition: transform var(--transition-speed) ease;
         }
 
-        .nav-links a:hover::after {
-            transform: scaleX(1);
+        .nav-links a.active {
+            color: var(--text-primary);
         }
 
-        .menu-toggle {
+        .left-panel-footer {
+            margin-top: auto; /* Pushes this container to the bottom */
+        }
+
+        .social-links {
+            display: flex;
+            gap: var(--spacing-lg);
+            align-self: center;
+            margin-bottom: 2rem;
+        }
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+        }
+        .social-links a:hover {
+            color: var(--primary-accent);
+            transform: scale(1.1);
+        }
+
+        #scroll-indicator {
+            position: absolute;
+            bottom: var(--spacing-xl);
+            left: 20%; /* Position relative to the left panel width */
+            transform: translateX(-50%);
+            color: var(--text-secondary);
+            animation: bounce 2s infinite;
+            transition: opacity 0.5s ease;
+        }
+
+        #scroll-indicator.hidden {
+            opacity: 0;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+
+        /* --- Right Scrollable Panel --- */
+        #right-panel {
+            flex-grow: 1;
+            height: 100vh;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+        #right-panel::-webkit-scrollbar {
             display: none;
         }
-        .hamburger-btn {
-            display: none;
-            z-index: 1001;
+        
+        main {
+            max-width: 768px;
+            margin: 0 auto;
+            padding: var(--spacing-xl) var(--spacing-lg);
         }
-
 
         /* --- Typography --- */
         h2 {
@@ -187,8 +262,7 @@
 
         /* --- Sections & Content --- */
         section {
-            padding: var(--spacing-xl) 0;
-            border-bottom: 1px solid rgba(229, 231, 235, 0.1);
+            padding: var(--spacing-lg) 0 var(--spacing-xl) 0;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -198,70 +272,11 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        #intro {
-            padding-top: var(--spacing-lg);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: var(--spacing-xl);
-            min-height: 60vh;
-        }
-
-        #intro h2 {
-            font-size: 3rem;
-            line-height: 1.2;
-            margin-bottom: var(--spacing-md);
-        }
-
-        #intro p {
-            font-size: 1.15rem;
-            max-width: 60ch;
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .avatar {
-            width: 175px;
-            height: 175px;
-            border-radius: 20px;
-            border: 4px solid var(--primary-accent);
-            object-fit: cover;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
-        }
         
-        .intro-buttons a {
-            text-decoration: none;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: all var(--transition-speed) ease;
-        }
-        .intro-buttons a.primary {
-            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
-        }
-        .intro-buttons a.primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-        }
-        .intro-buttons a.secondary {
-            background-color: var(--section-bg);
-            border: 1px solid var(--primary-accent);
-        }
-        .intro-buttons a.secondary:hover {
-            background-color: var(--primary-accent);
-            color: var(--background-dark);
-        }
-
-
         /* --- Projects --- */
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: var(--spacing-lg);
         }
 
@@ -287,6 +302,9 @@
         .project-item .tech-stack, .project-item .project-links {
             margin-top: var(--spacing-md);
         }
+        .project-links {
+            text-align: right;
+        }
         .project-links a {
             color: var(--text-secondary);
             text-decoration: none;
@@ -306,15 +324,20 @@
             gap: var(--spacing-sm);
         }
         .tech-tags span {
-            background-color: var(--background-dark);
+            background-color: var(--section-bg);
             color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
+            padding: 0.5rem 1rem;
             border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            border: 1px solid transparent;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all var(--transition-speed) ease;
         }
-
-
+        .tech-tags span:hover {
+            color: var(--background-dark);
+            background-color: var(--primary-accent);
+            transform: translateY(-2px);
+        }
         /* --- Skills --- */
         .skills-grid {
             display: grid;
@@ -351,11 +374,10 @@
             margin-bottom: var(--spacing-md);
         }
 
-
         /* --- Contact Section --- */
         .contact-info {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr;
             gap: var(--spacing-md);
             list-style-type: none;
             padding: 0;
@@ -388,312 +410,295 @@
             pointer-events: none;
         }
 
-        /* --- Floating Action Button --- */
-        .floating-contact-btn {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            z-index: 1000;
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
-            color: var(--text-primary);
-            border-radius: 50%;
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            font-size: 1.5rem;
-            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-        }
-
-        .floating-contact-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
-        }
-
         /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            main {
-                padding: 80px var(--spacing-md) 0 var(--spacing-md);
+        @media (max-width: 1024px) {
+            html, body {
+                height: auto;
+                overflow: auto; /* Re-enable scrolling for mobile */
             }
-            section {
-                padding: var(--spacing-lg) 0;
-            }
-            .header {
-                padding: 1rem 1.5rem;
-            }
-            .hamburger-btn {
-                display: flex;
+            .site-container {
                 flex-direction: column;
-                justify-content: space-around;
-                width: 28px;
-                height: 24px;
-                cursor: pointer;
+                height: auto;
             }
-            .hamburger-btn span {
+            #left-panel {
                 width: 100%;
-                height: 3px;
-                background-color: var(--text-primary);
-                border-radius: 3px;
-                transition: all 0.3s ease-in-out;
+                max-width: none;
+                min-width: auto;
+                position: relative;
+                padding: var(--spacing-lg);
+                text-align: center;
+            }
+            #left-panel .intro-content, #left-panel .left-panel-footer {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            .personal-details, .detail-item {
+                justify-content: center;
             }
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--header-bg);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                align-items: center;
-                border-bottom: 1px solid rgba(229, 231, 235, 0.1);
+                display: none; /* Hide nav on mobile for simplicity */
             }
-            .nav-links a {
-                padding: var(--spacing-md);
-                width: 100%;
-                text-align: center;
-                border-top: 1px solid rgba(229, 231, 235, 0.1);
+            #scroll-indicator {
+                display: none; /* Hide scroll indicator on mobile */
             }
-            .nav-links a::after {
-                display: none; /* Hide underline effect on mobile nav */
+            #right-panel {
+                height: auto;
+                overflow-y: visible;
             }
-            .menu-toggle:checked ~ nav .nav-links {
-                display: flex;
+            main {
+                padding: var(--spacing-lg) var(--spacing-md);
             }
-            .menu-toggle:checked + .hamburger-btn span:nth-child(1) {
-                transform: rotate(45deg) translate(6px, 6px);
-            }
-            .menu-toggle:checked + .hamburger-btn span:nth-child(2) {
-                opacity: 0;
-            }
-            .menu-toggle:checked + .hamburger-btn span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -6px);
-            }
-            h2, #intro h2 {
+            h2 {
                 font-size: 2.25rem; 
-            }
-            h3 {
-                font-size: 1.25rem;
-            }
-            #intro {
-                flex-direction: column-reverse;
-                text-align: center;
-                min-height: auto;
-                padding-top: var(--spacing-lg);
-            }
-            .avatar {
-                width: 140px;
-                height: 140px;
-            }
-            .floating-contact-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.25rem;
             }
         }
     </style>
 </head>
 <body>
-
-    <header class="header">
-        <h1>Monther Ibrahem</h1>
-        
-        <input type="checkbox" id="menu-toggle" class="menu-toggle">
-        <label for="menu-toggle" class="hamburger-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <a href="#contact" class="floating-contact-btn" title="Contact Me">
-        <i class="fa-solid fa-envelope"></i>
-    </a>
-
-    <main>
-        <section id="intro">
-            <div>
-                <h2>Software Engineering Student</h2>
-                <p>
-                    A passionate developer focused on building applications from scratch and architecting elegant solutions to real-world problems.
-                </p>
-                <div class="intro-buttons" style="display: flex; gap: 1rem;">
-                    <a href="#contact" class="primary">Get In Touch</a>
-                    <a href="#" class="secondary disabled-link" title="Resume coming soon!">Download Resume</a>
+    <div class="site-container">
+        <!-- Left Fixed Panel -->
+        <aside id="left-panel">
+            <div class="intro-content">
+                <h1>Monther Ibrahem</h1>
+                <h2 class="intro-subtitle">Software Engineering Student</h2>
+                <div class="personal-details">
+                    <div class="detail-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Full-Stack Development</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Daburiyya, Israel</span>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#about"><span class="nav-indicator"></span><span class="nav-text">About</span></a></li>
+                        <li><a href="#experience"><span class="nav-indicator"></span><span class="nav-text">Experience</span></a></li>
+                        <li><a href="#education"><span class="nav-indicator"></span><span class="nav-text">Education</span></a></li>
+                        <li><a href="#projects"><span class="nav-indicator"></span><span class="nav-text">Projects</span></a></li>
+                        <li><a href="#skills"><span class="nav-indicator"></span><span class="nav-text">Skills</span></a></li>
+                        <li><a href="#contact"><span class="nav-indicator"></span><span class="nav-text">Contact</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="left-panel-footer">
+                <div class="social-links">
+                    <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:mndr6702@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-            <img class="avatar" src="./avatar.png" alt="A profile picture of Monther Ibrahem" onerror="this.onerror=null;this.src='https://placehold.co/320x320/1F2937/38BDF8?text=MI';">
-        </section>
-
-        <section id="about">
-            <h2>About Me</h2>
-            <p>
-                My passion for software engineering is driven by a blend of creativity and systematic problem-solving. I thrive on the challenge of building complex systems from the ground up and enjoy the process of transforming tangible, real-world issues into robust and efficient software. My goal is to continuously learn and apply my skills to create applications that are both functional and impactful.
-            </p>
-        </section>
-
-        <section id="experience">
-            <h2>Experience</h2>
-            <div class="project-item">
-                <h3>Software Developer Intern</h3>
-                <p><strong>Ceeras IT Services | Remote</strong></p>
-                <p><em>Feb 2025 - June 2025</em></p>
-                <p class="description">
-                    During my internship, I was an integral part of a dedicated backend development team. While project specifics are confidential, my role involved taking ownership of key backend components using <strong>Java, Spring Boot, and PostgreSQL</strong>. I contributed to a highly collaborative, agile environment, helping to manage workflow and meet weekly development goals.
-                </p>
+             <div id="scroll-indicator">
+                <i class="fas fa-arrow-down"></i>
             </div>
-        </section>
-        
-        <section id="education">
-            <h2>Education</h2>
-            <div class="project-item">
-                <h3>BSc in Software Engineering</h3>
-                <p><strong>Kinneret College</strong></p>
-                <p><em>October 2022 - August 2026 (Expected)</em></p>
-                <p class="description">
-                    My academic journey has been defined by several cornerstone courses that shaped my developer mindset. Courses like Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming were particularly rewarding, providing me with the core skills I use today.
-                </p>
-            </div>
-        </section>
+        </aside>
 
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project-grid">
-                <div class="project-item">
-                    <h4>Real-Time Chat App</h4>
-                    <p class="description">A real-time messaging platform built from the ground up, featuring a backend migration to Google's Firebase for streamlined development and scalability.</p>
-                    <div class="tech-stack">
-                        <div class="tech-tags">
-                            <span>React</span>
-                            <span>Firebase</span>
+        <!-- Right Scrollable Panel -->
+        <div id="right-panel">
+            <main>
+                <!-- About Me Section -->
+                <section id="about">
+                    <h2>About Me</h2>
+                    <p>
+                        My passion for software engineering is driven by a blend of creativity and systematic problem-solving. I thrive on the challenge of building complex systems from the ground up and enjoy the process of transforming tangible, real-world issues into robust and efficient software. My goal is to continuously learn and apply my skills to create applications that are both functional and impactful.
+                    </p>
+                </section>
+
+                <!-- Experience Section -->
+                <section id="experience">
+                    <h2>Experience</h2>
+                    <div class="project-grid">
+                        <div class="project-item">
+                            <h3>Software Developer Intern</h3>
+                            <p><strong>Ceeras IT Services | Remote</strong></p>
+                            <p><em>Feb 2025 - June 2025</em></p>
+                            <p class="description">
+                                During my internship, I was an integral part of a dedicated backend development team. While project specifics are confidential, my role involved taking ownership of key backend components using <strong>Java, Spring Boot, and PostgreSQL</strong>. I contributed to a highly collaborative, agile environment, helping to manage workflow and meet weekly development goals.
+                            </p>
                         </div>
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                        <a href="#" class="disabled-link" title="Deployment in progress"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <h4>Factory Production Control System</h4>
-                    <p class="description">A Java-based desktop application designed to manage production data. Features robust filtering capabilities to query and isolate information, improving workflow efficiency.</p>
-                    <div class="tech-stack">
-                        <div class="tech-tags">
-                           <span>Java</span>
-                           <span>JavaFX</span>
-                           <span>MySQL</span>
-                        </div>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                        <a href="#" class="disabled-link" title="Desktop application"><i class="fas fa-times-circle"></i>No Demo</a>
-                    </div>
-                </div>
+                </section>
                 
-                <div class="project-item">
-                    <h4>Car Rental Website (In Progress)</h4>
-                    <p class="description">A web platform for car rentals designed in Figma. Includes a public-facing vehicle browser and a secure admin interface for owners to manage listings.</p>
-                    <div class="tech-stack">
-                        <div class="tech-tags">
-                            <span>React</span>
-                            <span>Vite</span>
-                            <span>Firebase</span>
-                            <span>CSS</span>
+                <!-- Education Section -->
+                <section id="education">
+                    <h2>Education</h2>
+                    <div class="project-grid">
+                        <div class="project-item">
+                            <h3>BSc in Software Engineering</h3>
+                            <p><strong>Kinneret College</strong></p>
+                            <p><em>October 2022 - August 2026 (Expected)</em></p>
+                            <p class="description">
+                                My academic journey has been defined by several cornerstone courses that shaped my developer mindset. Courses like Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming were particularly rewarding, providing me with the core skills I use today.
+                            </p>
                         </div>
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/MontherIB-SWE/AJ_Motors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                        <a href="#" class="disabled-link" title="Deployment coming soon"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-                    </div>
-                </div>
+                </section>
 
-                <div class="project-item">
-                    <h4>Java Logic Games (Chess & Minesweeper)</h4>
-                    <p class="description">A collection of games demonstrating core programming logic and OOP. The Chess application features a game engine that enforces all official rules.</p>
-                    <div class="tech-stack">
-                        <div class="tech-tags">
-                           <span>Java</span>
-                           <span>JavaFX</span>
+                <!-- Projects Section -->
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <div class="project-grid">
+                        <!-- Project Item 1: Chat App -->
+                        <div class="project-item">
+                            <h4>Real-Time Chat App</h4>
+                            <p class="description">A real-time messaging platform built from the ground up, featuring a backend migration to Google's Firebase for streamlined development and scalability.</p>
+                            <div class="tech-stack">
+                                <div class="tech-tags">
+                                    <span>React</span>
+                                    <span>Firebase</span>
+                                </div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                                <a href="#" class="disabled-link" title="Deployment in progress"><i class="fas fa-external-link-alt"></i>Live Demo</a>
+                            </div>
+                        </div>
+
+                        <!-- Project Item 2: Factory System -->
+                        <div class="project-item">
+                            <h4>Factory Production Control System</h4>
+                            <p class="description">A Java-based desktop application designed to manage production data. Features robust filtering capabilities to query and isolate information, improving workflow efficiency.</p>
+                            <div class="tech-stack">
+                                <div class="tech-tags">
+                                   <span>Java</span>
+                                   <span>JavaFX</span>
+                                   <span>MySQL</span>
+                                </div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                                <a href="#" class="disabled-link" title="Desktop application"><i class="fas fa-times-circle"></i>No Demo</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Project Item 3: Car Rental -->
+                        <div class="project-item">
+                            <h4>Car Rental Website (In Progress)</h4>
+                            <p class="description">A web platform for car rentals designed in Figma. Includes a public-facing vehicle browser and a secure admin interface for owners to manage listings.</p>
+                            <div class="tech-stack">
+                                <div class="tech-tags">
+                                    <span>React</span>
+                                    <span>Vite</span>
+                                    <span>Firebase</span>
+                                    <span>CSS</span>
+                                </div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MontherIB-SWE/AJ_Motors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                                <a href="#" class="disabled-link" title="Deployment coming soon"><i class="fas fa-external-link-alt"></i>Live Demo</a>
+                            </div>
+                        </div>
+
+                        <!-- Project Item 4: Java Games -->
+                        <div class="project-item">
+                            <h4>Java Logic Games (Chess & Minesweeper)</h4>
+                            <p class="description">A collection of games demonstrating core programming logic and OOP. The Chess application features a game engine that enforces all official rules.</p>
+                            <div class="tech-stack">
+                                <div class="tech-tags">
+                                   <span>Java</span>
+                                   <span>JavaFX</span>
+                                </div>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
+                                <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Minesweeper</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="project-links">
-                        <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
-                        <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Minesweeper</a>
+                </section>
+
+                <!-- Skills Section -->
+                <section id="skills">
+                    <h2>Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Languages</h4>
+                            <ul class="skills-list"><li>C</li><li>Java</li><li>JavaScript</li></ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Frameworks/Libraries</h4>
+                            <ul class="skills-list"><li>Express.js</li><li>React</li><li>Node.js</li><li>JavaFX</li><li>Spring Boot</li></ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Databases</h4>
+                            <ul class="skills-list"><li>MySQL</li><li>PostgreSQL</li><li>Firebase</li></ul>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Tools & Platforms</h4>
+                            <ul class="skills-list"><li>Git & GitHub</li><li>Postman</li><li>Maven</li><li>Figma</li><li>Google Cloud</li><li>Windows & Linux</li></ul>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </section>
 
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h4>Languages</h4>
-                    <ul class="skills-list"><li>C</li><li>Java</li><li>JavaScript</li></ul>
-                </div>
-                <div class="skill-category">
-                    <h4>Frameworks/Libraries</h4>
-                    <ul class="skills-list"><li>Express.js</li><li>React</li><li>Node.js</li><li>JavaFX</li><li>Spring Boot</li></ul>
-                </div>
-                <div class="skill-category">
-                    <h4>Databases</h4>
-                    <ul class="skills-list"><li>MySQL</li><li>PostgreSQL</li><li>Firebase</li></ul>
-                </div>
-                <div class="skill-category">
-                    <h4>Tools & Platforms</h4>
-                    <ul class="skills-list"><li>Git & GitHub</li><li>Postman</li><li>Maven</li><li>Figma</li><li>Google Cloud</li><li>Windows & Linux</li></ul>
-                </div>
-            </div>
-        </section>
+                <!-- Contact Section -->
+                <section id="contact">
+                    <h2>Get In Touch</h2>
+                    <p>
+                        I'm currently seeking new opportunities and am open to collaboration. Feel free to reach out!
+                    </p>
+                    <ul class="contact-info">
+                        <li><a href="mailto:mndr6702@gmail.com"><i class="fa-solid fa-envelope"></i> mndr6702@gmail.com</a></li>
+                        <li><a href="tel:+972503019543"><i class="fa-solid fa-phone"></i> +972 50-301-9543</a></li>
+                    </ul>
+                </section>
+            </main>
+        </div>
+    </div>
 
-        <section id="contact">
-            <h2>Get In Touch</h2>
-            <p>
-                I'm currently seeking new opportunities and am open to collaboration. Feel free to reach out!
-            </p>
-            <ul class="contact-info">
-                <li><a href="mailto:mndr6702@gmail.com"><i class="fa-solid fa-envelope"></i> mndr6702@gmail.com</a></li>
-                <li><a href="tel:+972503019543"><i class="fa-solid fa-phone"></i> +972 50-301-9543</a></li>
-                <li><a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn Profile</a></li>
-                <li><a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub Projects</a></li>
-            </ul>
-        </section>
-    </main>
-    
-    <footer style="text-align: center; padding: var(--spacing-lg); color: var(--text-secondary); font-size: 0.9rem;">
-        <p>&copy; 2024 Monther Ibrahem. All Rights Reserved.</p>
-    </footer>
-
+    <!-- JavaScript for animations and interactions -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section');
+            const sections = document.querySelectorAll('#right-panel section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const rightPanel = document.querySelector('#right-panel');
+            const scrollIndicator = document.getElementById('scroll-indicator');
 
-            const observer = new IntersectionObserver(entries => {
+            // --- Fade in sections on scroll ---
+            const sectionObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
             }, {
+                root: rightPanel,
                 threshold: 0.1
             });
 
             sections.forEach(section => {
-                observer.observe(section);
+                sectionObserver.observe(section);
             });
+
+            // --- Active navigation highlighting on scroll ---
+            const navObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            const href = link.getAttribute('href').substring(1);
+                            link.classList.toggle('active', href === entry.target.id);
+                        });
+                    }
+                });
+            }, {
+                root: rightPanel,
+                rootMargin: '-50% 0px -50% 0px' 
+            });
+
+            sections.forEach(section => {
+                navObserver.observe(section);
+            });
+
+            function handleScroll() {
+                if (scrollIndicator) {
+                    scrollIndicator.classList.add('hidden');
+                    rightPanel.removeEventListener('scroll', handleScroll);
+                }
+            }
+            rightPanel.addEventListener('scroll', handleScroll);
+
         });
     </script>
 </body>
