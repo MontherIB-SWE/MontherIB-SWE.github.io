@@ -57,7 +57,7 @@
 
         html, body {
             height: 100%;
-            overflow: hidden; /* Prevent the main body from scrolling */
+            overflow: hidden; /* Prevent the main body from scrolling on desktop */
             margin: 0;
             padding: 0;
             font-family: var(--font-main);
@@ -77,7 +77,8 @@
             min-width: 400px;
             display: flex;
             flex-direction: column;
-            padding: 0 var(--spacing-lg);
+            justify-content: space-between;
+            padding: var(--spacing-xl) var(--spacing-lg);
             background-image: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.05), transparent 40%);
         }
 
@@ -98,76 +99,47 @@
             border: none;
         }
         
-        .personal-details {
-            margin-top: var(--spacing-md);
-            color: var(--text-secondary);
+        .at-a-glance {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--section-bg);
         }
 
-        .detail-item {
+        .glance-item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: var(--spacing-md);
-            margin-bottom: var(--spacing-sm);
-            font-size: 1rem;
+            margin-bottom: var(--spacing-md);
         }
 
-        .detail-item i {
+        .glance-item i {
             color: var(--primary-accent);
-            width: 16px;
+            font-size: 1rem;
+            margin-top: 5px;
+            width: 18px;
             text-align: center;
         }
 
-        .nav-links {
-            list-style-type: none;
-            padding: 0;
-            margin: 3rem 0;
-        }
-
-        .nav-links li {
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .nav-links a {
+        .glance-item div {
             display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: var(--spacing-sm) 0;
+            flex-direction: column;
+        }
+
+        .glance-item strong {
+            color: var(--text-primary);
             font-weight: 600;
-            position: relative;
-            transition: all var(--transition-speed) ease;
-        }
-        .nav-links a:hover {
-            color: var(--text-primary);
+            font-size: 1rem;
         }
 
-        .nav-links a .nav-indicator {
-            width: 30px;
-            height: 2px;
-            background-color: var(--text-secondary);
-            transition: all var(--transition-speed) ease;
-        }
-        
-        .nav-links a:hover .nav-indicator,
-        .nav-links a.active .nav-indicator {
-            width: 60px;
-            background-color: var(--primary-accent);
-        }
-
-        .nav-links a.active {
-            color: var(--text-primary);
-        }
-
-        .left-panel-footer {
-            margin-top: auto; /* Pushes this container to the bottom */
+        .glance-item span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
         }
 
         .social-links {
             display: flex;
             gap: var(--spacing-lg);
-            align-self: center;
-            margin-bottom: 2rem;
+            margin-top: var(--spacing-xl);
         }
         .social-links a {
             color: var(--text-secondary);
@@ -179,39 +151,13 @@
             transform: scale(1.1);
         }
 
-        #scroll-indicator {
-            position: absolute;
-            bottom: var(--spacing-xl);
-            left: 20%; /* Position relative to the left panel width */
-            transform: translateX(-50%);
-            color: var(--text-secondary);
-            animation: bounce 2s infinite;
-            transition: opacity 0.5s ease;
-        }
-
-        #scroll-indicator.hidden {
-            opacity: 0;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
-        }
-
-
         /* --- Right Scrollable Panel --- */
         #right-panel {
             flex-grow: 1;
             height: 100vh;
             overflow-y: auto;
             scroll-behavior: smooth;
+            position: relative;
         }
         #right-panel::-webkit-scrollbar {
             display: none;
@@ -221,6 +167,62 @@
             max-width: 768px;
             margin: 0 auto;
             padding: var(--spacing-xl) var(--spacing-lg);
+        }
+
+        /* --- Vertical Hover Navigation --- */
+        .right-nav {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            z-index: 1000;
+            background: var(--section-bg);
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            transition: width var(--transition-speed) ease;
+            width: 60px; /* Shrunken state */
+            overflow: hidden;
+        }
+        .right-nav:hover {
+            width: 180px; /* Expanded state */
+        }
+        .right-nav .nav-links {
+            list-style: none;
+            padding: var(--spacing-sm) 0;
+            margin: 0;
+        }
+        .right-nav .nav-links a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            padding: var(--spacing-md) 0;
+            white-space: nowrap;
+            transition: background-color var(--transition-speed) ease;
+        }
+        .right-nav .nav-links a:hover {
+            background-color: rgba(56, 189, 248, 0.1);
+        }
+        .right-nav .nav-links a.active {
+            color: var(--primary-accent);
+            font-weight: 700;
+        }
+        .right-nav .nav-links i {
+            font-size: 1.25rem;
+            width: 60px;
+            text-align: center;
+            transition: color var(--transition-speed) ease;
+        }
+        .right-nav .nav-links .nav-text {
+            opacity: 0;
+            max-width: 0;
+            overflow: hidden;
+            transition: opacity 0.2s ease, max-width 0.3s ease;
+            font-weight: 600;
+        }
+        .right-nav:hover .nav-links .nav-text {
+            opacity: 1;
+            max-width: 120px; /* Give it space to expand */
         }
 
         /* --- Typography --- */
@@ -324,7 +326,7 @@
             gap: var(--spacing-sm);
         }
         .tech-tags span {
-            background-color: var(--section-bg);
+           background-color: var(--section-bg);
             color: var(--text-secondary);
             padding: 0.5rem 1rem;
             border-radius: 9999px;
@@ -338,6 +340,7 @@
             background-color: var(--primary-accent);
             transform: translateY(-2px);
         }
+
         /* --- Skills --- */
         .skills-grid {
             display: grid;
@@ -427,30 +430,82 @@
                 position: relative;
                 padding: var(--spacing-lg);
                 text-align: center;
+                justify-content: center;
             }
-            #left-panel .intro-content, #left-panel .left-panel-footer {
+            .at-a-glance {
                 align-items: center;
-                justify-content: center;
-                text-align: center;
-            }
-            .personal-details, .detail-item {
-                justify-content: center;
-            }
-            .nav-links {
-                display: none; /* Hide nav on mobile for simplicity */
-            }
-            #scroll-indicator {
-                display: none; /* Hide scroll indicator on mobile */
+                text-align: left;
+                display: inline-block;
             }
             #right-panel {
                 height: auto;
                 overflow-y: visible;
             }
             main {
-                padding: var(--spacing-lg) var(--spacing-md);
+                padding: var(--spacing-lg) var(--spacing-md) 80px var(--spacing-md); /* Add bottom padding for nav */
             }
             h2 {
                 font-size: 2.25rem; 
+            }
+            
+            /* Mobile Bottom Nav */
+            .right-nav {
+                display: block;
+                position: fixed;
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                transform: none;
+                border-radius: 0;
+                border-top: 1px solid rgba(229, 231, 235, 0.1);
+            }
+            .right-nav:hover {
+                width: 100%; /* Disable hover expansion */
+            }
+            .right-nav .nav-links {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 0;
+            }
+            .right-nav .nav-links a {
+                padding: var(--spacing-sm); /* Reduced padding */
+                flex-grow: 1;
+                display: flex;
+                justify-content: center;
+            }
+            .right-nav .nav-links .nav-text {
+                display: none; /* Always hide text on mobile nav */
+            }
+            .right-nav .nav-links a.active i {
+                color: var(--primary-accent); /* Highlight active icon */
+            }
+        }
+
+        /* Added for smaller mobile screens */
+        @media (max-width: 767px) {
+            #left-panel h1 {
+                font-size: 2rem;
+            }
+            .intro-subtitle {
+                font-size: 1.1rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            main {
+                padding: var(--spacing-md) var(--spacing-md) 70px var(--spacing-md);
+            }
+            .project-item {
+                padding: var(--spacing-md);
+            }
+            .right-nav .nav-links i {
+                font-size: 1.1rem;
+            }
+            .right-nav .nav-links a {
+                padding: var(--spacing-sm) 0; /* Remove horizontal padding on smallest screens */
             }
         }
     </style>
@@ -462,26 +517,29 @@
             <div class="intro-content">
                 <h1>Monther Ibrahem</h1>
                 <h2 class="intro-subtitle">Software Engineering Student</h2>
-                <div class="personal-details">
-                    <div class="detail-item">
-                        <i class="fas fa-briefcase"></i>
-                        <span>Full-Stack Development</span>
+                <div class="at-a-glance">
+                    <div class="glance-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <div>
+                            <strong>Status</strong>
+                            <span>Final Year Student</span>
+                        </div>
                     </div>
-                    <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Daburiyya, Israel</span>
+                    <div class="glance-item">
+                        <i class="fas fa-laptop-code"></i>
+                        <div>
+                            <strong>Focus</strong>
+                            <span>Full-Stack & Backend</span>
+                        </div>
+                    </div>
+                    <div class="glance-item">
+                        <i class="fas fa-search"></i>
+                        <div>
+                            <strong>Seeking</strong>
+                            <span>Internships & Junior Roles</span>
+                        </div>
                     </div>
                 </div>
-                <nav>
-                    <ul class="nav-links">
-                        <li><a href="#about"><span class="nav-indicator"></span><span class="nav-text">About</span></a></li>
-                        <li><a href="#experience"><span class="nav-indicator"></span><span class="nav-text">Experience</span></a></li>
-                        <li><a href="#education"><span class="nav-indicator"></span><span class="nav-text">Education</span></a></li>
-                        <li><a href="#projects"><span class="nav-indicator"></span><span class="nav-text">Projects</span></a></li>
-                        <li><a href="#skills"><span class="nav-indicator"></span><span class="nav-text">Skills</span></a></li>
-                        <li><a href="#contact"><span class="nav-indicator"></span><span class="nav-text">Contact</span></a></li>
-                    </ul>
-                </nav>
             </div>
             
             <div class="left-panel-footer">
@@ -491,13 +549,20 @@
                     <a href="mailto:mndr6702@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-             <div id="scroll-indicator">
-                <i class="fas fa-arrow-down"></i>
-            </div>
         </aside>
 
         <!-- Right Scrollable Panel -->
         <div id="right-panel">
+            <nav class="right-nav">
+                <ul class="nav-links">
+                    <li><a href="#about" title="About"><i class="fas fa-user"></i><span class="nav-text">About</span></a></li>
+                    <li><a href="#experience" title="Experience"><i class="fas fa-briefcase"></i><span class="nav-text">Experience</span></a></li>
+                    <li><a href="#education" title="Education"><i class="fas fa-graduation-cap"></i><span class="nav-text">Education</span></a></li>
+                    <li><a href="#projects" title="Projects"><i class="fas fa-code-branch"></i><span class="nav-text">Projects</span></a></li>
+                    <li><a href="#skills" title="Skills"><i class="fas fa-cogs"></i><span class="nav-text">Skills</span></a></li>
+                    <li><a href="#contact" title="Contact"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a></li>
+                </ul>
+            </nav>
             <main>
                 <!-- About Me Section -->
                 <section id="about">
@@ -652,9 +717,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('#right-panel section');
-            const navLinks = document.querySelectorAll('.nav-links a');
+            const navLinks = document.querySelectorAll('.right-nav .nav-links a');
             const rightPanel = document.querySelector('#right-panel');
-            const scrollIndicator = document.getElementById('scroll-indicator');
 
             // --- Fade in sections on scroll ---
             const sectionObserver = new IntersectionObserver(entries => {
@@ -690,15 +754,6 @@
             sections.forEach(section => {
                 navObserver.observe(section);
             });
-
-            function handleScroll() {
-                if (scrollIndicator) {
-                    scrollIndicator.classList.add('hidden');
-                    rightPanel.removeEventListener('scroll', handleScroll);
-                }
-            }
-            rightPanel.addEventListener('scroll', handleScroll);
-
         });
     </script>
 </body>
