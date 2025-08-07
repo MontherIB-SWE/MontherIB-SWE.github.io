@@ -326,19 +326,12 @@
             gap: var(--spacing-sm);
         }
         .tech-tags span {
-           background-color: var(--section-bg);
+            background-color: var(--background-dark);
             color: var(--text-secondary);
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.75rem;
             border-radius: 9999px;
-            border: 1px solid transparent;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all var(--transition-speed) ease;
-        }
-        .tech-tags span:hover {
-            color: var(--background-dark);
-            background-color: var(--primary-accent);
-            transform: translateY(-2px);
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
         /* --- Skills --- */
@@ -377,34 +370,57 @@
             margin-bottom: var(--spacing-md);
         }
 
-        /* --- Contact Section --- */
-        .contact-info {
-            display: grid;
-            grid-template-columns: 1fr;
+        /* --- Contact Form --- */
+        #contact-form {
+            display: flex;
+            flex-direction: column;
             gap: var(--spacing-md);
-            list-style-type: none;
-            padding: 0;
         }
-
-        .contact-info a {
-            display: inline-block;
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
             color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.9rem;
         }
-
-        .contact-info a:hover {
-            color: var(--primary-accent);
-            transform: translateX(4px);
+        .form-group input,
+        .form-group textarea {
+            background-color: var(--section-bg);
+            border: 1px solid var(--background-dark);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
         }
-
-        .contact-info a i {
-            margin-right: var(--spacing-sm);
-            color: var(--primary-accent);
-            font-size: 1.1rem;
-            width: 25px;
-            text-align: center;
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+        }
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        #contact-form button {
+            background: var(--primary-accent);
+            color: var(--background-dark);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+            align-self: flex-start;
+        }
+        #contact-form button:hover {
+            background-color: var(--secondary-accent);
+            transform: translateY(-2px);
         }
         
         .disabled-link {
@@ -470,9 +486,11 @@
                 align-items: center;
                 padding: 0;
             }
+            .right-nav .nav-links li {
+                flex-grow: 1;
+            }
             .right-nav .nav-links a {
                 padding: var(--spacing-sm); /* Reduced padding */
-                flex-grow: 1;
                 display: flex;
                 justify-content: center;
             }
@@ -560,7 +578,7 @@
                     <li><a href="#education" title="Education"><i class="fas fa-graduation-cap"></i><span class="nav-text">Education</span></a></li>
                     <li><a href="#projects" title="Projects"><i class="fas fa-code-branch"></i><span class="nav-text">Projects</span></a></li>
                     <li><a href="#skills" title="Skills"><i class="fas fa-cogs"></i><span class="nav-text">Skills</span></a></li>
-                    <li><a href="#contact" title="Contact"><i class="fas fa-envelope"></i><span class="nav-text">Contact</span></a></li>
+                    <li><a href="#contact" title="Contact"><i class="fas fa-paper-plane"></i><span class="nav-text">Contact</span></a></li>
                 </ul>
             </nav>
             <main>
@@ -702,12 +720,23 @@
                 <section id="contact">
                     <h2>Get In Touch</h2>
                     <p>
-                        I'm currently seeking new opportunities and am open to collaboration. Feel free to reach out!
+                        I'm currently seeking new opportunities and am open to collaboration. Feel free to send me a message!
                     </p>
-                    <ul class="contact-info">
-                        <li><a href="mailto:mndr6702@gmail.com"><i class="fa-solid fa-envelope"></i> mndr6702@gmail.com</a></li>
-                        <li><a href="tel:+972503019543"><i class="fa-solid fa-phone"></i> +972 50-301-9543</a></li>
-                    </ul>
+                    <form id="contact-form" action="https://formspree.io/f/mgvzpzyj" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
                 </section>
             </main>
         </div>
