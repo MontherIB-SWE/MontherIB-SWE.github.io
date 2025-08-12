@@ -20,15 +20,13 @@
     <!-- Custom Styles -->
     <style>
         :root {
-            /* Palette: "Cosmic Echo" */
-            --background-dark: #111827;      /* Deep, rich Indigo */
-            --section-bg: #1F2937;           /* Lighter muted Indigo */
-            --primary-accent: #38BDF8;       /* Vibrant Sky Blue for key elements */
-            --secondary-accent: #818CF8;     /* Softer Indigo for secondary highlights */
-            --highlight-accent: #F472B6;     /* A pop of Pink for contrast */
-
-            --text-primary: #E5E7EB;         /* Crisp, readable light gray */
-            --text-secondary: #9CA3AF;       /* Muted gray for secondary text */
+            /* New Palette */
+            --background-dark: #290878;
+            --section-bg: #3F37C9;
+            --primary-accent: #4CC9F0;
+            --secondary-accent: #F72585;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E5E7EB;
             
             /* Typography */
             --font-main: 'Inter', sans-serif;
@@ -63,11 +61,23 @@
             font-family: var(--font-main);
             color: var(--text-primary);
             background-color: var(--background-dark);
+            position: relative;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
         }
 
         .site-container {
             display: flex;
             height: 100vh; /* Ensure the container takes full viewport height */
+            position: relative;
+            z-index: 1;
         }
 
         /* --- Left Fixed Panel --- */
@@ -78,13 +88,38 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: var(--spacing-xl) var(--spacing-lg);
-            background-image: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.05), transparent 40%);
+            padding: var(--spacing-lg); /* Reduced padding to save space */
+            background-image: radial-gradient(circle at 20% 20%, rgba(76, 201, 240, 0.05), transparent 40%);
+            overflow: hidden; /* Prevent content from pushing footer out */
+        }
+        
+        .intro-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--primary-accent);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .intro-content {
+            /* Removed overflow-y: auto to make it static */
+        }
+
+        .left-panel-footer {
+            flex-shrink: 0; /* Prevent the footer from shrinking */
         }
 
         #left-panel h1 {
             font-size: 2.5rem;
             font-weight: 900;
+            color: var(--text-primary);
         }
         
         .intro-subtitle {
@@ -100,7 +135,7 @@
         }
         
         .at-a-glance {
-            margin-top: var(--spacing-xl);
+            margin-top: var(--spacing-lg); /* Reduced from xl */
             padding-top: var(--spacing-lg);
             border-top: 1px solid var(--section-bg);
         }
@@ -109,7 +144,7 @@
             display: flex;
             align-items: flex-start;
             gap: var(--spacing-md);
-            margin-bottom: var(--spacing-md);
+            margin-bottom: var(--spacing-md); 
         }
 
         .glance-item i {
@@ -133,13 +168,14 @@
 
         .glance-item span {
             color: var(--text-secondary);
+            opacity: 0.8;
             font-size: 0.9rem;
         }
 
         .social-links {
             display: flex;
             gap: var(--spacing-lg);
-            margin-top: var(--spacing-xl);
+            margin-top: var(--spacing-lg); /* Reduced from xl */
         }
         .social-links a {
             color: var(--text-secondary);
@@ -166,64 +202,91 @@
         main {
             max-width: 768px;
             margin: 0 auto;
-            padding: var(--spacing-xl) var(--spacing-lg);
+            padding: var(--spacing-xl) 80px var(--spacing-xl) var(--spacing-lg); /* Added right padding for nav */
         }
 
-        /* --- Vertical Hover Navigation --- */
-        .right-nav {
+        /* --- Dot Navigation --- */
+        .dot-nav {
             position: fixed;
             top: 50%;
-            right: 0;
+            right: 20px;
             transform: translateY(-50%);
             z-index: 1000;
-            background: var(--section-bg);
-            border-radius: var(--border-radius) 0 0 var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            transition: width var(--transition-speed) ease;
-            width: 60px; /* Shrunken state */
-            overflow: hidden;
         }
-        .right-nav:hover {
-            width: 180px; /* Expanded state */
-        }
-        .right-nav .nav-links {
+
+        .dot-nav ul {
             list-style: none;
-            padding: var(--spacing-sm) 0;
+            padding: 0;
             margin: 0;
         }
-        .right-nav .nav-links a {
+
+        .dot-nav li {
+            margin-bottom: var(--spacing-md);
+            animation: fadeInRight 0.5s ease-out backwards;
+        }
+        
+        .dot-nav li:nth-child(2) { animation-delay: 0.1s; }
+        .dot-nav li:nth-child(3) { animation-delay: 0.2s; }
+        .dot-nav li:nth-child(4) { animation-delay: 0.3s; }
+        .dot-nav li:nth-child(5) { animation-delay: 0.4s; }
+        .dot-nav li:nth-child(6) { animation-delay: 0.5s; }
+
+
+        .dot-nav a {
             display: flex;
             align-items: center;
+            justify-content: flex-end;
             text-decoration: none;
             color: var(--text-secondary);
-            padding: var(--spacing-md) 0;
-            white-space: nowrap;
-            transition: background-color var(--transition-speed) ease;
+            padding: var(--spacing-sm);
         }
-        .right-nav .nav-links a:hover {
-            background-color: rgba(56, 189, 248, 0.1);
+
+        .dot-nav .nav-icon {
+            font-size: 1rem;
+            transition: all var(--transition-speed) ease;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
         }
-        .right-nav .nav-links a.active {
+
+        .dot-nav a.active .nav-icon {
             color: var(--primary-accent);
-            font-weight: 700;
+            transform: scale(1.2);
+            animation: pulse 2s infinite;
         }
-        .right-nav .nav-links i {
-            font-size: 1.25rem;
-            width: 60px;
-            text-align: center;
-            transition: color var(--transition-speed) ease;
-        }
-        .right-nav .nav-links .nav-text {
+        
+        .dot-nav .nav-text {
+            visibility: hidden;
             opacity: 0;
-            max-width: 0;
-            overflow: hidden;
-            transition: opacity 0.2s ease, max-width 0.3s ease;
-            font-weight: 600;
+            background-color:rgba(255, 255, 255, 0.178);
+            color: var(--text-primary);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 8px;
+            margin-right: var(--spacing-md);
+            white-space: nowrap;
+            transition: all var(--transition-speed) ease;
+            transform: translateX(10px);
+            backdrop-filter: blur(10px);
         }
-        .right-nav:hover .nav-links .nav-text {
+
+        .dot-nav a:hover .nav-text,
+        .dot-nav a.active .nav-text {
+            visibility: visible;
             opacity: 1;
-            max-width: 120px; /* Give it space to expand */
+            transform: translateX(0);
         }
+
+        .dot-nav a:hover .nav-icon {
+            color: var(--primary-accent);
+        }
+        
+        .dot-nav a.clicked .nav-icon {
+            animation: clickPulse 0.3s ease-out;
+        }
+
 
         /* --- Typography --- */
         h2 {
@@ -248,6 +311,7 @@
             font-size: 1.1rem;
             color: var(--primary-accent);
             margin-bottom: var(--spacing-sm);
+            margin-top: 0;
             font-weight: 600;
         }
 
@@ -283,7 +347,8 @@
         }
 
         .project-item {
-            background: var(--section-bg);
+            background: rgba(255, 255, 255, 0.216);
+            backdrop-filter: blur(4px);
             border: 1px solid rgba(229, 231, 235, 0.1);
             box-shadow: var(--shadow-sm);
             padding: var(--spacing-lg);
@@ -338,7 +403,7 @@
         .expandable-item .expandable-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             cursor: pointer;
         }
 
@@ -449,7 +514,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-accent);
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.3);
         }
         .form-group textarea {
             min-height: 150px;
@@ -465,7 +530,6 @@
             font-size: 1rem;
             cursor: pointer;
             transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
-            align-self: flex-start;
         }
         #contact-form button:hover {
             background-color: var(--secondary-accent);
@@ -477,6 +541,61 @@
             cursor: not-allowed;
             pointer-events: none;
         }
+        
+        /* --- Mobile Navigation --- */
+        .mobile-nav-toggle {
+            display: none; /* Hidden by default */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            background-color: var(--section-bg);
+            color: var(--primary-accent);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .mobile-nav-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(58, 12, 163, 0.95);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mobile-nav-overlay.active {
+            display: flex;
+        }
+
+        .mobile-nav-overlay ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        
+        .mobile-nav-overlay li {
+            margin: var(--spacing-lg) 0;
+        }
+
+        .mobile-nav-overlay a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
 
         /* --- Responsive Design --- */
         @media (max-width: 1024px) {
@@ -497,6 +616,13 @@
                 text-align: center;
                 justify-content: center;
             }
+            .intro-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
             .at-a-glance {
                 align-items: center;
                 text-align: left;
@@ -507,47 +633,18 @@
                 overflow-y: visible;
             }
             main {
-                padding: var(--spacing-lg) var(--spacing-md) 80px var(--spacing-md); /* Add bottom padding for nav */
+                padding: var(--spacing-lg) var(--spacing-md);
             }
             h2 {
                 font-size: 2.25rem; 
             }
             
-            /* Mobile Bottom Nav */
-            .right-nav {
+            /* Hide dot nav and show mobile nav toggle */
+            .dot-nav {
+                display: none;
+            }
+            .mobile-nav-toggle {
                 display: block;
-                position: fixed;
-                top: auto;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                width: 100%;
-                transform: none;
-                border-radius: 0;
-                border-top: 1px solid rgba(229, 231, 235, 0.1);
-            }
-            .right-nav:hover {
-                width: 100%; /* Disable hover expansion */
-            }
-            .right-nav .nav-links {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                padding: 0;
-            }
-            .right-nav .nav-links li {
-                flex-grow: 1;
-            }
-            .right-nav .nav-links a {
-                padding: var(--spacing-sm); /* Reduced padding */
-                display: flex;
-                justify-content: center;
-            }
-            .right-nav .nav-links .nav-text {
-                display: none; /* Always hide text on mobile nav */
-            }
-            .right-nav .nav-links a.active i {
-                color: var(--primary-accent); /* Highlight active icon */
             }
         }
 
@@ -563,27 +660,57 @@
                 font-size: 2rem;
             }
             main {
-                padding: var(--spacing-md) var(--spacing-md) 70px var(--spacing-md);
+                padding: var(--spacing-md);
             }
             .project-item {
                 padding: var(--spacing-md);
             }
-            .right-nav .nav-links i {
-                font-size: 1.1rem;
+        }
+        
+        /* --- Animations --- */
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
             }
-            .right-nav .nav-links a {
-                padding: var(--spacing-sm) 0; /* Remove horizontal padding on smallest screens */
+            to {
+                opacity: 1;
+                transform: translateX(0);
             }
         }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(76, 201, 240, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
+        }
+
+        @keyframes clickPulse {
+            0% { transform: scale(1.2); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1.2); }
+        }
+
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
     <div class="site-container">
         <!-- Left Fixed Panel -->
         <aside id="left-panel">
             <div class="intro-content">
-                <h1>Monther Ibrahem</h1>
-                <h2 class="intro-subtitle">Software Engineering Student</h2>
+                <div class="intro-header">
+                    <img src="./avatar.png" alt="Avatar of Monther Ibrahem" class="avatar">
+                    <div>
+                        <h1>Monther Ibrahem</h1>
+                        <h2 class="intro-subtitle">Software Engineering Student</h2>
+                    </div>
+                </div>
                 <div class="at-a-glance">
                     <div class="glance-item">
                         <i class="fas fa-user-graduate"></i>
@@ -596,14 +723,21 @@
                         <i class="fas fa-laptop-code"></i>
                         <div>
                             <strong>Focus</strong>
-                            <span>Full-Stack & Backend</span>
+                            <span>Full-Stack & Frontend</span>
                         </div>
                     </div>
                     <div class="glance-item">
                         <i class="fas fa-search"></i>
                         <div>
                             <strong>Seeking</strong>
-                            <span>Internships & Junior Roles</span>
+                            <span>Internships & Junior Roles (Available Now)</span>
+                        </div>
+                    </div>
+                    <div class="glance-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Location</strong>
+                            <span>Daburiyya, Israel</span>
                         </div>
                     </div>
                 </div>
@@ -620,14 +754,14 @@
 
         <!-- Right Scrollable Panel -->
         <div id="right-panel">
-            <nav class="right-nav">
-                <ul class="nav-links">
-                    <li><a href="#about" title="About"><i class="fas fa-user"></i><span class="nav-text">About</span></a></li>
-                    <li><a href="#experience" title="Experience"><i class="fas fa-briefcase"></i><span class="nav-text">Experience</span></a></li>
-                    <li><a href="#education" title="Education"><i class="fas fa-graduation-cap"></i><span class="nav-text">Education</span></a></li>
-                    <li><a href="#projects" title="Projects"><i class="fas fa-code-branch"></i><span class="nav-text">Projects</span></a></li>
-                    <li><a href="#skills" title="Skills"><i class="fas fa-cogs"></i><span class="nav-text">Skills</span></a></li>
-                    <li><a href="#contact" title="Contact"><i class="fas fa-paper-plane"></i><span class="nav-text">Contact</span></a></li>
+            <nav class="dot-nav">
+                <ul>
+                    <li><a href="#about" title="About"><span class="nav-text">About</span><i class="nav-icon fas fa-user"></i></a></li>
+                    <li><a href="#experience" title="Experience"><span class="nav-text">Experience</span><i class="nav-icon fas fa-briefcase"></i></a></li>
+                    <li><a href="#education" title="Education"><span class="nav-text">Education</span><i class="nav-icon fas fa-graduation-cap"></i></a></li>
+                    <li><a href="#projects" title="Projects"><span class="nav-text">Projects</span><i class="nav-icon fas fa-code-branch"></i></a></li>
+                    <li><a href="#skills" title="Skills"><span class="nav-text">Skills</span><i class="nav-icon fas fa-cogs"></i></a></li>
+                    <li><a href="#contact" title="Contact"><span class="nav-text">Contact</span><i class="nav-icon fas fa-paper-plane"></i></a></li>
                 </ul>
             </nav>
             <main>
@@ -635,7 +769,7 @@
                 <section id="about">
                     <h2>About Me</h2>
                     <p>
-                        My passion for software engineering is driven by a blend of creativity and systematic problem-solving. I thrive on the challenge of building complex systems from the ground up and enjoy the process of transforming tangible, real-world issues into robust and efficient software. My goal is to continuously learn and apply my skills to create applications that are both functional and impactful.
+                        I’ve always been fascinated by how applications and games work, a mystery that drove me to software engineering. I have a passion for clean UI/UX design and enjoy the creative challenge of building things from scratch. My coding journey, now <span id="day-counter"></span> long, has taught me to love the problem-solving process, especially when a small bug leads to an unexpected, better solution.
                     </p>
                 </section>
 
@@ -663,7 +797,7 @@
                             </div>
                             <div class="expandable-details">
                                 <p class="description">
-                                    During my internship, I was an integral part of a dedicated backend development team. While project specifics are confidential, my role involved taking ownership of key backend components using <strong>Java, Spring Boot, and PostgreSQL</strong>. I contributed to a highly collaborative, agile environment, helping to manage workflow and meet weekly development goals.
+                                   During my internship, I helped design and optimize database schemas for efficiency. I was also responsible for testing API endpoints using Postman and contributed to writing backend logic, specifically for fetching user details.
                                 </p>
                             </div>
                         </div>
@@ -706,14 +840,14 @@
                                     <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
+                            <div class="tech-stack">
+                                <div class="tech-tags">
+                                    <span>React</span>
+                                    <span>Firebase</span>
+                                </div>
+                            </div>
                             <div class="expandable-details">
                                 <p class="description">A real-time messaging platform built from the ground up, featuring a backend migration to Google's Firebase for streamlined development and scalability.</p>
-                                <div class="tech-stack">
-                                    <div class="tech-tags">
-                                        <span>React</span>
-                                        <span>Firebase</span>
-                                    </div>
-                                </div>
                                 <div class="project-links">
                                     <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
                                     <a href="#" class="disabled-link" title="Deployment in progress"><i class="fas fa-external-link-alt"></i>Live Demo</a>
@@ -729,15 +863,15 @@
                                     <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
+                            <div class="tech-stack">
+                                <div class="tech-tags">
+                                    <span>Java</span>
+                                    <span>JavaFX</span>
+                                    <span>MySQL</span>
+                                </div>
+                            </div>
                             <div class="expandable-details">
                                 <p class="description">A Java-based desktop application designed to manage production data. Features robust filtering capabilities to query and isolate information, improving workflow efficiency.</p>
-                                <div class="tech-stack">
-                                    <div class="tech-tags">
-                                        <span>Java</span>
-                                        <span>JavaFX</span>
-                                        <span>MySQL</span>
-                                    </div>
-                                </div>
                                 <div class="project-links">
                                     <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
                                     <a href="#" class="disabled-link" title="Desktop application"><i class="fas fa-times-circle"></i>No Demo</a>
@@ -753,16 +887,16 @@
                                     <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
+                            <div class="tech-stack">
+                                <div class="tech-tags">
+                                    <span>React</span>
+                                    <span>Vite</span>
+                                    <span>Firebase</span>
+                                    <span>CSS</span>
+                                </div>
+                            </div>
                             <div class="expandable-details">
                                 <p class="description">A web platform for car rentals designed in Figma. Includes a public-facing vehicle browser and a secure admin interface for owners to manage listings.</p>
-                                <div class="tech-stack">
-                                    <div class="tech-tags">
-                                        <span>React</span>
-                                        <span>Vite</span>
-                                        <span>Firebase</span>
-                                        <span>CSS</span>
-                                    </div>
-                                </div>
                                 <div class="project-links">
                                     <a href="https://github.com/MontherIB-SWE/AJ_Motors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
                                     <a href="#" class="disabled-link" title="Deployment coming soon"><i class="fas fa-external-link-alt"></i>Live Demo</a>
@@ -778,14 +912,14 @@
                                     <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
+                             <div class="tech-stack">
+                                <div class="tech-tags">
+                                    <span>Java</span>
+                                    <span>JavaFX</span>
+                                </div>
+                            </div>
                             <div class="expandable-details">
                                 <p class="description">A collection of games demonstrating core programming logic and OOP. The Chess application features a game engine that enforces all official rules.</p>
-                                <div class="tech-stack">
-                                    <div class="tech-tags">
-                                        <span>Java</span>
-                                        <span>JavaFX</span>
-                                    </div>
-                                </div>
                                 <div class="project-links">
                                     <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
                                     <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Minesweeper</a>
@@ -843,13 +977,46 @@
             </main>
         </div>
     </div>
+    
+    <!-- Mobile Navigation -->
+    <button class="mobile-nav-toggle" aria-label="Open navigation">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="mobile-nav-overlay">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
 
     <!-- JavaScript for animations and interactions -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('#right-panel section');
-            const navLinks = document.querySelectorAll('.right-nav .nav-links a');
+            const navLinks = document.querySelectorAll('.dot-nav a');
             const rightPanel = document.querySelector('#right-panel');
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-overlay a');
+
+            // --- Mobile Navigation Toggle ---
+            if (mobileNavToggle && mobileNavOverlay) {
+                mobileNavToggle.addEventListener('click', () => {
+                    mobileNavOverlay.classList.toggle('active');
+                });
+                
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileNavOverlay.classList.remove('active');
+                    });
+                });
+            }
 
             // --- Fade in sections on scroll ---
             const sectionObserver = new IntersectionObserver(entries => {
@@ -896,6 +1063,95 @@
                         item.classList.toggle('expanded');
                     });
                 }
+            });
+
+            // --- Day Counter ---
+            const startDate = new Date('2022-10-01');
+            const currentDate = new Date();
+            const diffTime = Math.abs(currentDate - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const dayCounterElement = document.getElementById('day-counter');
+            if (dayCounterElement) {
+                dayCounterElement.textContent = `${diffDays} days and counting`;
+            }
+            
+            // --- Click Feedback for Dot Nav ---
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    this.classList.add('clicked');
+                    setTimeout(() => {
+                        this.classList.remove('clicked');
+                    }, 300);
+                });
+            });
+            
+            // --- Particles.js Background ---
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#E5E7EB"
+                    },
+                    "shape": {
+                        "type": "circle",
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#4CC9F0",
+                        "opacity": 0.4,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
             });
         });
     </script>
