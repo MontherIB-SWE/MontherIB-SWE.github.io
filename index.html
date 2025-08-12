@@ -275,7 +275,7 @@
             transform: translateY(0);
         }
         
-        /* --- Projects --- */
+        /* --- Projects & Cards --- */
         .project-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -332,6 +332,55 @@
             border-radius: 9999px;
             font-size: 0.8rem;
             font-weight: 500;
+        }
+
+        /* --- Expandable Card Specifics (for Experience & Education) --- */
+        .expandable-item .expandable-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            cursor: pointer;
+        }
+
+        .expandable-item .expand-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform var(--transition-speed) ease;
+            padding: 0;
+            margin-left: var(--spacing-md);
+        }
+        
+        .expandable-item .expand-btn i {
+             transition: transform var(--transition-speed) ease;
+        }
+
+        .expandable-item .expandable-header:hover .expand-btn {
+            color: var(--primary-accent);
+        }
+
+        .expandable-item .expandable-details {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s ease-out, opacity 0.4s ease-out, margin-top 0.5s ease-out;
+            margin-top: 0;
+        }
+
+        .expandable-item.expanded .expandable-details {
+            max-height: 500px; /* Large enough to fit content */
+            opacity: 1;
+            margin-top: var(--spacing-md);
+        }
+
+        .expandable-item.expanded .expand-btn i {
+            transform: rotate(180deg);
+        }
+
+        .expandable-item .tech-stack {
+            margin-top: var(--spacing-md);
         }
 
         /* --- Skills --- */
@@ -594,13 +643,29 @@
                 <section id="experience">
                     <h2>Experience</h2>
                     <div class="project-grid">
-                        <div class="project-item">
-                            <h3>Software Developer Intern</h3>
-                            <p><strong>Ceeras IT Services | Remote</strong></p>
-                            <p><em>Feb 2025 - June 2025</em></p>
-                            <p class="description">
-                                During my internship, I was an integral part of a dedicated backend development team. While project specifics are confidential, my role involved taking ownership of key backend components using <strong>Java, Spring Boot, and PostgreSQL</strong>. I contributed to a highly collaborative, agile environment, helping to manage workflow and meet weekly development goals.
-                            </p>
+                        <div class="project-item expandable-item">
+                            <div class="expandable-header">
+                                <div class="expandable-info">
+                                    <h3>Software Developer Intern</h3>
+                                    <p><strong>Ceeras IT Services | Remote</strong></p>
+                                    <p><em>Feb 2025 - June 2025</em></p>
+                                </div>
+                                <button class="expand-btn" aria-label="Toggle details">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="tech-stack">
+                                <div class="tech-tags">
+                                    <span>Java</span>
+                                    <span>Spring Boot</span>
+                                    <span>PostgreSQL</span>
+                                </div>
+                            </div>
+                            <div class="expandable-details">
+                                <p class="description">
+                                    During my internship, I was an integral part of a dedicated backend development team. While project specifics are confidential, my role involved taking ownership of key backend components using <strong>Java, Spring Boot, and PostgreSQL</strong>. I contributed to a highly collaborative, agile environment, helping to manage workflow and meet weekly development goals.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -609,13 +674,22 @@
                 <section id="education">
                     <h2>Education</h2>
                     <div class="project-grid">
-                        <div class="project-item">
-                            <h3>BSc in Software Engineering</h3>
-                            <p><strong>Kinneret College</strong></p>
-                            <p><em>October 2022 - August 2026 (Expected)</em></p>
-                            <p class="description">
-                                My academic journey has been defined by several cornerstone courses that shaped my developer mindset. Courses like Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming were particularly rewarding, providing me with the core skills I use today.
-                            </p>
+                        <div class="project-item expandable-item">
+                            <div class="expandable-header">
+                                <div class="expandable-info">
+                                    <h3>BSc in Software Engineering</h3>
+                                    <p><strong>Kinneret College</strong></p>
+                                    <p><em>October 2022 - August 2026 (Expected)</em></p>
+                                </div>
+                                <button class="expand-btn" aria-label="Toggle details">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
+                            </div>
+                            <div class="expandable-details">
+                                <p class="description">
+                                    My academic journey has been defined by several cornerstone courses that shaped my developer mindset. Courses like Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming were particularly rewarding, providing me with the core skills I use today.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -625,69 +699,97 @@
                     <h2>Projects</h2>
                     <div class="project-grid">
                         <!-- Project Item 1: Chat App -->
-                        <div class="project-item">
-                            <h4>Real-Time Chat App</h4>
-                            <p class="description">A real-time messaging platform built from the ground up, featuring a backend migration to Google's Firebase for streamlined development and scalability.</p>
-                            <div class="tech-stack">
-                                <div class="tech-tags">
-                                    <span>React</span>
-                                    <span>Firebase</span>
-                                </div>
+                        <div class="project-item expandable-item">
+                            <div class="expandable-header">
+                                <h4>Real-Time Chat App</h4>
+                                <button class="expand-btn" aria-label="Toggle details">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
-                            <div class="project-links">
-                                <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                                <a href="#" class="disabled-link" title="Deployment in progress"><i class="fas fa-external-link-alt"></i>Live Demo</a>
+                            <div class="expandable-details">
+                                <p class="description">A real-time messaging platform built from the ground up, featuring a backend migration to Google's Firebase for streamlined development and scalability.</p>
+                                <div class="tech-stack">
+                                    <div class="tech-tags">
+                                        <span>React</span>
+                                        <span>Firebase</span>
+                                    </div>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                                    <a href="#" class="disabled-link" title="Deployment in progress"><i class="fas fa-external-link-alt"></i>Live Demo</a>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Project Item 2: Factory System -->
-                        <div class="project-item">
-                            <h4>Factory Production Control System</h4>
-                            <p class="description">A Java-based desktop application designed to manage production data. Features robust filtering capabilities to query and isolate information, improving workflow efficiency.</p>
-                            <div class="tech-stack">
-                                <div class="tech-tags">
-                                   <span>Java</span>
-                                   <span>JavaFX</span>
-                                   <span>MySQL</span>
-                                </div>
+                        <div class="project-item expandable-item">
+                             <div class="expandable-header">
+                                <h4>Factory Production Control System</h4>
+                                <button class="expand-btn" aria-label="Toggle details">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
-                            <div class="project-links">
-                                <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                                <a href="#" class="disabled-link" title="Desktop application"><i class="fas fa-times-circle"></i>No Demo</a>
+                            <div class="expandable-details">
+                                <p class="description">A Java-based desktop application designed to manage production data. Features robust filtering capabilities to query and isolate information, improving workflow efficiency.</p>
+                                <div class="tech-stack">
+                                    <div class="tech-tags">
+                                        <span>Java</span>
+                                        <span>JavaFX</span>
+                                        <span>MySQL</span>
+                                    </div>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                                    <a href="#" class="disabled-link" title="Desktop application"><i class="fas fa-times-circle"></i>No Demo</a>
+                                </div>
                             </div>
                         </div>
                         
                         <!-- Project Item 3: Car Rental -->
-                        <div class="project-item">
-                            <h4>Car Rental Website (In Progress)</h4>
-                            <p class="description">A web platform for car rentals designed in Figma. Includes a public-facing vehicle browser and a secure admin interface for owners to manage listings.</p>
-                            <div class="tech-stack">
-                                <div class="tech-tags">
-                                    <span>React</span>
-                                    <span>Vite</span>
-                                    <span>Firebase</span>
-                                    <span>CSS</span>
-                                </div>
+                        <div class="project-item expandable-item">
+                            <div class="expandable-header">
+                                <h4>Car Rental Website (In Progress)</h4>
+                                <button class="expand-btn" aria-label="Toggle details">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
-                            <div class="project-links">
-                                <a href="https://github.com/MontherIB-SWE/AJ_Motors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                                <a href="#" class="disabled-link" title="Deployment coming soon"><i class="fas fa-external-link-alt"></i>Live Demo</a>
+                            <div class="expandable-details">
+                                <p class="description">A web platform for car rentals designed in Figma. Includes a public-facing vehicle browser and a secure admin interface for owners to manage listings.</p>
+                                <div class="tech-stack">
+                                    <div class="tech-tags">
+                                        <span>React</span>
+                                        <span>Vite</span>
+                                        <span>Firebase</span>
+                                        <span>CSS</span>
+                                    </div>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/MontherIB-SWE/AJ_Motors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                                    <a href="#" class="disabled-link" title="Deployment coming soon"><i class="fas fa-external-link-alt"></i>Live Demo</a>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Project Item 4: Java Games -->
-                        <div class="project-item">
-                            <h4>Java Logic Games (Chess & Minesweeper)</h4>
-                            <p class="description">A collection of games demonstrating core programming logic and OOP. The Chess application features a game engine that enforces all official rules.</p>
-                            <div class="tech-stack">
-                                <div class="tech-tags">
-                                   <span>Java</span>
-                                   <span>JavaFX</span>
-                                </div>
+                        <div class="project-item expandable-item">
+                            <div class="expandable-header">
+                                <h4>Java Logic Games (Chess & Minesweeper)</h4>
+                                <button class="expand-btn" aria-label="Toggle details">
+                                    <i class="fas fa-chevron-down"></i>
+                                </button>
                             </div>
-                            <div class="project-links">
-                                <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
-                                <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Minesweeper</a>
+                            <div class="expandable-details">
+                                <p class="description">A collection of games demonstrating core programming logic and OOP. The Chess application features a game engine that enforces all official rules.</p>
+                                <div class="tech-stack">
+                                    <div class="tech-tags">
+                                        <span>Java</span>
+                                        <span>JavaFX</span>
+                                    </div>
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
+                                    <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Minesweeper</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -782,6 +884,18 @@
 
             sections.forEach(section => {
                 navObserver.observe(section);
+            });
+
+            // --- Accordion for Expandable Sections ---
+            const expandableItems = document.querySelectorAll('.expandable-item');
+            expandableItems.forEach(item => {
+                const header = item.querySelector('.expandable-header');
+                // Use the header for the click event to make a larger clickable area
+                if (header) {
+                    header.addEventListener('click', () => {
+                        item.classList.toggle('expanded');
+                    });
+                }
             });
         });
     </script>
