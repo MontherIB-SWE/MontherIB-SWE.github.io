@@ -11,6 +11,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,12 +22,12 @@
     <style>
         :root {
             /* New Palette */
-            --background-dark: #290878;
-            --section-bg: #3F37C9;
-            --primary-accent: #4CC9F0;
-            --secondary-accent: #F72585;
+            --background-dark: #0A0A0A;
+            --section-bg: #141414;
+            --primary-accent: #C9A227; /* Lux dark gold */
+            --secondary-accent: #C9A227;
             --text-primary: #FFFFFF;
-            --text-secondary: #E5E7EB;
+            --text-secondary: #B3B3B3;
             
             /* Typography */
             --font-main: 'Inter', sans-serif;
@@ -89,14 +90,18 @@
             flex-direction: column;
             justify-content: space-between;
             padding: var(--spacing-lg); /* Reduced padding to save space */
-            background-image: radial-gradient(circle at 20% 20%, rgba(76, 201, 240, 0.05), transparent 40%);
+            background-image: radial-gradient(circle at 20% 20%, rgba(201, 162, 39, 0.06), transparent 40%);
             overflow: hidden; /* Prevent content from pushing footer out */
+            opacity: 0;
+            animation: slideInLeft 0.6s ease-out 0.1s forwards;
         }
         
         .intro-header {
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
+            opacity: 0;
+            animation: fadeUp 0.6s ease-out 0.3s forwards;
         }
 
         .avatar {
@@ -108,12 +113,12 @@
             flex-shrink: 0;
         }
 
-        .intro-content {
-            /* Removed overflow-y: auto to make it static */
-        }
+        
 
         .left-panel-footer {
             flex-shrink: 0; /* Prevent the footer from shrinking */
+            opacity: 0;
+            animation: fadeUp 0.6s ease-out 0.9s forwards;
         }
 
         #left-panel h1 {
@@ -127,7 +132,7 @@
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin: var(--spacing-sm) 0 var(--spacing-md) 0;
+            margin: var(--spacing-md) 0;
             padding: 0;
             background: none;
             -webkit-text-fill-color: inherit;
@@ -145,7 +150,14 @@
             align-items: flex-start;
             gap: var(--spacing-md);
             margin-bottom: var(--spacing-md); 
+            opacity: 0;
+            animation: fadeUp 0.5s ease-out forwards;
         }
+
+        .at-a-glance .glance-item:nth-child(1) { animation-delay: 0.5s; }
+        .at-a-glance .glance-item:nth-child(2) { animation-delay: 0.6s; }
+        .at-a-glance .glance-item:nth-child(3) { animation-delay: 0.7s; }
+        .at-a-glance .glance-item:nth-child(4) { animation-delay: 0.8s; }
 
         .glance-item i {
             color: var(--primary-accent);
@@ -176,6 +188,10 @@
             display: flex;
             gap: var(--spacing-lg);
             margin-top: var(--spacing-lg); /* Reduced from xl */
+        }
+        .intro-header .social-links {
+            margin-left: 0;
+            margin-top: var(--spacing-md);
         }
         .social-links a {
             color: var(--text-secondary);
@@ -294,7 +310,7 @@
             font-size: 2.75rem;
             font-weight: 700;
             margin-bottom: var(--spacing-lg);
-            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent));
+            background: linear-gradient(45deg, #F72585, #4CC9F0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -347,7 +363,7 @@
         }
 
         .project-item {
-            background: rgba(255, 255, 255, 0.216);
+            background: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(4px);
             border: 1px solid rgba(229, 231, 235, 0.1);
             box-shadow: var(--shadow-sm);
@@ -449,28 +465,76 @@
         }
 
         /* --- Skills --- */
-        .skills-grid {
+        .skills-bento {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-lg);
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
         }
+        .skill-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(229, 231, 235, 0.1);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+        .skill-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-accent);
+        }
+        .skill-card__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .skill-card h4 { margin: 0; }
+
+        /* Uniform row layout: each card spans one column by default */
+        .skill-card--languages,
+        .skill-card--frameworks,
+        .skill-card--databases,
+        .skill-card--tools { grid-column: auto; }
         .skills-list {
             list-style-type: none;
             padding: 0;
             display: flex;
             flex-wrap: wrap;
-            gap: var(--spacing-sm);
+            gap: var(--spacing-md);
         }
 
         .skills-list li {
             background-color: var(--section-bg);
             color: var(--text-secondary);
-            padding: 0.5rem 1rem;
+            padding: 0.9rem 1.25rem;
             border-radius: 9999px;
             border: 1px solid transparent;
-            font-size: 0.9rem;
+            font-size: 1.06rem;
             font-weight: 600;
             transition: all var(--transition-speed) ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .skills-list li .skill-icon {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+        .skills-list li .skill-img {
+            width: 1.3rem;
+            height: 1.3rem;
+            display: inline-block;
+        }
+
+        /* Improve contrast for Express icon which is black in colored mode */
+        .skills-list li .devicon-express-original.colored {
+            color: #FFFFFF;
         }
 
         .skills-list li:hover {
@@ -478,6 +542,8 @@
             background-color: var(--primary-accent);
             transform: translateY(-2px);
         }
+
+        
 
         .skill-category h4 {
             color: var(--text-primary);
@@ -567,7 +633,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(58, 12, 163, 0.95);
+            background-color: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             flex-direction: column;
             justify-content: center;
@@ -620,6 +686,10 @@
                 flex-direction: column;
                 text-align: center;
             }
+            .intro-header .social-links { 
+                margin-left: 0; 
+                margin-top: var(--spacing-md);
+            }
             .social-links {
                 justify-content: center;
             }
@@ -637,6 +707,9 @@
             }
             h2 {
                 font-size: 2.25rem; 
+            }
+            .skills-bento {
+                grid-template-columns: 1fr;
             }
             
             /* Hide dot nav and show mobile nav toggle */
@@ -659,6 +732,9 @@
             h2 {
                 font-size: 2rem;
             }
+            .skills-bento {
+                grid-template-columns: 1fr;
+            }
             main {
                 padding: var(--spacing-md);
             }
@@ -668,6 +744,27 @@
         }
         
         /* --- Animations --- */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         @keyframes fadeInRight {
             from {
                 opacity: 0;
@@ -685,9 +782,9 @@
         }
         
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(76, 201, 240, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(201, 162, 39, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0); }
         }
 
         @keyframes clickPulse {
@@ -709,6 +806,11 @@
                     <div>
                         <h1>Monther Ibrahem</h1>
                         <h2 class="intro-subtitle">Software Engineering Student</h2>
+                        <div class="social-links">
+                            <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="mailto:mndr6702@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="at-a-glance">
@@ -730,7 +832,7 @@
                         <i class="fas fa-search"></i>
                         <div>
                             <strong>Seeking</strong>
-                            <span>Internships & Junior Roles (Available Now)</span>
+                            <span>Actively seeking internships and junior roles</span>
                         </div>
                     </div>
                     <div class="glance-item">
@@ -743,13 +845,7 @@
                 </div>
             </div>
             
-            <div class="left-panel-footer">
-                <div class="social-links">
-                    <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:mndr6702@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
+            <div class="left-panel-footer"></div>
         </aside>
 
         <!-- Right Scrollable Panel -->
@@ -769,7 +865,7 @@
                 <section id="about">
                     <h2>About Me</h2>
                     <p>
-                        I’ve always been fascinated by how applications and games work, a mystery that drove me to software engineering. I have a passion for clean UI/UX design and enjoy the creative challenge of building things from scratch. My coding journey, now <span id="day-counter"></span> long, has taught me to love the problem-solving process, especially when a small bug leads to an unexpected, better solution.
+                        I am a software engineering student interested in how applications and games are built. I focus on UI/UX and build projects from scratch. I’ve been coding for <span id="day-counter"></span> and approach problems methodically.
                     </p>
                 </section>
 
@@ -797,7 +893,7 @@
                             </div>
                             <div class="expandable-details">
                                 <p class="description">
-                                   During my internship, I helped design and optimize database schemas for efficiency. I was also responsible for testing API endpoints using Postman and contributed to writing backend logic, specifically for fetching user details.
+                                   During my internship, I designed and adjusted database schemas. I tested API endpoints in Postman and implemented backend logic for fetching user details.
                                 </p>
                             </div>
                         </div>
@@ -813,7 +909,7 @@
                                 <div class="expandable-info">
                                     <h3>BSc in Software Engineering</h3>
                                     <p><strong>Kinneret College</strong></p>
-                                    <p><em>October 2022 - August 2026 (Expected)</em></p>
+                                    <p><em>October 2022 - October 2026 (Expected)</em></p>
                                 </div>
                                 <button class="expand-btn" aria-label="Toggle details">
                                     <i class="fas fa-chevron-down"></i>
@@ -821,7 +917,7 @@
                             </div>
                             <div class="expandable-details">
                                 <p class="description">
-                                    My academic journey has been defined by several cornerstone courses that shaped my developer mindset. Courses like Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming were particularly rewarding, providing me with the core skills I use today.
+                                    Relevant courses include Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming.
                                 </p>
                             </div>
                         </div>
@@ -846,12 +942,11 @@
                                     <span>Firebase</span>
                                 </div>
                             </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                            </div>
                             <div class="expandable-details">
-                                <p class="description">A real-time messaging platform built from the ground up, featuring a backend migration to Google's Firebase for streamlined development and scalability.</p>
-                                <div class="project-links">
-                                    <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                                    <a href="#" class="disabled-link" title="Deployment in progress"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-                                </div>
+                                <p class="description">A real-time messaging app. Backend migrated to Firebase.</p>
                             </div>
                         </div>
 
@@ -870,12 +965,11 @@
                                     <span>MySQL</span>
                                 </div>
                             </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                            </div>
                             <div class="expandable-details">
-                                <p class="description">A Java-based desktop application designed to manage production data. Features robust filtering capabilities to query and isolate information, improving workflow efficiency.</p>
-                                <div class="project-links">
-                                    <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                                    <a href="#" class="disabled-link" title="Desktop application"><i class="fas fa-times-circle"></i>No Demo</a>
-                                </div>
+                                <p class="description">A Java desktop app to manage production data. Includes filtering to query and isolate information.</p>
                             </div>
                         </div>
                         
@@ -895,12 +989,11 @@
                                     <span>CSS</span>
                                 </div>
                             </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MontherIB-SWE/AJ_Motors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                            </div>
                             <div class="expandable-details">
-                                <p class="description">A web platform for car rentals designed in Figma. Includes a public-facing vehicle browser and a secure admin interface for owners to manage listings.</p>
-                                <div class="project-links">
-                                    <a href="https://github.com/MontherIB-SWE/AJ_Motors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                                    <a href="#" class="disabled-link" title="Deployment coming soon"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-                                </div>
+                                <p class="description">A car rental website designed in Figma. Includes a vehicle browser and an admin interface for owners to manage listings.</p>
                             </div>
                         </div>
 
@@ -918,12 +1011,12 @@
                                     <span>JavaFX</span>
                                 </div>
                             </div>
+                            <div class="project-links">
+                                <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
+                                <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Minesweeper</a>
+                            </div>
                             <div class="expandable-details">
-                                <p class="description">A collection of games demonstrating core programming logic and OOP. The Chess application features a game engine that enforces all official rules.</p>
-                                <div class="project-links">
-                                    <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
-                                    <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Minesweeper</a>
-                                </div>
+                                <p class="description">Two Java games demonstrating core programming logic and OOP. The Chess application enforces all official rules.</p>
                             </div>
                         </div>
                     </div>
@@ -932,22 +1025,51 @@
                 <!-- Skills Section -->
                 <section id="skills">
                     <h2>Technical Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h4>Languages</h4>
-                            <ul class="skills-list"><li>C</li><li>Java</li><li>JavaScript</li></ul>
+                    <div class="skills-bento">
+                        <div class="skill-card skill-card--languages">
+                            <div class="skill-card__header">
+                                <h4>Languages</h4>
+                            </div>
+                            <ul class="skills-list">
+                                <li><i class="skill-icon devicon-c-plain colored"></i>C</li>
+                                <li><i class="skill-icon devicon-java-plain colored"></i>Java</li>
+                                <li><i class="skill-icon devicon-javascript-plain colored"></i>JavaScript</li>
+                            </ul>
                         </div>
-                        <div class="skill-category">
-                            <h4>Frameworks/Libraries</h4>
-                            <ul class="skills-list"><li>Express.js</li><li>React</li><li>Node.js</li><li>JavaFX</li><li>Spring Boot</li></ul>
+                        <div class="skill-card skill-card--frameworks">
+                            <div class="skill-card__header">
+                                <h4>Frameworks & Libraries</h4>
+                            </div>
+                            <ul class="skills-list">
+                                <li><i class="skill-icon devicon-express-original colored"></i>Express.js</li>
+                                <li><i class="skill-icon devicon-react-original colored"></i>React</li>
+                                <li><i class="skill-icon devicon-nodejs-plain colored"></i>Node.js</li>
+                                <li><i class="skill-icon devicon-java-plain colored"></i>JavaFX</li>
+                                <li><i class="skill-icon devicon-spring-plain colored"></i>Spring Boot</li>
+                            </ul>
                         </div>
-                        <div class="skill-category">
-                            <h4>Databases</h4>
-                            <ul class="skills-list"><li>MySQL</li><li>PostgreSQL</li><li>Firebase</li></ul>
+                        <div class="skill-card skill-card--databases">
+                            <div class="skill-card__header">
+                                <h4>Databases</h4>
+                            </div>
+                            <ul class="skills-list">
+                                <li><i class="skill-icon devicon-mysql-plain colored"></i>MySQL</li>
+                                <li><i class="skill-icon devicon-postgresql-plain colored"></i>PostgreSQL</li>
+                                <li><i class="skill-icon devicon-firebase-plain colored"></i>Firebase</li>
+                            </ul>
                         </div>
-                        <div class="skill-category">
-                            <h4>Tools & Platforms</h4>
-                            <ul class="skills-list"><li>Git & GitHub</li><li>Postman</li><li>Maven</li><li>Figma</li><li>Google Cloud</li><li>Windows & Linux</li></ul>
+                        <div class="skill-card skill-card--tools">
+                            <div class="skill-card__header">
+                                <h4>Tools & Platforms</h4>
+                            </div>
+                            <ul class="skills-list">
+                                <li><i class="skill-icon devicon-git-plain colored"></i>Git & GitHub</li>
+                                <li><img class="skill-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman">Postman</li>
+                                <li><i class="skill-icon devicon-apache-plain colored"></i>Maven</li>
+                                <li><i class="skill-icon devicon-figma-plain colored"></i>Figma</li>
+                                <li><i class="skill-icon devicon-googlecloud-plain colored"></i>Google Cloud</li>
+                                <li><i class="skill-icon devicon-windows8-original colored"></i>Windows & Linux</li>
+                            </ul>
                         </div>
                     </div>
                 </section>
@@ -1112,7 +1234,7 @@
                     "line_linked": {
                         "enable": true,
                         "distance": 150,
-                        "color": "#4CC9F0",
+                        "color": "#C9A227",
                         "opacity": 0.4,
                         "width": 1
                     },
