@@ -317,7 +317,7 @@
         main {
             max-width: 768px;
             margin: 0 auto;
-            padding: var(--spacing-xl) 80px var(--spacing-xl) var(--spacing-lg); /* Added right padding for nav */
+            padding: 0 80px var(--spacing-xl) var(--spacing-lg); /* Added right padding for nav */
         }
 
         /* --- Dot Navigation --- */
@@ -892,6 +892,138 @@
             100% { transform: scale(1.2); }
         }
 
+        /* --- Day Counter Styles --- */
+        #day-counter {
+            font-family: var(--font-heading);
+            font-variant-numeric: tabular-nums lining-nums;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        #day-counter .counter-group {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.25rem;
+        }
+        #day-counter .counter-value {
+            display: inline-block;
+            font-size: 1.35em;
+            line-height: 1;
+            border-bottom: 2px solid var(--primary-accent);
+            padding-bottom: 2px;
+        }
+        #day-counter .counter-unit {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        #day-counter .counter-since {
+            color: var(--text-secondary);
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        /* Flip-clock style */
+        #day-counter.counter--flip { gap: 0.4rem; }
+        #day-counter.counter--flip .flip-digit {
+            perspective: 600px;
+            display: inline-block;
+            width: 0.75em;
+            height: 1em;
+            position: relative;
+        }
+        #day-counter.counter--flip .flip-card {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transform-origin: bottom;
+            animation: flipIn 600ms ease-out both;
+            font-size: 1.35em;
+            border-bottom: 2px solid var(--primary-accent);
+        }
+        @keyframes flipIn {
+            from { transform: rotateX(-90deg); opacity: 0; }
+            to { transform: rotateX(0deg); opacity: 1; }
+        }
+
+        /* Odometer style */
+        #day-counter.counter--odometer { gap: 0.3rem; }
+        #day-counter.counter--odometer .odometer-digit {
+            overflow: hidden;
+            height: 1.35em;
+            width: 0.8em;
+            display: inline-block;
+            position: relative;
+            border-bottom: 2px solid var(--primary-accent);
+        }
+        #day-counter.counter--odometer .odometer-track {
+            display: block;
+            transition: transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
+            will-change: transform;
+        }
+        #day-counter.counter--odometer .odometer-track span {
+            display: block;
+            height: 1.35em;
+            line-height: 1.35em;
+            text-align: center;
+            font-size: 1.35em;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #day-counter.counter--flip .flip-card { animation: none !important; transform: none !important; }
+            #day-counter.counter--odometer .odometer-track { transition: none !important; }
+        }
+
+        .counter-mode-switch {
+            margin-top: var(--spacing-sm);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 6px 10px;
+            border-radius: 10px;
+            backdrop-filter: blur(4px);
+        }
+        .counter-mode-switch span { color: var(--text-secondary); font-size: 0.9rem; }
+        .counter-mode-switch select {
+            background: var(--section-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--background-dark);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-family: var(--font-main);
+        }
+
+        /* Coding Journey Section */
+        .coding-journey {
+            padding: var(--spacing-lg);
+            background: rgba(201, 162, 39, 0.08);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            border-radius: var(--border-radius);
+        }
+
+        .coding-journey h3 {
+            margin: 0 0 var(--spacing-md) 0;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .journey-counter {
+            text-align: center;
+        }
+
+        .journey-since {
+            margin-top: var(--spacing-sm);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -938,15 +1070,23 @@
                             <span>Actively seeking internships and junior roles</span>
                         </div>
                     </div>
-                    <div class="glance-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Location</strong>
-                            <span>Daburiyya, Israel</span>
+                                            <div class="glance-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Location</strong>
+                                <span>Daburiyya, Israel</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                
+                <div class="coding-journey">
+                    <h3>Coding Journey</h3>
+                    <div class="journey-counter">
+                        <span id="day-counter" data-mode="countdown"><span class="counter-group"><span class="counter-value" data-key="days">0</span> <span class="counter-unit">days</span></span> <span class="counter-group"><span class="counter-value" data-key="hours">00</span> <span class="counter-unit">hours</span></span> <span class="counter-group"><span class="counter-value" data-key="minutes">00</span> <span class="counter-unit">minutes</span></span> <span class="counter-group"><span class="counter-value" data-key="seconds">00</span> <span class="counter-unit">seconds</span></span> </span></span>
+                        <div class="journey-since">since 2022-10-01</div>
+                    </div>
+                </div>
             
             <div class="left-panel-footer"></div>
         </aside>
@@ -967,9 +1107,17 @@
                 <!-- About Me Section -->
                 <section id="about">
                     <h2>About Me</h2>
-                    <p>
-                        I am a software engineering student interested in how applications and games are built. I focus on UI/UX and build projects from scratch. I’ve been coding for <span id="day-counter"></span> and approach problems methodically.
-                    </p>
+                    <div class="project-grid">
+                        <div class="project-item">
+                            <div class="expandable-header">
+                                <div class="expandable-info">
+                                    <h3>Background</h3>
+                                    <p>I am a software engineering student interested in how applications and games are built. I focus on UI/UX and build projects from scratch.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </section>
 
                 <!-- Experience Section -->
@@ -1353,12 +1501,85 @@
 
             // --- Day Counter ---
             const startDate = new Date('2022-10-01');
-            const currentDate = new Date();
-            const diffTime = Math.abs(currentDate - startDate);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const now = () => new Date();
             const dayCounterElement = document.getElementById('day-counter');
+
+            const diffParts = () => {
+                const ms = now() - startDate;
+                const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+                const days = Math.floor(totalSeconds / (24 * 3600));
+                const remAfterDays = totalSeconds % (24 * 3600);
+                const hours = Math.floor(remAfterDays / 3600);
+                const remAfterHours = remAfterDays % 3600;
+                const minutes = Math.floor(remAfterHours / 60);
+                const seconds = remAfterHours % 60;
+                return { days, hours, minutes, seconds };
+            };
+
+            const pad2 = (n) => String(n).padStart(2, '0');
+
+            const updateCountdownDOM = () => {
+                const { days, hours, minutes, seconds } = diffParts();
+                const set = (key, val) => {
+                    const el = dayCounterElement.querySelector(`.counter-value[data-key="${key}"]`);
+                    if (el) el.textContent = key === 'days' ? String(val) : pad2(val);
+                };
+                set('days', days);
+                set('hours', hours);
+                set('minutes', minutes);
+                set('seconds', seconds);
+            };
+
             if (dayCounterElement) {
-                dayCounterElement.textContent = `${diffDays} days and counting`;
+                updateCountdownDOM();
+                setInterval(updateCountdownDOM, 1000);
+            }
+            
+            // Wire up mode switch
+            const modeSelect = document.getElementById('counter-mode');
+            if (modeSelect && dayCounterElement) {
+                const saved = localStorage.getItem('dayCounterMode');
+                if (saved) modeSelect.value = saved;
+                modeSelect.addEventListener('change', () => {
+                    const choice = modeSelect.value;
+                    localStorage.setItem('dayCounterMode', choice);
+                    dayCounterElement.className = '';
+                    if (choice === 'flip') {
+                        dayCounterElement.className = 'counter--flip';
+                        dayCounterElement.innerHTML = '';
+                        const parts = diffParts();
+                        const daysGroup = makeFlipGroup('days', String(parts.days));
+                        const hoursGroup = makeFlipGroup('hours', pad2(parts.hours));
+                        const minutesGroup = makeFlipGroup('minutes', pad2(parts.minutes));
+                        const secondsGroup = makeFlipGroup('seconds', pad2(parts.seconds));
+                        dayCounterElement.appendChild(daysGroup);
+                        dayCounterElement.appendChild(hoursGroup);
+                        dayCounterElement.appendChild(minutesGroup);
+                        dayCounterElement.appendChild(secondsGroup);
+                        const since = document.createElement('span');
+                        since.className = 'counter-since';
+                        since.textContent = 'since 2022-10-01';
+                        dayCounterElement.appendChild(since);
+                    } else if (choice === 'odometer') {
+                        dayCounterElement.className = 'counter--odometer';
+                        dayCounterElement.innerHTML = '';
+                        const parts = diffParts();
+                        const daysGroup = makeOdometerGroup('days', String(parts.days));
+                        const hoursGroup = makeOdometerGroup('hours', pad2(parts.hours));
+                        const minutesGroup = makeOdometerGroup('minutes', pad2(parts.minutes));
+                        const secondsGroup = makeOdometerGroup('seconds', pad2(parts.seconds));
+                        dayCounterElement.appendChild(daysGroup);
+                        dayCounterElement.appendChild(hoursGroup);
+                        dayCounterElement.appendChild(minutesGroup);
+                        dayCounterElement.appendChild(secondsGroup);
+                        const since = document.createElement('span');
+                        since.className = 'counter-since';
+                        since.textContent = 'since 2022-10-01';
+                        dayCounterElement.appendChild(since);
+                    } else {
+                        dayCounterElement.innerHTML = '<span class="counter-group"><span class="counter-value" data-key="days">0</span> <span class="counter-unit">days</span></span> <span class="counter-group"><span class="counter-value" data-key="hours">00</span> <span class="counter-unit">hours</span></span> <span class="counter-group"><span class="counter-value" data-key="minutes">00</span> <span class="counter-unit">minutes</span></span> <span class="counter-group"><span class="counter-value" data-key="seconds">00</span> <span class="counter-unit">seconds</span></span> <span class="counter-since">since 2022-10-01</span>';
+                    }
+                });
             }
             
             // --- Click Feedback for Dot Nav ---
