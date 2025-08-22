@@ -74,14 +74,98 @@
             z-index: 0;
         }
 
+        /* --- Loading Overlay with Circle Cutout --- */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--background-dark);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease-out;
+            /* Mask-based feathered cutout */
+            --cutout-radius: -200px;
+            --feather: 140px;
+            -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) calc(var(--cutout-radius)), rgba(0,0,0,1) calc(var(--cutout-radius) + var(--feather)));
+            mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) calc(var(--cutout-radius)), rgba(0,0,0,1) calc(var(--cutout-radius) + var(--feather)));
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: 100% 100%;
+            mask-size: 100% 100%;
+        }
+
+        .loading-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .circle-cutout { display: none; }
+
+        .loading-text {
+            color: var(--primary-accent);
+            font-size: 1.5rem;
+            font-weight: 600;
+            z-index: 10000;
+            opacity: 0;
+            animation: fadeInOut 2s ease-in-out infinite;
+            transition: opacity 0.3s ease-out;
+        }
+        .loading-text.hidden {
+            animation: none;
+            opacity: 0;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Hide content initially */
         .site-container {
             display: flex;
-            height: 100vh; /* Ensure the container takes full viewport height */
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+            scale: 0.5;
+            opacity: 0;
+            transition: opacity 1s ease-out, scale 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+        }
+
+        .site-container.loaded {
+            scale: 1;
+        }
+
+        /* Ensure content is visible after loading */
+        .site-container {
+            display: flex;
+            height: 100vh;
             position: relative;
             z-index: 1;
         }
 
-        /* --- Left Fixed Panel --- */
+        /* Ensure content is visible by default */
+        .site-container {
+            display: flex;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+            opacity: 1; /* Start visible */
+        }
+
+        /* Hide content during loading */
+        .site-container.loading {
+            opacity: 0;
+        }
+
+        .site-container.loaded {
+            opacity: 1;
+        }
+
+        /* Modify existing animations to start after loading */
         #left-panel {
             width: 40%;
             max-width: 550px;
@@ -89,20 +173,57 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: var(--spacing-lg); /* Reduced padding to save space */
+            padding: var(--spacing-lg);
             background-image: radial-gradient(circle at 20% 20%, rgba(201, 162, 39, 0.06), transparent 40%);
-            overflow: hidden; /* Prevent content from pushing footer out */
+            overflow: hidden;
             opacity: 0;
-            animation: slideInLeft 0.6s ease-out 0.1s forwards;
+            animation: none; /* Remove initial animation */
         }
-        
+
         .intro-header {
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
             opacity: 0;
-            animation: fadeUp 0.6s ease-out 0.3s forwards;
+            animation: none; /* Remove initial animation */
         }
+
+        .left-panel-footer {
+            flex-shrink: 0;
+            opacity: 0;
+            animation: none; /* Remove initial animation */
+        }
+
+        .glance-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md); 
+            opacity: 0;
+            animation: none; /* Remove initial animation */
+        }
+
+        /* Animation classes that will be added after loading */
+        .animate-left-panel {
+            animation: slideInLeft 0.6s ease-out forwards !important;
+        }
+
+        .animate-intro-header {
+            animation: fadeUp 0.6s ease-out 0.3s forwards !important;
+        }
+
+        .animate-footer {
+            animation: fadeUp 0.6s ease-out 0.9s forwards !important;
+        }
+
+        .animate-glance-item {
+            animation: fadeUp 0.5s ease-out forwards !important;
+        }
+
+        .animate-glance-item:nth-child(1) { animation-delay: 0.5s !important; }
+        .animate-glance-item:nth-child(2) { animation-delay: 0.6s !important; }
+        .animate-glance-item:nth-child(3) { animation-delay: 0.7s !important; }
+        .animate-glance-item:nth-child(4) { animation-delay: 0.8s !important; }
 
         .avatar {
             width: 80px;
@@ -111,14 +232,6 @@
             border: 3px solid var(--primary-accent);
             object-fit: cover;
             flex-shrink: 0;
-        }
-
-        
-
-        .left-panel-footer {
-            flex-shrink: 0; /* Prevent the footer from shrinking */
-            opacity: 0;
-            animation: fadeUp 0.6s ease-out 0.9s forwards;
         }
 
         #left-panel h1 {
@@ -140,24 +253,10 @@
         }
         
         .at-a-glance {
-            margin-top: var(--spacing-lg); /* Reduced from xl */
+            margin-top: var(--spacing-lg);
             padding-top: var(--spacing-lg);
             border-top: 1px solid var(--section-bg);
         }
-
-        .glance-item {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-md); 
-            opacity: 0;
-            animation: fadeUp 0.5s ease-out forwards;
-        }
-
-        .at-a-glance .glance-item:nth-child(1) { animation-delay: 0.5s; }
-        .at-a-glance .glance-item:nth-child(2) { animation-delay: 0.6s; }
-        .at-a-glance .glance-item:nth-child(3) { animation-delay: 0.7s; }
-        .at-a-glance .glance-item:nth-child(4) { animation-delay: 0.8s; }
 
         .glance-item i {
             color: var(--primary-accent);
@@ -797,6 +896,10 @@
 </head>
 <body>
     <div id="particles-js"></div>
+    <div class="loading-overlay">
+        <div class="circle-cutout"></div>
+        <span class="loading-text">Loading...</span>
+    </div>
     <div class="site-container">
         <!-- Left Fixed Panel -->
         <aside id="left-panel">
@@ -1126,19 +1229,80 @@
             const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
             const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-overlay a');
+            // Minimum time the loading text should be visible (ms)
+            const MIN_LOADING_MS = 1200;
+            const appStart = performance.now();
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            const circleCutout = document.querySelector('.circle-cutout');
+            const loadingText = document.querySelector('.loading-text');
 
-            // --- Mobile Navigation Toggle ---
-            if (mobileNavToggle && mobileNavOverlay) {
-                mobileNavToggle.addEventListener('click', () => {
-                    mobileNavOverlay.classList.toggle('active');
+            const animateCutout = (durationMs = 1500) => {
+                const styles = getComputedStyle(loadingOverlay);
+                const featherStr = styles.getPropertyValue('--feather') || '140px';
+                const featherPx = parseFloat(featherStr);
+                const maxRadius = Math.hypot(window.innerWidth, window.innerHeight) / 2 + featherPx;
+                const start = performance.now();
+
+                const step = (now) => {
+                    const t = Math.min(1, (now - start) / durationMs);
+                    // Smoothstep easing
+                    const eased = t * t * (3 - 2 * t);
+                    const radius = eased * maxRadius;
+                    loadingOverlay.style.setProperty('--cutout-radius', `${radius}px`);
+                    if (t < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        // After mask fully opened, fade out overlay
+                        fadeOutLoading();
+                    }
+                };
+
+                requestAnimationFrame(step);
+            };
+
+            // --- Fade out loading overlay ---
+            const fadeOutLoading = () => {
+                loadingOverlay.classList.add('fade-out');
+                loadingText.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.style.display = 'none';
+                }, 500); // Match CSS transition duration
+            };
+
+            // --- Add animation classes after loading ---
+            const addAnimationClasses = () => {
+                document.body.classList.add('loaded');
+                document.querySelector('#left-panel').classList.add('animate-left-panel');
+                document.querySelector('.intro-header').classList.add('animate-intro-header');
+                document.querySelector('.left-panel-footer').classList.add('animate-footer');
+                document.querySelectorAll('.at-a-glance .glance-item').forEach((item) => {
+                    item.classList.add('animate-glance-item');
                 });
-                
-                mobileNavLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileNavOverlay.classList.remove('active');
-                    });
-                });
-            }
+            };
+
+            // Start when all assets are loaded
+            window.addEventListener('load', () => {
+                // Make content visible beneath the overlay
+                const site = document.querySelector('.site-container');
+                site.classList.add('loaded');
+
+                // Start UI animations immediately so left panel appears under the circle
+                addAnimationClasses();
+
+                // Ensure Loading… shows for at least MIN_LOADING_MS from app start
+                const elapsed = performance.now() - appStart;
+                const delayNeeded = Math.max(0, MIN_LOADING_MS - elapsed);
+
+                setTimeout(() => {
+                    // Hide the loading text first
+                    loadingText.classList.add('hidden');
+
+                    // Start the mask animation shortly after text fades
+                    setTimeout(() => {
+                        animateCutout(1500);
+                    }, 250);
+                }, delayNeeded);
+            });
 
             // --- Fade in sections on scroll ---
             const sectionObserver = new IntersectionObserver(entries => {
@@ -1207,74 +1371,18 @@
                 });
             });
             
-            // --- Particles.js Background ---
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#E5E7EB"
-                    },
-                    "shape": {
-                        "type": "circle",
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": false,
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#C9A227",
-                        "opacity": 0.4,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
+            // --- Mobile Navigation Toggle ---
+            if (mobileNavToggle && mobileNavOverlay) {
+                mobileNavToggle.addEventListener('click', () => {
+                    mobileNavOverlay.classList.toggle('active');
+                });
+                
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileNavOverlay.classList.remove('active');
+                    });
+                });
+            }
         });
     </script>
 </body>
