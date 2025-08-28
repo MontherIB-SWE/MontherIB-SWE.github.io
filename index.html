@@ -514,6 +514,23 @@
             font-weight: 500;
         }
 
+        .private-tag {
+            background-color: rgba(201, 162, 39, 0.2) !important;
+            color: var(--primary-accent) !important;
+            border: 1px solid var(--primary-accent);
+        }
+
+        .private-project-notice {
+            color: var(--text-secondary);
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .private-project-notice i {
+            margin-right: var(--spacing-sm);
+            color: var(--primary-accent);
+        }
+
         /* --- Expandable Card Specifics (for Experience & Education) --- */
         .expandable-item .expandable-header {
             display: flex;
@@ -1198,9 +1215,12 @@
                             <div class="project-links">
                                 <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
                             </div>
-                            <div class="expandable-details">
-                                <p class="description">A real-time messaging app. Backend migrated to Firebase.</p>
-                            </div>
+                                                         <div class="expandable-details">
+                                 <p class="description">A comprehensive real-time chat application built as a personal project, featuring instant messaging between users with a complete authentication system and modern UI design.</p>
+                                 <p class="description"><strong>Key Features:</strong> User registration and login system with Firebase Authentication, real-time messaging using Firestore listeners, private conversations between users, friend system for user discovery, message history persistence, customizable user profiles with username updates, and responsive light/dark theme toggle with local storage persistence.</p>
+                                 <p class="description"><strong>Technical Implementation:</strong> Built with React and Firebase for real-time functionality, integrated Firestore for instant message updates using onSnapshot listeners, implemented user authentication and friend management systems, and created a responsive dashboard interface with theme switching capabilities.</p>
+                                 <p class="description"><em>This project is currently in progress with plans for additional features and improvements.</em></p>
+                             </div>
                         </div>
 
                         <!-- Project Item 2: Factory System -->
@@ -1229,7 +1249,7 @@
                         <!-- Project Item 3: Car Rental -->
                         <div class="project-item expandable-item">
                             <div class="expandable-header">
-                                <h4>Car Rental Website (In Progress)</h4>
+                                <h4>Car Rental Website (Private)</h4>
                                 <button class="expand-btn" aria-label="Toggle details">
                                     <i class="fas fa-chevron-down"></i>
                                 </button>
@@ -1243,10 +1263,13 @@
                                 </div>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/MontherIB-SWE/AJ_Motors" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                                <span class="private-project-notice"><i class="fas fa-lock"></i>Private Repository</span>
                             </div>
                             <div class="expandable-details">
-                                <p class="description">A car rental website designed in Figma. Includes a vehicle browser and an admin interface for owners to manage listings.</p>
+                                <p class="description">A comprehensive car rental platform built for a client company, featuring a customer-facing website and a full-featured admin panel. The project focuses on delivering a frictionless user experience with a luxurious dark theme design.</p>
+                                <p class="description"><strong>Key Features:</strong> User authentication system, advanced vehicle browsing with filtering and sorting, WhatsApp-integrated booking system, comprehensive admin dashboard with calendar and Gantt chart views, car management tools, analytics dashboard, and customer review system.</p>
+                                <p class="description"><strong>Technical Implementation:</strong> Built with React and Vite for optimal performance, integrated Firebase for backend services and authentication, implemented advanced UI components using Swiper, React Slick, and Recharts for data visualization. Features image compression, multi-language support via DeepL API, and responsive design optimized for all devices.</p>
+                                <p class="description"><em>This project is now private and inactive.</em></p>
                             </div>
                         </div>
 
