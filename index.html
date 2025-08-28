@@ -506,12 +506,131 @@
             gap: var(--spacing-sm);
         }
         .tech-tags span {
-            background-color: var(--background-dark);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
             color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .tech-tags span::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tech-tags span:hover {
+            transform: translateY(-3px) scale(1.05);
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2), rgba(201, 162, 39, 0.1));
+            color: var(--text-primary);
+            border-color: rgba(201, 162, 39, 0.3);
+            box-shadow: 0 8px 25px rgba(201, 162, 39, 0.2);
+        }
+
+        .tech-tags span:hover::before {
+            left: 100%;
+        }
+
+        /* Special styling for different tech categories */
+        .tech-tags span[data-tech="react"]:hover {
+            background: linear-gradient(135deg, rgba(97, 218, 251, 0.2), rgba(97, 218, 251, 0.1));
+            border-color: rgba(97, 218, 251, 0.3);
+            box-shadow: 0 8px 25px rgba(97, 218, 251, 0.2);
+        }
+
+        .tech-tags span[data-tech="firebase"]:hover {
+            background: linear-gradient(135deg, rgba(255, 167, 38, 0.2), rgba(255, 167, 38, 0.1));
+            border-color: rgba(255, 167, 38, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 167, 38, 0.2);
+        }
+
+        .tech-tags span[data-tech="java"]:hover {
+            background: linear-gradient(135deg, rgba(255, 69, 0, 0.2), rgba(255, 69, 0, 0.1));
+            border-color: rgba(255, 69, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.2);
+        }
+
+        .tech-tags span[data-tech="angular"]:hover {
+            background: linear-gradient(135deg, rgba(221, 0, 49, 0.2), rgba(221, 0, 49, 0.1));
+            border-color: rgba(221, 0, 49, 0.3);
+            box-shadow: 0 8px 25px rgba(221, 0, 49, 0.2);
+        }
+
+        .tech-tags span[data-tech="typescript"]:hover {
+            background: linear-gradient(135deg, rgba(49, 120, 198, 0.2), rgba(49, 120, 198, 0.1));
+            border-color: rgba(49, 120, 198, 0.3);
+            box-shadow: 0 8px 25px rgba(49, 120, 198, 0.2);
+        }
+
+        .tech-tags span[data-tech="postgresql"]:hover {
+            background: linear-gradient(135deg, rgba(51, 103, 145, 0.2), rgba(51, 103, 145, 0.1));
+            border-color: rgba(51, 103, 145, 0.3);
+            box-shadow: 0 8px 25px rgba(51, 103, 145, 0.2);
+        }
+
+        .tech-tags span[data-tech="mysql"]:hover {
+            background: linear-gradient(135deg, rgba(0, 117, 143, 0.2), rgba(0, 117, 143, 0.1));
+            border-color: rgba(0, 117, 143, 0.3);
+            box-shadow: 0 8px 25px rgba(0, 117, 143, 0.2);
+        }
+
+        .tech-tags span[data-tech="spring"]:hover {
+            background: linear-gradient(135deg, rgba(108, 194, 74, 0.2), rgba(108, 194, 74, 0.1));
+            border-color: rgba(108, 194, 74, 0.3);
+            box-shadow: 0 8px 25px rgba(108, 194, 74, 0.2);
+        }
+
+        .tech-tags span[data-tech="vite"]:hover {
+            background: linear-gradient(135deg, rgba(100, 108, 245, 0.2), rgba(100, 108, 245, 0.1));
+            border-color: rgba(100, 108, 245, 0.3);
+            box-shadow: 0 8px 25px rgba(100, 108, 245, 0.2);
+        }
+
+        .tech-tags span[data-tech="express"]:hover {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .tech-tags span[data-tech="sequelize"]:hover {
+            background: linear-gradient(135deg, rgba(49, 120, 198, 0.2), rgba(49, 120, 198, 0.1));
+            border-color: rgba(49, 120, 198, 0.3);
+            box-shadow: 0 8px 25px rgba(49, 120, 198, 0.2);
+        }
+
+        .tech-tags span[data-tech="chartjs"]:hover {
+            background: linear-gradient(135deg, rgba(255, 99, 132, 0.2), rgba(255, 99, 132, 0.1));
+            border-color: rgba(255, 99, 132, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 99, 132, 0.2);
+        }
+
+        .tech-tags span[data-tech="ai"]:hover {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(138, 43, 226, 0.1));
+            border-color: rgba(138, 43, 226, 0.3);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.2);
+        }
+
+        .tech-tags span[data-tech="css"]:hover {
+            background: linear-gradient(135deg, rgba(86, 61, 124, 0.2), rgba(86, 61, 124, 0.1));
+            border-color: rgba(86, 61, 124, 0.3);
+            box-shadow: 0 8px 25px rgba(86, 61, 124, 0.2);
+        }
+
+        .tech-tags span[data-tech="javafx"]:hover {
+            background: linear-gradient(135deg, rgba(255, 69, 0, 0.2), rgba(255, 69, 0, 0.1));
+            border-color: rgba(255, 69, 0, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.2);
         }
 
         .private-tag {
@@ -910,6 +1029,53 @@
             100% { transform: scale(1.2); }
         }
 
+        /* UI/UX Highlight Styling */
+        .ui-ux-highlight {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #A78BFA, #FFA726);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 6px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .ui-ux-highlight:hover {
+            transform: scale(1.1) translateY(-2px);
+            filter: drop-shadow(0 4px 8px rgba(255, 107, 107, 0.4));
+            animation-play-state: paused;
+        }
+
+        .ui-ux-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #A78BFA, #FFA726);
+            border-radius: 6px;
+            opacity: 0.1;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .ui-ux-highlight:hover::before {
+            opacity: 0.2;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         /* --- Day Counter Styles --- */
         #day-counter {
             font-family: var(--font-heading);
@@ -1123,21 +1289,15 @@
                 </ul>
             </nav>
             <main>
-                <!-- About Me Section -->
-                <section id="about">
-                    <h2>About Me</h2>
-                    <div class="project-grid">
-                        <div class="project-item">
-                            <div class="expandable-header">
-                                <div class="expandable-info">
-                                    <h3>Background</h3>
-                                    <p>I am a software engineering student interested in how applications and games are built. I focus on UI/UX and build projects from scratch.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </section>
+                                 <!-- About Me Section -->
+                 <section id="about">
+                     <h2>About Me</h2>
+                     <div class="project-grid">
+                         <div class="project-item">
+                                                           <p>I am a software engineering student interested in how applications and games are built. I focus on <span class="ui-ux-highlight">UI/UX</span> and build projects from scratch.</p>
+                         </div>
+                     </div>
+                 </section>
 
                 <!-- Experience Section -->
                 <section id="experience">
@@ -1155,11 +1315,11 @@
                                 </button>
                             </div>
                             <div class="tech-stack">
-                                <div class="tech-tags">
-                                    <span>Java</span>
-                                    <span>Spring Boot</span>
-                                    <span>PostgreSQL</span>
-                                </div>
+                                                                 <div class="tech-tags">
+                                     <span data-tech="java">Java</span>
+                                     <span data-tech="spring">Spring Boot</span>
+                                     <span data-tech="postgresql">PostgreSQL</span>
+                                 </div>
                             </div>
                             <div class="expandable-details">
                                 <p class="description">
@@ -1207,10 +1367,10 @@
                                 </button>
                             </div>
                             <div class="tech-stack">
-                                <div class="tech-tags">
-                                    <span>React</span>
-                                    <span>Firebase</span>
-                                </div>
+                                                                 <div class="tech-tags">
+                                     <span data-tech="react">React</span>
+                                     <span data-tech="firebase">Firebase</span>
+                                 </div>
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
@@ -1232,11 +1392,11 @@
                                 </button>
                             </div>
                             <div class="tech-stack">
-                                <div class="tech-tags">
-                                    <span>Java</span>
-                                    <span>JavaFX</span>
-                                    <span>MySQL</span>
-                                </div>
+                                                                 <div class="tech-tags">
+                                     <span data-tech="java">Java</span>
+                                     <span data-tech="javafx">JavaFX</span>
+                                     <span data-tech="mysql">MySQL</span>
+                                 </div>
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
@@ -1255,12 +1415,12 @@
                                 </button>
                             </div>
                             <div class="tech-stack">
-                                <div class="tech-tags">
-                                    <span>React</span>
-                                    <span>Vite</span>
-                                    <span>Firebase</span>
-                                    <span>CSS</span>
-                                </div>
+                                                                 <div class="tech-tags">
+                                     <span data-tech="react">React</span>
+                                     <span data-tech="vite">Vite</span>
+                                     <span data-tech="firebase">Firebase</span>
+                                     <span data-tech="css">CSS</span>
+                                 </div>
                             </div>
                             <div class="project-links">
                                 <span class="private-project-notice"><i class="fas fa-lock"></i>Private Repository</span>
@@ -1282,15 +1442,15 @@
                                  </button>
                              </div>
                              <div class="tech-stack">
-                                 <div class="tech-tags">
-                                     <span>Angular</span>
-                                     <span>TypeScript</span>
-                                     <span>Express.js</span>
-                                     <span>PostgreSQL</span>
-                                     <span>Sequelize</span>
-                                     <span>Chart.js</span>
-                                     <span>AI Integration</span>
-                                 </div>
+                                                                   <div class="tech-tags">
+                                      <span data-tech="angular">Angular</span>
+                                      <span data-tech="typescript">TypeScript</span>
+                                      <span data-tech="express">Express.js</span>
+                                      <span data-tech="postgresql">PostgreSQL</span>
+                                      <span data-tech="sequelize">Sequelize</span>
+                                      <span data-tech="chartjs">Chart.js</span>
+                                      <span data-tech="ai">AI Integration</span>
+                                  </div>
                              </div>
                              <div class="project-links">
                                  <a href="https://github.com/MontherIB-SWE/budget_manager" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
@@ -1312,10 +1472,10 @@
                                  </button>
                              </div>
                               <div class="tech-stack">
-                                 <div class="tech-tags">
-                                     <span>Java</span>
-                                     <span>JavaFX</span>
-                                 </div>
+                                                                    <div class="tech-tags">
+                                       <span data-tech="java">Java</span>
+                                       <span data-tech="javafx">JavaFX</span>
+                                   </div>
                              </div>
                              <div class="project-links">
                                  <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
