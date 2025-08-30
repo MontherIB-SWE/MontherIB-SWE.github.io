@@ -1606,7 +1606,11 @@
     <!-- JavaScript for animations and interactions -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
         document.addEventListener('DOMContentLoaded', function() {
+            window.scrollTo(0, 0);
             const sections = document.querySelectorAll('#right-panel section');
             const navLinks = document.querySelectorAll('.dot-nav a');
             const rightPanel = document.querySelector('#right-panel');
