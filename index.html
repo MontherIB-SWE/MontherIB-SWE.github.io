@@ -21,13 +21,13 @@
     <!-- Custom Styles -->
     <style>
         :root {
-            /* New Palette */
-            --background-dark: #0A0A0A;
-            --section-bg: #141414;
-            --primary-accent: #C9A227; /* Lux dark gold */
-            --secondary-accent: #C9A227;
+            /* Black and White Palette */
+            --background-dark: #000000;
+            --section-bg: #1A1A1A;
+            --primary-accent: #FFFFFF; /* Pure white */
+            --secondary-accent: #FFFFFF;
             --text-primary: #FFFFFF;
-            --text-secondary: #B3B3B3;
+            --text-secondary: #CCCCCC;
             
             /* Typography */
             --font-main: 'Inter', sans-serif;
@@ -175,7 +175,7 @@
             flex-direction: column;
             justify-content: space-between;
             padding: var(--spacing-lg);
-            background-image: radial-gradient(circle at 20% 20%, rgba(201, 162, 39, 0.06), transparent 40%);
+            background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.06), transparent 40%);
             overflow: hidden;
             opacity: 0;
             animation: none; /* Remove initial animation */
@@ -410,7 +410,7 @@
             font-size: 2.75rem;
             font-weight: 700;
             margin-bottom: var(--spacing-lg);
-            background: linear-gradient(45deg, #F72585, #4CC9F0);
+            background: linear-gradient(45deg, #FFFFFF, #CCCCCC);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -532,109 +532,25 @@
 
         .tech-tags span:hover {
             transform: scale(1.05);
-            background: linear-gradient(135deg, rgba(201, 162, 39, 0.2), rgba(201, 162, 39, 0.1));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
             color: var(--text-primary);
-            border-color: rgba(201, 162, 39, 0.3);
-            box-shadow: 0 8px 25px rgba(201, 162, 39, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
         }
 
         .tech-tags span:hover::before {
             left: 100%;
         }
 
-        /* Special styling for different tech categories */
-        .tech-tags span[data-tech="react"]:hover {
-            background: linear-gradient(135deg, rgba(97, 218, 251, 0.2), rgba(97, 218, 251, 0.1));
-            border-color: rgba(97, 218, 251, 0.3);
-            box-shadow: 0 8px 25px rgba(97, 218, 251, 0.2);
-        }
-
-        .tech-tags span[data-tech="firebase"]:hover {
-            background: linear-gradient(135deg, rgba(255, 167, 38, 0.2), rgba(255, 167, 38, 0.1));
-            border-color: rgba(255, 167, 38, 0.3);
-            box-shadow: 0 8px 25px rgba(255, 167, 38, 0.2);
-        }
-
-        .tech-tags span[data-tech="java"]:hover {
-            background: linear-gradient(135deg, rgba(255, 69, 0, 0.2), rgba(255, 69, 0, 0.1));
-            border-color: rgba(255, 69, 0, 0.3);
-            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.2);
-        }
-
-        .tech-tags span[data-tech="angular"]:hover {
-            background: linear-gradient(135deg, rgba(221, 0, 49, 0.2), rgba(221, 0, 49, 0.1));
-            border-color: rgba(221, 0, 49, 0.3);
-            box-shadow: 0 8px 25px rgba(221, 0, 49, 0.2);
-        }
-
-        .tech-tags span[data-tech="typescript"]:hover {
-            background: linear-gradient(135deg, rgba(49, 120, 198, 0.2), rgba(49, 120, 198, 0.1));
-            border-color: rgba(49, 120, 198, 0.3);
-            box-shadow: 0 8px 25px rgba(49, 120, 198, 0.2);
-        }
-
-        .tech-tags span[data-tech="postgresql"]:hover {
-            background: linear-gradient(135deg, rgba(51, 103, 145, 0.2), rgba(51, 103, 145, 0.1));
-            border-color: rgba(51, 103, 145, 0.3);
-            box-shadow: 0 8px 25px rgba(51, 103, 145, 0.2);
-        }
-
-        .tech-tags span[data-tech="mysql"]:hover {
-            background: linear-gradient(135deg, rgba(0, 117, 143, 0.2), rgba(0, 117, 143, 0.1));
-            border-color: rgba(0, 117, 143, 0.3);
-            box-shadow: 0 8px 25px rgba(0, 117, 143, 0.2);
-        }
-
-        .tech-tags span[data-tech="spring"]:hover {
-            background: linear-gradient(135deg, rgba(108, 194, 74, 0.2), rgba(108, 194, 74, 0.1));
-            border-color: rgba(108, 194, 74, 0.3);
-            box-shadow: 0 8px 25px rgba(108, 194, 74, 0.2);
-        }
-
-        .tech-tags span[data-tech="vite"]:hover {
-            background: linear-gradient(135deg, rgba(100, 108, 245, 0.2), rgba(100, 108, 245, 0.1));
-            border-color: rgba(100, 108, 245, 0.3);
-            box-shadow: 0 8px 25px rgba(100, 108, 245, 0.2);
-        }
-
-        .tech-tags span[data-tech="express"]:hover {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .tech-tags span[data-tech="sequelize"]:hover {
-            background: linear-gradient(135deg, rgba(49, 120, 198, 0.2), rgba(49, 120, 198, 0.1));
-            border-color: rgba(49, 120, 198, 0.3);
-            box-shadow: 0 8px 25px rgba(49, 120, 198, 0.2);
-        }
-
-        .tech-tags span[data-tech="chartjs"]:hover {
-            background: linear-gradient(135deg, rgba(255, 99, 132, 0.2), rgba(255, 99, 132, 0.1));
-            border-color: rgba(255, 99, 132, 0.3);
-            box-shadow: 0 8px 25px rgba(255, 99, 132, 0.2);
-        }
-
-        .tech-tags span[data-tech="ai"]:hover {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(138, 43, 226, 0.1));
-            border-color: rgba(138, 43, 226, 0.3);
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.2);
-        }
-
-        .tech-tags span[data-tech="css"]:hover {
-            background: linear-gradient(135deg, rgba(86, 61, 124, 0.2), rgba(86, 61, 124, 0.1));
-            border-color: rgba(86, 61, 124, 0.3);
-            box-shadow: 0 8px 25px rgba(86, 61, 124, 0.2);
-        }
-
-        .tech-tags span[data-tech="javafx"]:hover {
-            background: linear-gradient(135deg, rgba(255, 69, 0, 0.2), rgba(255, 69, 0, 0.1));
-            border-color: rgba(255, 69, 0, 0.3);
-            box-shadow: 0 8px 25px rgba(255, 69, 0, 0.2);
+        /* All tech tags use the same grayscale hover effect */
+        .tech-tags span[data-tech]:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
         }
 
         .private-tag {
-            background-color: rgba(201, 162, 39, 0.2) !important;
+            background-color: rgba(255, 255, 255, 0.2) !important;
             color: var(--primary-accent) !important;
             border: 1px solid var(--primary-accent);
         }
@@ -815,7 +731,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-accent);
-            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.3);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
         }
         .form-group textarea {
             min-height: 150px;
@@ -1039,9 +955,9 @@
         }
         
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(201, 162, 39, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(201, 162, 39, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
         }
 
         @keyframes clickPulse {
@@ -1052,7 +968,7 @@
 
         /* UI/UX Highlight Styling */
         .ui-ux-highlight {
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #A78BFA, #FFA726);
+            background: linear-gradient(45deg, #FFFFFF, #CCCCCC, #999999, #666666);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -1069,7 +985,7 @@
 
         .ui-ux-highlight:hover {
             transform: scale(1.1) translateY(-2px);
-            filter: drop-shadow(0 4px 8px rgba(255, 107, 107, 0.4));
+            filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.4));
             animation-play-state: paused;
         }
 
@@ -1080,7 +996,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #A78BFA, #FFA726);
+            background: linear-gradient(45deg, #FFFFFF, #CCCCCC, #999999, #666666);
             border-radius: 6px;
             opacity: 0.1;
             z-index: -1;
@@ -1204,8 +1120,8 @@
         /* Coding Journey Section */
         .coding-journey {
             padding: var(--spacing-lg);
-            background: rgba(201, 162, 39, 0.08);
-            border: 1px solid rgba(201, 162, 39, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--border-radius);
             backdrop-filter: blur(4px);
         }
@@ -1856,7 +1772,7 @@
                         }
                     },
                     "color": {
-                        "value": "#E5E7EB"
+                        "value": "#FFFFFF"
                     },
                     "shape": {
                         "type": "circle",
@@ -1872,7 +1788,7 @@
                     "line_linked": {
                         "enable": true,
                         "distance": 150,
-                        "color": "#C9A227",
+                        "color": "#FFFFFF",
                         "opacity": 0.4,
                         "width": 1
                     },
