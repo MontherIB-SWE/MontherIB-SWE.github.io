@@ -44,6 +44,10 @@
             --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.1);
             --transition-speed: 0.3s;
+
+            /* Background gradient scroll-driven vars */
+            --bg-pos: 0%;        /* background-position-y */
+            --bg-shift: 50%;     /* middle stop position */
         }
 
         html {
@@ -63,17 +67,14 @@
             font-family: var(--font-main);
             color: var(--text-primary);
             background-color: var(--background-dark);
+            background-image: linear-gradient(180deg, #000000 0%, #0f0f0f var(--bg-shift), #1a1a1a 100%);
+            background-position: 50% var(--bg-pos);
+            background-size: 100% 200%;
+            background-attachment: fixed;
             position: relative;
         }
         
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
+        
 
         /* --- Loading Overlay with Circle Cutout --- */
         .loading-overlay {
@@ -892,6 +893,7 @@
             .mobile-nav-toggle {
                 display: block;
             }
+            .scroll-indicator { right: 20px; bottom: 20px; }
         }
 
         /* Added for smaller mobile screens */
@@ -964,6 +966,35 @@
             0% { transform: scale(1.2); }
             50% { transform: scale(1.5); }
             100% { transform: scale(1.2); }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            right: 60px; /* avoid dot nav at 20px */
+            bottom: 28px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+            backdrop-filter: blur(6px);
+            z-index: 950; /* under dot-nav (1000) */
+            opacity: 0.9;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            pointer-events: none; /* purely decorative */
+            animation: scrollBounce 1.6s ease-in-out infinite;
+        }
+        .scroll-indicator i { font-size: 1rem; }
+        .scroll-indicator.hidden { opacity: 0; transform: translateY(8px); }
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         /* UI/UX Highlight Styling */
@@ -1149,7 +1180,7 @@
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
+    
     <div class="loading-overlay">
         <div class="circle-cutout"></div>
         <span class="loading-text">Loading...</span>
@@ -1518,9 +1549,13 @@
         </ul>
     </div>
 
+    <!-- Scroll indicator (right panel) -->
+    <div class="scroll-indicator" id="scroll-indicator" aria-hidden="true" title="Scroll">
+        <i class="fas fa-arrow-down"></i>
+    </div>
+
 
     <!-- JavaScript for animations and interactions -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         if (history.scrollRestoration) {
             history.scrollRestoration = 'manual';
@@ -1607,6 +1642,35 @@
                     }, 250);
                 }, delayNeeded);
             });
+
+            // --- Scroll-driven gradient background ---
+            const setBgVars = (pos) => {
+                const clamped = Math.max(0, Math.min(1, pos));
+                const posY = (clamped * 100).toFixed(2) + '%';
+                const mid = (clamped * 60 + 20).toFixed(2) + '%'; // 20%..80%
+                document.documentElement.style.setProperty('--bg-pos', posY);
+                document.documentElement.style.setProperty('--bg-shift', mid);
+            };
+
+            const updateBgOnScroll = () => {
+                const scrollEl = rightPanel || document.documentElement;
+                const max = (scrollEl.scrollHeight - (scrollEl.clientHeight || window.innerHeight)) || 1;
+                const cur = rightPanel ? rightPanel.scrollTop : (window.pageYOffset || document.documentElement.scrollTop || 0);
+                setBgVars(cur / max);
+
+                // Toggle scroll indicator visibility
+                const indicator = document.getElementById('scroll-indicator');
+                if (!indicator) return;
+                const nearTop = cur < 24;
+                const nearBottom = cur > max - 24;
+                indicator.classList.toggle('hidden', !nearTop || nearBottom);
+            };
+
+            // initial
+            updateBgOnScroll();
+            // listeners
+            if (rightPanel) rightPanel.addEventListener('scroll', updateBgOnScroll, { passive: true });
+            window.addEventListener('scroll', updateBgOnScroll, { passive: true });
 
             // --- Fade in sections on scroll ---
             const sectionObserver = new IntersectionObserver(entries => {
@@ -1761,74 +1825,7 @@
                 });
             }
 
-            // --- Particles.js Background ---
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#FFFFFF"
-                    },
-                    "shape": {
-                        "type": "circle",
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": false,
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#FFFFFF",
-                        "opacity": 0.4,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
+            // background handled by CSS
         });
     </script>
 </body>
