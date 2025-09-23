@@ -334,7 +334,7 @@
 
         html, body {
             height: 100%;
-            overflow: hidden; /* Prevent the main body from scrolling on desktop */
+            overflow: auto; /* Use a single scroll container (the document) */
             margin: 0;
             padding: 0;
             font-family: var(--font-main);
@@ -401,13 +401,19 @@
 
         /* Hide content initially */
         .site-container {
-            display: flex;
-            height: 100vh;
+            /* Grid-based layout that can switch between header and split modes */
+            --left-width: clamp(280px, 28vw, 520px);
+            --gap: clamp(16px, 3vw, 32px);
+            display: grid;
+            grid-template-columns: 1fr; /* header mode default */
+            grid-auto-rows: min-content;
+            gap: var(--gap);
+            min-height: 100svh;
             position: relative;
             z-index: 1;
             scale: 0.5;
             opacity: 0;
-            transition: opacity 1s ease-out, scale 3s cubic-bezier(0.075, 0.82, 0.165, 1);
+            transition: opacity 1s ease-out, scale 3s cubic-bezier(0.075, 0.82, 0.165, 1), grid-template-columns var(--transition-speed) ease, gap var(--transition-speed) ease;
         }
 
         .site-container.loaded {
@@ -416,16 +422,16 @@
 
         /* Ensure content is visible after loading */
         .site-container {
-            display: flex;
-            height: 100vh;
+            display: grid;
+            min-height: 100svh;
             position: relative;
             z-index: 1;
         }
 
         /* Ensure content is visible by default */
         .site-container {
-            display: flex;
-            height: 100vh;
+            display: grid;
+            min-height: 100svh;
             position: relative;
             z-index: 1;
             opacity: 1; /* Start visible */
@@ -442,9 +448,6 @@
 
         /* Modify existing animations to start after loading */
         #left-panel {
-            width: 40%;
-            max-width: 550px;
-            min-width: 400px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -453,6 +456,11 @@
             overflow: hidden;
             opacity: 0;
             animation: none; /* Remove initial animation */
+            position: sticky;
+            top: 0;
+            align-self: start;
+            height: 100svh;
+            z-index: 2;
         }
 
         .intro-header {
@@ -577,16 +585,12 @@
             transform: scale(1.1);
         }
 
-        /* --- Right Scrollable Panel --- */
+        /* --- Right Content Panel (document scrolls) --- */
         #right-panel {
             flex-grow: 1;
-            height: 100vh;
-            overflow-y: auto;
+            min-width: 0;
             scroll-behavior: smooth;
             position: relative;
-        }
-        #right-panel::-webkit-scrollbar {
-            display: none;
         }
         
         main {
@@ -1114,20 +1118,21 @@
         @media (max-width: 1024px) {
             html, body {
                 height: auto;
-                overflow: auto; /* Re-enable scrolling for mobile */
+                overflow: auto;
             }
             .site-container {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 height: auto;
             }
             #left-panel {
                 width: 100%;
                 max-width: none;
                 min-width: auto;
-                position: relative;
+                position: static;
                 padding: var(--spacing-lg);
                 text-align: center;
                 justify-content: center;
+                height: auto;
             }
             .intro-header {
                 flex-direction: column;
@@ -1574,6 +1579,15 @@
             ::view-transition-new(root) { animation: none; }
         }
 
+        /* --- Header-to-split layout states --- */
+        .site-container[data-state="header"] > #left-panel { grid-column: 1 / -1; }
+        .site-container[data-state="header"] > #right-panel { grid-column: 1 / -1; }
+        .site-container[data-state="split"] { grid-template-columns: var(--left-width) 1fr; align-items: start; }
+        .site-container[data-state="split"] > #left-panel { grid-column: 1; }
+        .site-container[data-state="split"] > #right-panel { grid-column: 2; }
+
+        .split-sentinel { display: none; }
+
         /* Override transitions for specific elements that shouldn't animate */
         .loading-overlay,
         .loading-text {
@@ -1588,7 +1602,7 @@
         <div class="circle-cutout"></div>
         <span class="loading-text">Loading...</span>
     </div>
-    <div class="site-container">
+    <div class="site-container" data-state="header">
         <!-- Left Fixed Panel -->
         <aside id="left-panel">
             <div class="intro-content">
@@ -1647,7 +1661,10 @@
             <div class="left-panel-footer"></div>
         </aside>
 
-        <!-- Right Scrollable Panel -->
+        <!-- Sentinel to switch from header to split mode -->
+        <div class="split-sentinel" aria-hidden="true"></div>
+
+        <!-- Right Content Panel -->
         <div id="right-panel">
             <nav class="dot-nav">
                 <ul>
@@ -1973,6 +1990,17 @@
             const sections = document.querySelectorAll('#right-panel section');
             const navLinks = document.querySelectorAll('.dot-nav a');
             const rightPanel = document.querySelector('#right-panel');
+            const rootLayout = document.querySelector('.site-container');
+            const sentinel = document.querySelector('.split-sentinel');
+
+            // Toggle layout state between header and split based on scroll position (top vs scrolled)
+            const updateLayoutState = () => {
+                if (!rootLayout) return;
+                const atTop = (window.pageYOffset || document.documentElement.scrollTop || 0) <= 0;
+                rootLayout.dataset.state = atTop ? 'header' : 'split';
+            };
+            updateLayoutState();
+            window.addEventListener('scroll', updateLayoutState, { passive: true });
             const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
             const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-overlay a');
@@ -2123,9 +2151,9 @@
             };
 
             const updateBgOnScroll = () => {
-                const scrollEl = rightPanel || document.documentElement;
-                const max = (scrollEl.scrollHeight - (scrollEl.clientHeight || window.innerHeight)) || 1;
-                const cur = rightPanel ? rightPanel.scrollTop : (window.pageYOffset || document.documentElement.scrollTop || 0);
+                const scrollEl = document.documentElement;
+                const max = (scrollEl.scrollHeight - window.innerHeight) || 1;
+                const cur = window.pageYOffset || document.documentElement.scrollTop || 0;
                 setBgVars(cur / max);
 
                 // Toggle scroll indicator visibility
@@ -2139,7 +2167,6 @@
             // initial
             updateBgOnScroll();
             // listeners
-            if (rightPanel) rightPanel.addEventListener('scroll', updateBgOnScroll, { passive: true });
             window.addEventListener('scroll', updateBgOnScroll, { passive: true });
 
             // --- Fade in sections on scroll ---
@@ -2150,7 +2177,7 @@
                     }
                 });
             }, {
-                root: rightPanel,
+                root: null,
                 threshold: 0.1
             });
 
@@ -2169,7 +2196,7 @@
                     }
                 });
             }, {
-                root: rightPanel,
+                root: null,
                 rootMargin: '-50% 0px -50% 0px' 
             });
 
