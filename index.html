@@ -175,10 +175,7 @@
             border: none;
         }
 
-        [data-theme="light"] .counter-mode-switch {
-            background: rgba(124, 58, 237, 0.08);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-        }
+        
 
         [data-theme="light"] .coding-journey {
             background: linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(139, 92, 246, 0.06));
@@ -189,11 +186,7 @@
             color: #7C3AED;
         }
 
-        [data-theme="light"] .private-tag {
-            background: linear-gradient(135deg, #7C3AED, #8B5CF6) !important;
-            color: #FFFFFF !important;
-            border: 1px solid #7C3AED;
-        }
+        
 
         [data-theme="light"] .private-project-notice i {
             color: #7C3AED;
@@ -282,13 +275,9 @@
             border-bottom: 2px solid #7C3AED;
         }
 
-        [data-theme="light"] .flip-card {
-            border-bottom: 2px solid #7C3AED;
-        }
+        
 
-        [data-theme="light"] .odometer-digit {
-            border-bottom: 2px solid #7C3AED;
-        }
+        
 
         /* Light theme pulse animation */
         [data-theme="light"] .dot-nav a.active .nav-icon {
@@ -380,6 +369,8 @@
 
         .circle-cutout { display: none; }
 
+        
+
         .loading-text {
             color: var(--primary-accent);
             font-size: 1.5rem;
@@ -412,33 +403,10 @@
 
         .site-container.loaded {
             scale: 1;
-        }
-
-        /* Ensure content is visible after loading */
-        .site-container {
-            display: flex;
-            height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Ensure content is visible by default */
-        .site-container {
-            display: flex;
-            height: 100vh;
-            position: relative;
-            z-index: 1;
-            opacity: 1; /* Start visible */
-        }
-
-        /* Hide content during loading */
-        .site-container.loading {
-            opacity: 0;
-        }
-
-        .site-container.loaded {
             opacity: 1;
         }
+
+        
 
         /* Modify existing animations to start after loading */
         #left-panel {
@@ -823,11 +791,7 @@
             box-shadow: 0 8px 25px var(--shadow-color);
         }
 
-        .private-tag {
-            background-color: var(--card-bg) !important;
-            color: var(--primary-accent) !important;
-            border: 1px solid var(--primary-accent);
-        }
+        
 
         .private-project-notice {
             color: var(--text-secondary);
@@ -970,10 +934,7 @@
 
         
 
-        .skill-category h4 {
-            color: var(--text-primary);
-            margin-bottom: var(--spacing-md);
-        }
+        
 
         /* --- Contact Form --- */
         #contact-form {
@@ -1027,11 +988,7 @@
             transform: translateY(-2px);
         }
         
-        .disabled-link {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
+        
         
         /* --- Mobile Navigation --- */
         .mobile-nav-toggle {
@@ -1348,78 +1305,9 @@
             opacity: 0.9;
         }
 
-        /* Flip-clock style */
-        #day-counter.counter--flip { gap: 0.4rem; }
-        #day-counter.counter--flip .flip-digit {
-            perspective: 600px;
-            display: inline-block;
-            width: 0.75em;
-            height: 1em;
-            position: relative;
-        }
-        #day-counter.counter--flip .flip-card {
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            transform-origin: bottom;
-            animation: flipIn 600ms ease-out both;
-            font-size: 1.35em;
-            border-bottom: 2px solid var(--primary-accent);
-        }
-        @keyframes flipIn {
-            from { transform: rotateX(-90deg); opacity: 0; }
-            to { transform: rotateX(0deg); opacity: 1; }
-        }
+        
 
-        /* Odometer style */
-        #day-counter.counter--odometer { gap: 0.3rem; }
-        #day-counter.counter--odometer .odometer-digit {
-            overflow: hidden;
-            height: 1.35em;
-            width: 0.8em;
-            display: inline-block;
-            position: relative;
-            border-bottom: 2px solid var(--primary-accent);
-        }
-        #day-counter.counter--odometer .odometer-track {
-            display: block;
-            transition: transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
-            will-change: transform;
-        }
-        #day-counter.counter--odometer .odometer-track span {
-            display: block;
-            height: 1.35em;
-            line-height: 1.35em;
-            text-align: center;
-            font-size: 1.35em;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            #day-counter.counter--flip .flip-card { animation: none !important; transform: none !important; }
-            #day-counter.counter--odometer .odometer-track { transition: none !important; }
-        }
-
-        .counter-mode-switch {
-            margin-top: var(--spacing-sm);
-            display: inline-flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            padding: 6px 10px;
-            border-radius: 10px;
-            backdrop-filter: blur(4px);
-        }
-        .counter-mode-switch span { color: var(--text-secondary); font-size: 0.9rem; }
-        .counter-mode-switch select {
-            background: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--card-border);
-            border-radius: 6px;
-            padding: 4px 8px;
-            font-family: var(--font-main);
-        }
+        
 
         /* Coding Journey Section */
         .coding-journey {
@@ -1432,7 +1320,7 @@
 
         .coding-journey h3 {
             margin: 0 0 var(--spacing-md) 0;
-            color: var(--accent-color);
+            color: var(--primary-accent);
             font-size: 1.1rem;
             font-weight: 600;
         }
@@ -1509,31 +1397,7 @@
             z-index: 1;
         }
 
-        /* Theme Toggle Button Polish */
-        .theme-toggle {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            opacity: 1;
-            visibility: visible;
-            display: flex;
-            min-width: 45px;
-            min-height: 45px;
-        }
-
-        .theme-toggle i {
-            color: var(--text-primary);
-            display: block;
-            font-size: 1.1rem;
-        }
-
-        .theme-toggle:hover i {
-            transform: rotate(180deg) scale(1.05);
-            color: var(--background-dark);
-        }
-
-        .theme-toggle:active i {
-            transform: rotate(180deg) scale(0.98);
-        }
+        
 
         /* Theme transition animation */
         .theme-toggle.animating {
@@ -2042,7 +1906,7 @@
             const MIN_LOADING_MS = 1200;
             const appStart = performance.now();
             const loadingOverlay = document.querySelector('.loading-overlay');
-            const circleCutout = document.querySelector('.circle-cutout');
+            
             const loadingText = document.querySelector('.loading-text');
 
             const animateCutout = (durationMs = 1500) => {
@@ -2234,39 +2098,12 @@
                     const choice = modeSelect.value;
                     localStorage.setItem('dayCounterMode', choice);
                     dayCounterElement.className = '';
-                    if (choice === 'flip') {
-                        dayCounterElement.className = 'counter--flip';
-                        dayCounterElement.innerHTML = '';
-                        const parts = diffParts();
-                        const daysGroup = makeFlipGroup('days', String(parts.days));
-                        const hoursGroup = makeFlipGroup('hours', pad2(parts.hours));
-                        const minutesGroup = makeFlipGroup('minutes', pad2(parts.minutes));
-                        const secondsGroup = makeFlipGroup('seconds', pad2(parts.seconds));
-                        dayCounterElement.appendChild(daysGroup);
-                        dayCounterElement.appendChild(hoursGroup);
-                        dayCounterElement.appendChild(minutesGroup);
-                        dayCounterElement.appendChild(secondsGroup);
-                        const since = document.createElement('span');
-                        since.className = 'counter-since';
-                        since.textContent = 'since 2022-10-01';
-                        dayCounterElement.appendChild(since);
-                    } else if (choice === 'odometer') {
-                        dayCounterElement.className = 'counter--odometer';
-                        dayCounterElement.innerHTML = '';
-                        const parts = diffParts();
-                        const daysGroup = makeOdometerGroup('days', String(parts.days));
-                        const hoursGroup = makeOdometerGroup('hours', pad2(parts.hours));
-                        const minutesGroup = makeOdometerGroup('minutes', pad2(parts.minutes));
-                        const secondsGroup = makeOdometerGroup('seconds', pad2(parts.seconds));
-                        dayCounterElement.appendChild(daysGroup);
-                        dayCounterElement.appendChild(hoursGroup);
-                        dayCounterElement.appendChild(minutesGroup);
-                        dayCounterElement.appendChild(secondsGroup);
-                        const since = document.createElement('span');
-                        since.className = 'counter-since';
-                        since.textContent = 'since 2022-10-01';
-                        dayCounterElement.appendChild(since);
-                    } else {
+                    if (choice !== 'default') {
+                        // For now only default mode is supported; persist selection but keep markup simple
+                        localStorage.setItem('dayCounterMode', 'default');
+                        modeSelect.value = 'default';
+                    }
+                    {
                         dayCounterElement.innerHTML = '<span class="counter-group"><span class="counter-value" data-key="days">0</span> <span class="counter-unit">days</span></span> <span class="counter-group"><span class="counter-value" data-key="hours">00</span> <span class="counter-unit">hours</span></span> <span class="counter-group"><span class="counter-value" data-key="minutes">00</span> <span class="counter-unit">minutes</span></span> <span class="counter-group"><span class="counter-value" data-key="seconds">00</span> <span class="counter-unit">seconds</span></span> <span class="counter-since">since 2022-10-01</span>';
                     }
                 });
