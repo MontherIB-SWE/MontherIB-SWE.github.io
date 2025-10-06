@@ -16,52 +16,52 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lobster&display=swap" rel="stylesheet">
 
     <!-- Custom Styles -->
     <style>
         :root {
-            /* Dark Theme (Default) */
-            --background-dark: #000000;
-            --section-bg: #1A1A1A;
-            --primary-accent: #FFFFFF; /* Pure white */
-            --secondary-accent: #FFFFFF;
-            --text-primary: #FFFFFF;
-            --text-secondary: #CCCCCC;
-            --card-bg: rgba(255, 255, 255, 0.08);
-            --card-border: rgba(229, 231, 235, 0.1);
-            --shadow-color: rgba(0, 0, 0, 0.2);
-            --gradient-start: #000000;
-            --gradient-mid: #0f0f0f;
-            --gradient-end: #1a1a1a;
+            /* Dark Theme (Default) - Vaporwave Noir */
+            --background-dark: #0A0712;
+            --section-bg: #130F1E;
+            --primary-accent: #FF71CE; /* pink neon */
+            --secondary-accent: #01CDFE; /* cyan neon */
+            --text-primary: #F4EFFF;
+            --text-secondary: #C9B7F2;
+            --card-bg: rgba(19, 15, 30, 0.65);
+            --card-border: rgba(255, 113, 206, 0.08);
+            --shadow-color: rgba(1, 205, 254, 0.25);
+            --gradient-start: #0A0712;
+            --gradient-mid: #120A1C;
+            --gradient-end: #1A0F2A;
         }
 
-        /* Light Theme */
+        /* Light Theme - Neon Light (Vaporwave complement) */
         [data-theme="light"] {
             /* Surface & background */
-            --background-dark: #F9FAFB;  /* page background */
-            --section-bg: #EEF2F7;       /* subtle section bg */
-            --card-bg: #FFFFFFCC;        /* semi-opaque white */
-            --card-border: rgba(15, 23, 42, 0.08); /* slate-900 @8% */
-            --shadow-color: rgba(2, 6, 23, 0.12);  /* slate-950 soft */
+            --background-dark: #FBF8FF;  /* page background (pale lavender) */
+            --section-bg: #F4ECFF;       /* soft lilac panel */
+            --card-bg: rgba(255, 255, 255, 0.85); /* semi-opaque white */
+            --card-border: rgba(1, 205, 254, 0.18); /* cyan hairline */
+            --shadow-color: rgba(1, 205, 254, 0.18);  /* cyan glow */
 
             /* Typography */
-            --text-primary: #0F172A;     /* slate-900 */
-            --text-secondary: #475569;   /* slate-600 */
+            --text-primary: #1A1032;     /* deep indigo */
+            --text-secondary: #5B4E80;   /* muted lavender */
 
-            /* Accents (modern purple) */
-            --primary-accent: #7C3AED;   /* violet-600 */
-            --secondary-accent: #8B5CF6; /* violet-500 */
+            /* Accents (neon mirror of dark theme) */
+            --primary-accent: #01CDFE;   /* cyan neon */
+            --secondary-accent: #FF71CE; /* pink neon */
 
             /* Gradient backdrop */
             --gradient-start: #FFFFFF;
-            --gradient-mid: #F5F3FF;     /* violet-50 */
-            --gradient-end: #FAF5FF;     /* fuchsia-50 */
+            --gradient-mid: #F7EEFF;     /* pale lilac */
+            --gradient-end: #FFEFFD;     /* pale pink */
         }
 
         /* Light Theme Specific Enhancements */
         [data-theme="light"] h2 {
-            background: linear-gradient(45deg, #7C3AED, #8B5CF6);
+            background: linear-gradient(45deg, #01CDFE, #FF71CE);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -69,7 +69,7 @@
         }
 
         [data-theme="light"] .ui-ux-highlight {
-            background: linear-gradient(45deg, #7C3AED, #8B5CF6);
+            background: linear-gradient(45deg, #01CDFE, #FF71CE);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -78,56 +78,46 @@
         }
 
         [data-theme="light"] .ui-ux-highlight::before {
-            background: linear-gradient(45deg, #7C3AED, #8B5CF6);
+            background: linear-gradient(45deg, #01CDFE, #FF71CE);
         }
 
         [data-theme="light"] .tech-tags span:hover {
-            background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+            background: linear-gradient(135deg, #01CDFE, #FF71CE);
             color: #FFFFFF;
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.28);
+            box-shadow: 0 8px 25px rgba(255, 113, 206, 0.28);
         }
 
-        [data-theme="light"] .skills-list li:hover {
-            background: linear-gradient(135deg, #7C3AED, #8B5CF6);
-            color: #FFFFFF;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.28);
-        }
 
         [data-theme="light"] .project-item:hover {
-            border-color: #7C3AED;
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.18);
+            border-color: #01CDFE;
+            box-shadow: 0 8px 25px rgba(1, 205, 254, 0.18);
         }
 
-        [data-theme="light"] .skill-card:hover {
-            border-color: #7C3AED;
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.18);
-        }
 
         [data-theme="light"] .dot-nav a.active .nav-icon {
-            color: #7C3AED;
-            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
+            color: #01CDFE;
+            box-shadow: 0 0 0 4px rgba(1, 205, 254, 0.2);
         }
 
         [data-theme="light"] .dot-nav a:hover .nav-icon {
-            color: #7C3AED;
+            color: #01CDFE;
         }
 
         [data-theme="light"] .form-group input:focus,
         [data-theme="light"] .form-group textarea:focus {
-            border-color: #7C3AED;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+            border-color: #01CDFE;
+            box-shadow: 0 0 0 3px rgba(1, 205, 254, 0.18);
         }
 
         [data-theme="light"] #contact-form button {
-            background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+            background: linear-gradient(135deg, #01CDFE, #FF71CE);
             color: #FFFFFF;
         }
 
         [data-theme="light"] #contact-form button:hover {
-            background: linear-gradient(135deg, #6D28D9, #7C3AED);
+            background: linear-gradient(135deg, #01CDFE, #FF71CE);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.28);
+            box-shadow: 0 4px 12px rgba(255, 113, 206, 0.28);
         }
 
         [data-theme="light"] .theme-toggle {
@@ -164,58 +154,65 @@
         }
 
         [data-theme="light"] .mobile-nav-toggle {
-            background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+            background: linear-gradient(135deg, #01CDFE, #FF71CE);
             color: #FFFFFF;
             border: none;
         }
 
         [data-theme="light"] .scroll-indicator {
-            background: linear-gradient(135deg, #7C3AED, #8B5CF6);
+            background: transparent;
+            border: 1px solid rgba(1, 205, 254, 0.3);
+            color: #01CDFE;
+            opacity: 0.8;
+        }
+        [data-theme="light"] .scroll-indicator:hover {
+            background: linear-gradient(135deg, #01CDFE, #FF71CE);
             color: #FFFFFF;
-            border: none;
+            border-color: transparent;
+            opacity: 1;
         }
 
         
 
         [data-theme="light"] .coding-journey {
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.06), rgba(139, 92, 246, 0.06));
-            border: 1px solid rgba(124, 58, 237, 0.18);
+            background: linear-gradient(135deg, rgba(1, 205, 254, 0.06), rgba(255, 113, 206, 0.06));
+            border: 1px solid rgba(1, 205, 254, 0.18);
         }
 
         [data-theme="light"] .coding-journey h3 {
-            color: #7C3AED;
+            color: #01CDFE;
         }
 
         
 
         [data-theme="light"] .private-project-notice i {
-            color: #7C3AED;
+            color: #01CDFE;
         }
 
         [data-theme="light"] .social-links a:hover {
-            color: #7C3AED;
+            color: #01CDFE;
             transform: scale(1.1);
         }
 
         [data-theme="light"] .expandable-item .expand-btn:hover {
-            color: #7C3AED;
+            color: #01CDFE;
         }
 
         [data-theme="light"] .expandable-item.expanded .expand-btn i {
-            color: #7C3AED;
+            color: #01CDFE;
         }
 
         /* Light Theme Additional Enhancements */
         [data-theme="light"] .at-a-glance {
-            border-top: 1px solid rgba(124, 58, 237, 0.18);
+            border-top: 1px solid rgba(1, 205, 254, 0.18);
         }
 
         [data-theme="light"] .glance-item i {
-            color: #7C3AED;
+            color: #01CDFE;
         }
 
         [data-theme="light"] .glance-item strong {
-            color: #7C3AED;
+            color: #01CDFE;
         }
 
         [data-theme="light"] .intro-subtitle {
@@ -223,24 +220,24 @@
         }
 
         [data-theme="light"] .avatar {
-            border: 3px solid #7C3AED;
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.22);
+            border: 3px solid #01CDFE;
+            box-shadow: 0 4px 12px rgba(1, 205, 254, 0.22);
         }
 
         [data-theme="light"] .dot-nav .nav-text {
-            background-color: rgba(124, 58, 237, 0.08);
-            color: #7C3AED;
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            background-color: rgba(1, 205, 254, 0.08);
+            color: #01CDFE;
+            border: 1px solid rgba(1, 205, 254, 0.2);
         }
 
         [data-theme="light"] .dot-nav a:hover .nav-text,
         [data-theme="light"] .dot-nav a.active .nav-text {
-            background-color: rgba(124, 58, 237, 0.14);
-            border-color: rgba(124, 58, 237, 0.28);
+            background-color: rgba(1, 205, 254, 0.14);
+            border-color: rgba(1, 205, 254, 0.28);
         }
 
         [data-theme="light"] .mobile-nav-overlay {
-            background-color: rgba(124, 58, 237, 0.95);
+            background-color: rgba(1, 205, 254, 0.95);
         }
 
         [data-theme="light"] .mobile-nav-overlay a {
@@ -252,11 +249,11 @@
         }
 
         [data-theme="light"] .project-links a {
-            color: #7C3AED;
+            color: #01CDFE;
         }
 
         [data-theme="light"] .project-links a:hover {
-            color: #6D28D9;
+            color: #00B9E6;
         }
 
         [data-theme="light"] .journey-since {
@@ -272,7 +269,7 @@
         }
 
         [data-theme="light"] .counter-value {
-            border-bottom: 2px solid #7C3AED;
+            border-bottom: 2px solid #01CDFE;
         }
 
         
@@ -292,8 +289,8 @@
 
         :root {
             /* Typography */
-            --font-main: 'Inter', sans-serif;
-            --font-heading: 'Roboto Mono', monospace;
+            --font-main: 'DM Sans', sans-serif;
+            --font-heading: 'Lobster', cursive;
 
             /* Spacing */
             --spacing-sm: 0.5rem;
@@ -853,83 +850,47 @@
             margin-top: var(--spacing-md);
         }
 
-        /* --- Skills --- */
-        .skills-bento {
+        /* --- Skills (Glass Rows) --- */
+        .skills-rows {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-md);
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px 12px;
         }
-        .skill-card {
-            backdrop-filter: blur(4px);
+        .skill-row {
+            display: grid;
+            grid-template-columns: 28px 1fr;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 10px;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: var(--border-radius);
             box-shadow: var(--shadow-sm);
-            padding: var(--spacing-md);
-            display: flex;
-            flex-direction: column;
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
         }
-        .skill-card:hover {
-            box-shadow: var(--shadow-lg);
+        .skill-row:hover {
             border-color: var(--primary-accent);
+            box-shadow: 0 8px 25px var(--shadow-color);
+            transform: translateY(-2px);
         }
-        .skill-card__header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: var(--spacing-sm);
-            padding-bottom: var(--spacing-sm);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-        .skill-card h4 { margin: 0; }
-
-        /* Uniform row layout: each card spans one column by default */
-        .skill-card--languages,
-        .skill-card--frameworks,
-        .skill-card--databases,
-        .skill-card--tools { grid-column: auto; }
-        .skills-list {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-md);
-        }
-
-        .skills-list li {
-            background-color: var(--card-bg);
-            color: var(--text-secondary);
-            padding: 0.9rem 1.25rem;
-            border-radius: 9999px;
-            border: 1px solid var(--card-border);
-            font-size: 1.06rem;
-            font-weight: 600;
-            transition: all var(--transition-speed) ease;
+        .skill-row__icon {
+            width: 28px;
+            height: 28px;
             display: inline-flex;
             align-items: center;
-            gap: var(--spacing-md);
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--text-primary);
         }
-
-        .skills-list li .skill-icon {
-            font-size: 1.3rem;
-            line-height: 1;
+        .skill-row__content { display: flex; flex-direction: column; }
+        .skill-row__title {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-weight: 700;
         }
-        .skills-list li .skill-img {
-            width: 1.3rem;
-            height: 1.3rem;
-            display: inline-block;
-        }
-
-        /* Improve contrast for Express icon which is black in colored mode */
-        .skills-list li .devicon-express-original.colored {
-            color: #FFFFFF;
-        }
-
-        .skills-list li:hover {
-            color: var(--background-dark);
-            background-color: var(--primary-accent);
-            transform: translateY(-2px);
+        @media (max-width: 640px) {
+            .skill-row { grid-template-columns: 36px 1fr; }
         }
 
         
@@ -1015,14 +976,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--shadow-color);
-            z-index: 1000;
+            background: linear-gradient(135deg, rgba(10, 7, 18, 0.98), rgba(18, 10, 28, 0.98));
+            backdrop-filter: blur(10px);
+            z-index: 1002;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            pointer-events: none; /* Prevent clicks when hidden */
+            pointer-events: none;
             transition: opacity 0.35s ease, visibility 0.35s ease;
         }
 
@@ -1062,8 +1024,59 @@
         .mobile-nav-overlay a {
             color: var(--text-primary);
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 700;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .mobile-nav-overlay a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            transition: transform 0.3s ease;
+        }
+        .mobile-nav-overlay a:hover {
+            color: var(--primary-accent);
+        }
+        .mobile-nav-overlay a:hover::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .mobile-nav-close {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 50%;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 1003;
+            box-shadow: var(--shadow-lg);
+        }
+        .mobile-nav-close:hover {
+            background: var(--primary-accent);
+            color: var(--background-dark);
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .mobile-nav-overlay a i {
+            margin-right: 12px;
+            font-size: 1.2rem;
         }
 
 
@@ -1085,6 +1098,8 @@
                 padding: var(--spacing-lg);
                 text-align: center;
                 justify-content: center;
+                align-items: center;
+                min-height: 100vh;
             }
             .intro-header {
                 flex-direction: column;
@@ -1112,9 +1127,6 @@
             h2 {
                 font-size: 2.25rem; 
             }
-            .skills-bento {
-                grid-template-columns: 1fr;
-            }
             
             /* Hide dot nav and show mobile nav toggle */
             .dot-nav {
@@ -1123,25 +1135,21 @@
             .mobile-nav-toggle {
                 display: block;
             }
-            .scroll-indicator { right: 20px; bottom: 20px; }
+            .scroll-indicator { bottom: 20px; left: 50%; }
         }
 
         /* Added for smaller mobile screens */
         @media (max-width: 767px) {
-            #left-panel h1 {
-                font-size: 2rem;
-            }
-            .intro-subtitle {
-                font-size: 1.1rem;
-            }
+            #left-panel { min-height: 100vh; }
+            #left-panel h1 { font-size: clamp(1.9rem, 7vw, 2.4rem); line-height: 1.1; }
+            .intro-subtitle { font-size: clamp(1rem, 3.8vw, 1.2rem); }
+            .avatar { width: 88px; height: 88px; }
+            .intro-header { gap: 12px; }
+            .social-links { gap: 20px; }
+            .social-links a { font-size: 1.6rem; }
+            main { padding: var(--spacing-md); }
             h2 {
                 font-size: 2rem;
-            }
-            .skills-bento {
-                grid-template-columns: 1fr;
-            }
-            main {
-                padding: var(--spacing-md);
             }
             .project-item {
                 padding: var(--spacing-md);
@@ -1201,30 +1209,40 @@
         /* Scroll indicator */
         .scroll-indicator {
             position: fixed;
-            right: 60px; /* avoid dot nav at 20px */
-            bottom: 28px;
-            width: 42px;
-            height: 42px;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: var(--text-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 6px 16px var(--shadow-color);
-            backdrop-filter: blur(6px);
-            z-index: 950; /* under dot-nav (1000) */
-            opacity: 0.9;
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            pointer-events: none; /* purely decorative */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px);
+            z-index: 950;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            pointer-events: auto;
+            cursor: pointer;
             animation: scrollBounce 1.6s ease-in-out infinite;
         }
-        .scroll-indicator i { font-size: 1rem; }
-        .scroll-indicator.hidden { opacity: 0; transform: translateY(8px); }
+        .scroll-indicator:hover {
+            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+            color: var(--background-dark);
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 8px 25px var(--shadow-color);
+            animation-play-state: paused;
+        }
+        .scroll-indicator i { font-size: 1.1rem; transition: transform 0.3s ease; }
+        .scroll-indicator:hover i { transform: translateY(2px); }
+        .scroll-indicator.hidden { opacity: 0; transform: translateX(-50%) translateY(8px); pointer-events: none; }
         @keyframes scrollBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
         }
 
         /* UI/UX Highlight Styling */
@@ -1273,6 +1291,12 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+
+        /* --- Text selection colors (global) --- */
+        ::selection { background: rgba(1, 205, 254, 0.28); color: #0B0A12; }
+        ::-moz-selection { background: rgba(1, 205, 254, 0.28); color: #0B0A12; }
+        [data-theme="light"] ::selection { background: rgba(1, 205, 254, 0.28); color: #0B0A12; }
+        [data-theme="light"] ::-moz-selection { background: rgba(1, 205, 254, 0.28); color: #0B0A12; }
 
         /* --- Day Counter Styles --- */
         #day-counter {
@@ -1339,21 +1363,21 @@
         /* Theme Toggle Button */
         .theme-toggle {
             position: fixed;
-            top: 20px;
+            bottom: 90px;
             right: 20px;
-            z-index: 1002;
+            z-index: 1001;
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-sm);
+            box-shadow: var(--shadow-lg);
             overflow: hidden;
             opacity: 1;
             visibility: visible;
@@ -1452,7 +1476,7 @@
         <div class="circle-cutout"></div>
         <span class="loading-text">Loading...</span>
     </div>
-    <div class="site-container">
+            <div class="site-container">
         <!-- Left Fixed Panel -->
         <aside id="left-panel">
             <div class="intro-content">
@@ -1726,51 +1750,90 @@
                 <!-- Skills Section -->
                 <section id="skills">
                     <h2>Technical Skills</h2>
-                    <div class="skills-bento">
-                        <div class="skill-card skill-card--languages">
-                            <div class="skill-card__header">
-                                <h4>Languages</h4>
+                    <div class="skills-rows">
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-c-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">C</h4>
                             </div>
-                            <ul class="skills-list">
-                                <li><i class="skill-icon devicon-c-plain colored"></i>C</li>
-                                <li><i class="skill-icon devicon-java-plain colored"></i>Java</li>
-                                <li><i class="skill-icon devicon-javascript-plain colored"></i>JavaScript</li>
-                            </ul>
                         </div>
-                        <div class="skill-card skill-card--frameworks">
-                            <div class="skill-card__header">
-                                <h4>Frameworks & Libraries</h4>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-java-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">Java / JavaFX</h4>
                             </div>
-                            <ul class="skills-list">
-                                <li><i class="skill-icon devicon-express-original colored"></i>Express.js</li>
-                                <li><i class="skill-icon devicon-react-original colored"></i>React</li>
-                                <li><i class="skill-icon devicon-nodejs-plain colored"></i>Node.js</li>
-                                <li><i class="skill-icon devicon-java-plain colored"></i>JavaFX</li>
-                                <li><i class="skill-icon devicon-spring-plain colored"></i>Spring Boot</li>
-                            </ul>
                         </div>
-                        <div class="skill-card skill-card--databases">
-                            <div class="skill-card__header">
-                                <h4>Databases</h4>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-javascript-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">JavaScript / Node.js</h4>
                             </div>
-                            <ul class="skills-list">
-                                <li><i class="skill-icon devicon-mysql-plain colored"></i>MySQL</li>
-                                <li><i class="skill-icon devicon-postgresql-plain colored"></i>PostgreSQL</li>
-                                <li><i class="skill-icon devicon-firebase-plain colored"></i>Firebase</li>
-                            </ul>
                         </div>
-                        <div class="skill-card skill-card--tools">
-                            <div class="skill-card__header">
-                                <h4>Tools & Platforms</h4>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-react-original colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">React</h4>
                             </div>
-                            <ul class="skills-list">
-                                <li><i class="skill-icon devicon-git-plain colored"></i>Git & GitHub</li>
-                                <li><img class="skill-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman">Postman</li>
-                                <li><i class="skill-icon devicon-apache-plain colored"></i>Maven</li>
-                                <li><i class="skill-icon devicon-figma-plain colored"></i>Figma</li>
-                                <li><i class="skill-icon devicon-googlecloud-plain colored"></i>Google Cloud</li>
-                                <li><i class="skill-icon devicon-windows8-original colored"></i>Windows & Linux</li>
-                            </ul>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-express-original colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">Express.js</h4>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-spring-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">Spring Boot</h4>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-mysql-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">MySQL</h4>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-postgresql-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">PostgreSQL</h4>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-firebase-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">Firebase</h4>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-git-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">Git & GitHub</h4>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><img class="skill-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman"></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">Postman</h4>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-figma-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">Figma</h4>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-googlecloud-plain colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">Google Cloud</h4>
+                            </div>
+                        </div>
+                        <div class="skill-row">
+                            <div class="skill-row__icon"><i class="devicon-windows8-original colored"></i></div>
+                            <div class="skill-row__content">
+                                <h4 class="skill-row__title">Windows & Linux</h4>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -1802,22 +1865,25 @@
     </div>
     
     <!-- Theme Toggle -->
-    <button class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
-        <i class="fas fa-moon"></i>
-    </button>
+        <button class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
+            <i class="fas fa-moon"></i>
+        </button>
     
     <!-- Mobile Navigation -->
     <button class="mobile-nav-toggle" aria-label="Open navigation">
         <i class="fas fa-bars"></i>
     </button>
     <div class="mobile-nav-overlay">
+        <button class="mobile-nav-close" aria-label="Close navigation">
+            <i class="fas fa-times"></i>
+        </button>
         <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about"><i class="fas fa-user"></i>About</a></li>
+            <li><a href="#experience"><i class="fas fa-briefcase"></i>Experience</a></li>
+            <li><a href="#education"><i class="fas fa-graduation-cap"></i>Education</a></li>
+            <li><a href="#projects"><i class="fas fa-code-branch"></i>Projects</a></li>
+            <li><a href="#skills"><i class="fas fa-cogs"></i>Skills</a></li>
+            <li><a href="#contact"><i class="fas fa-paper-plane"></i>Contact</a></li>
         </ul>
     </div>
 
@@ -1840,6 +1906,7 @@
             const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
             const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
             const mobileNavLinks = document.querySelectorAll('.mobile-nav-overlay a');
+            const mobileNavClose = document.querySelector('.mobile-nav-close');
             const themeToggle = document.querySelector('.theme-toggle');
             const themeIcon = themeToggle.querySelector('i');
 
@@ -2027,8 +2094,8 @@
             const visibilityById = new Map();
 
             const setActiveForIds = (activeIds) => {
-                navLinks.forEach(link => {
-                    const href = link.getAttribute('href').substring(1);
+                        navLinks.forEach(link => {
+                            const href = link.getAttribute('href').substring(1);
                     link.classList.toggle('active', activeIds.has(href));
                 });
             };
@@ -2165,7 +2232,7 @@
                     }
                 });
             }
-            
+
             // --- Click Feedback for Dot Nav ---
             navLinks.forEach(link => {
                 link.addEventListener('click', function() {
@@ -2179,14 +2246,20 @@
             // --- Mobile Navigation Toggle ---
             if (mobileNavToggle && mobileNavOverlay) {
                 mobileNavToggle.addEventListener('click', () => {
-                    mobileNavOverlay.classList.toggle('active');
+                    mobileNavOverlay.classList.add('active');
                 });
+                
+                if (mobileNavClose) {
+                    mobileNavClose.addEventListener('click', () => {
+                        mobileNavOverlay.classList.remove('active');
+                    });
+                }
                 
                 mobileNavLinks.forEach(link => {
                     link.addEventListener('click', () => {
                         mobileNavOverlay.classList.remove('active');
+                        });
                     });
-                });
             }
 
             // background handled by CSS
