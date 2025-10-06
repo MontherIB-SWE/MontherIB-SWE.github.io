@@ -2023,23 +2023,80 @@
             });
 
             // --- Active navigation highlighting on scroll ---
-            const navObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            const href = link.getAttribute('href').substring(1);
-                            link.classList.toggle('active', href === entry.target.id);
-                        });
+            // Highlight all fully visible sections; if none, highlight the single best one
+            const visibilityById = new Map();
+
+            const setActiveForIds = (activeIds) => {
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href').substring(1);
+                    link.classList.toggle('active', activeIds.has(href));
+                });
+            };
+
+            const pickAndSetActive = () => {
+                // First: highlight all fully visible sections (ratio ~ 1.0)
+                const fullyVisible = new Set();
+                visibilityById.forEach((ratio, id) => {
+                    if (ratio >= 0.99) fullyVisible.add(id);
+                });
+
+                if (fullyVisible.size > 0) {
+                    setActiveForIds(fullyVisible);
+                    return;
+                }
+
+                // Otherwise: prefer the section with the highest intersection ratio
+                let bestId = null;
+                let bestRatio = 0;
+                visibilityById.forEach((ratio, id) => {
+                    if (ratio > bestRatio) {
+                        bestRatio = ratio;
+                        bestId = id;
                     }
                 });
+
+                // Fallback: choose the section closest to the container's vertical center
+                if (!bestId) {
+                    let minDistance = Infinity;
+                    const containerRect = rightPanel ? rightPanel.getBoundingClientRect() : { top: 0, height: window.innerHeight };
+                    const viewCenterY = containerRect.top + containerRect.height / 2;
+                    sections.forEach(sec => {
+                        const rect = sec.getBoundingClientRect();
+                        const secCenterY = rect.top + rect.height / 2;
+                        const dist = Math.abs(secCenterY - viewCenterY);
+                        if (dist < minDistance) {
+                            minDistance = dist;
+                            bestId = sec.id;
+                        }
+                    });
+                }
+
+                if (bestId) setActiveForIds(new Set([bestId]));
+            };
+
+            const navObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    const id = entry.target.id;
+                    if (entry.isIntersecting) {
+                        visibilityById.set(id, entry.intersectionRatio);
+                    } else {
+                        visibilityById.delete(id);
+                    }
+                });
+                pickAndSetActive();
             }, {
                 root: rightPanel,
-                rootMargin: '-50% 0px -50% 0px' 
+                threshold: [0, 0.25, 0.5, 0.75, 0.99, 1]
             });
 
             sections.forEach(section => {
                 navObserver.observe(section);
             });
+
+            // Also update on scroll to keep highlight stable while scrolling fast
+            const triggerActiveUpdate = () => pickAndSetActive();
+            if (rightPanel) rightPanel.addEventListener('scroll', triggerActiveUpdate, { passive: true });
+            window.addEventListener('scroll', triggerActiveUpdate, { passive: true });
 
             // --- Accordion for Expandable Sections ---
             const expandableItems = document.querySelectorAll('.expandable-item');
