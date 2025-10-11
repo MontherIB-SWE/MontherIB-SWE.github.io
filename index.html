@@ -1293,10 +1293,10 @@
         }
 
         /* --- Text selection colors (global) --- */
-        ::selection { background: rgba(1, 205, 254, 0.28); color: #0B0A12; }
-        ::-moz-selection { background: rgba(1, 205, 254, 0.28); color: #0B0A12; }
-        [data-theme="light"] ::selection { background: rgba(1, 205, 254, 0.28); color: #0B0A12; }
-        [data-theme="light"] ::-moz-selection { background: rgba(1, 205, 254, 0.28); color: #0B0A12; }
+        ::selection { background: rgba(138, 43, 226, 0.35); color: #FFFFFF; }
+        ::-moz-selection { background: rgba(138, 43, 226, 0.35); color: #FFFFFF; }
+        [data-theme="light"] ::selection { background: rgba(138, 43, 226, 0.35); color: #FFFFFF; }
+        [data-theme="light"] ::-moz-selection { background: rgba(138, 43, 226, 0.35); color: #FFFFFF; }
 
         /* --- Day Counter Styles --- */
         #day-counter {
@@ -1617,28 +1617,30 @@
                 <section id="projects">
                     <h2>Projects</h2>
                     <div class="project-grid">
-                        <!-- Project Item 1: Chat App -->
+                        <!-- Project Item 1: WebChat -->
                         <div class="project-item expandable-item">
                             <div class="expandable-header">
-                                <h4>Real-Time Chat App</h4>
+                                <h4>WebChat</h4>
                                 <button class="expand-btn" aria-label="Toggle details">
                                     <i class="fas fa-chevron-down"></i>
                                 </button>
                             </div>
                             <div class="tech-stack">
                                                                  <div class="tech-tags">
-                                     <span data-tech="react">React</span>
-                                     <span data-tech="firebase">Firebase</span>
+                                     <span data-tech="react">React 18</span>
+                                     <span data-tech="firebase">Firebase Firestore</span>
+                                     <span data-tech="css">CSS Animations</span>
                                  </div>
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
+                                <a href="https://webchat-1185b.web.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i>Live Demo</a>
                             </div>
                                                          <div class="expandable-details">
-                                 <p class="description">A comprehensive real-time chat application built as a personal project, featuring instant messaging between users with a complete authentication system and modern UI design.</p>
-                                 <p class="description"><strong>Key Features:</strong> User registration and login system with Firebase Authentication, real-time messaging using Firestore listeners, private conversations between users, friend system for user discovery, message history persistence, customizable user profiles with username updates, and responsive light/dark theme toggle with local storage persistence.</p>
-                                 <p class="description"><strong>Technical Implementation:</strong> Built with React and Firebase for real-time functionality, integrated Firestore for instant message updates using onSnapshot listeners, implemented user authentication and friend management systems, and created a responsive dashboard interface with theme switching capabilities.</p>
-                                 <p class="description"><em>This project is currently in progress with plans for additional features and improvements.</em></p>
+                                 <p class="description">A sophisticated real-time messaging platform that creates an engaging, anonymous global chat experience. Features dynamic username generation combining fun adjectives (like "Purple", "Cosmic", "Electric") with animal names (such as "Dragon", "Phoenix", "Unicorn") to create unique user identities, with intelligent color-coding that extracts colors from usernames or uses hash-based color assignment for visual user distinction.</p>
+                                 <p class="description"><strong>Key Features:</strong> Extensive chat command system (/wave, /dance, /laugh, /celebrate, /love, /coffee, /pizza, /thumbsup), interactive reaction system allowing users to respond to messages with emojis (👍❤️😂😮🎉), automated icebreaker prompts appearing every 5 minutes to stimulate conversation, and celebration mode that automatically activates when 10+ users are active simultaneously, complete with animated confetti effects.</p>
+                                 <p class="description"><strong>Technical Implementation:</strong> Built with React 18 and Firebase Firestore for real-time message synchronization with sophisticated state management through React hooks. Features responsive design with mobile-optimized UI including a collapsible drawer for active user lists, accessibility-conscious design with proper contrast ratios and keyboard navigation, Web Audio API integration for notification sounds, smooth CSS animations with staggered entrance effects, and intelligent luminance calculation for optimal text readability against colored user avatars.</p>
+                                 <p class="description"><em>This project demonstrates expertise in modern React development patterns, real-time web application architecture, user experience design, and creative problem-solving in building scalable, engaging social platforms. The application is fully deployed and ready for production use.</em></p>
                              </div>
                         </div>
 
@@ -1683,6 +1685,7 @@
                             </div>
                             <div class="project-links">
                                 <span class="private-project-notice"><i class="fas fa-lock"></i>Private Repository</span>
+                                <a href="https://aj-motors.site/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i>Live Demo</a>
                             </div>
                             <div class="expandable-details">
                                 <p class="description">A comprehensive car rental platform built for a client company, featuring a customer-facing website and a full-featured admin panel. The project focuses on delivering a frictionless user experience with a luxurious dark theme design.</p>
