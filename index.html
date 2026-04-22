@@ -1,2280 +1,592 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio for Monther Ibrahem, a full-stack software engineer focused on Java, Spring Boot, and React, with practical AI-enabled web features built on modern APIs.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Monther Ibrahem | Full-Stack Software Engineer</title>
     
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+    <!-- SEO and Social Meta Tags for GitHub Pages -->
+    <meta name="description" content="Portfolio for Monther Ibrahem, a full-stack software engineer focused on Java, Spring Boot, and React, with practical AI-enabled web features.">
+    <meta property="og:title" content="Monther Ibrahem | Full-Stack Software Engineer">
+    <meta property="og:description" content="Portfolio for Monther Ibrahem, a full-stack software engineer focused on Java, Spring Boot, and React.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="./avatar.png">
     
-    <!-- Fonts -->
+    <!-- Tailwind CSS (CDN is fine for static GitHub pages) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Custom Styles -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enables HTML class-based dark mode
+            theme: {
+                extend: {
+                    colors: {
+                        base: 'var(--bg)',
+                        text: 'var(--text)',
+                        border: 'var(--border)',
+                        card: 'var(--card)',
+                        alt: 'var(--alt)',
+                        inverse: 'var(--inverse)',
+                        inverseText: 'var(--inverse-text)'
+                    },
+                    boxShadow: {
+                        'brutal-sm': '4px 4px 0px 0px var(--shadow)',
+                        'brutal-md': '8px 8px 0px 0px var(--shadow)',
+                        'brutal-lg': '12px 12px 0px 0px var(--shadow)',
+                        'brutal-xl': '16px 16px 0px 0px var(--shadow)'
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
+        /* CSS Variables for seamless Light/Dark X-Ray inversion */
         :root {
-            /* Dark Theme (Default) - Vaporwave Noir */
-            --background-dark: #0A0712;
-            --section-bg: #130F1E;
-            --primary-accent: #FF71CE; /* pink neon */
-            --secondary-accent: #01CDFE; /* cyan neon */
-            --text-primary: #F4EFFF;
-            --text-secondary: #C9B7F2;
-            --card-bg: rgba(19, 15, 30, 0.65);
-            --card-border: rgba(255, 113, 206, 0.08);
-            --shadow-color: rgba(1, 205, 254, 0.25);
-            --gradient-start: #0A0712;
-            --gradient-mid: #120A1C;
-            --gradient-end: #1A0F2A;
+            --bg: #F4F1EA;
+            --text: #000000;
+            --border: #000000;
+            --shadow: rgba(0,0,0,1);
+            --card: #ffffff;
+            --alt: #EAE8E3;
+            --inverse: #000000;
+            --inverse-text: #ffffff;
+            --inverse-border: #ffffff;
         }
 
-        /* Light Theme - Neon Light (Vaporwave complement) */
-        [data-theme="light"] {
-            /* Surface & background */
-            --background-dark: #FBF8FF;  /* page background (pale lavender) */
-            --section-bg: #F4ECFF;       /* soft lilac panel */
-            --card-bg: rgba(255, 255, 255, 0.85); /* semi-opaque white */
-            --card-border: rgba(1, 205, 254, 0.18); /* cyan hairline */
-            --shadow-color: rgba(1, 205, 254, 0.18);  /* cyan glow */
-
-            /* Typography */
-            --text-primary: #1A1032;     /* deep indigo */
-            --text-secondary: #5B4E80;   /* muted lavender */
-
-            /* Accents (neon mirror of dark theme) */
-            --primary-accent: #01CDFE;   /* cyan neon */
-            --secondary-accent: #FF71CE; /* pink neon */
-
-            /* Gradient backdrop */
-            --gradient-start: #FFFFFF;
-            --gradient-mid: #F7EEFF;     /* pale lilac */
-            --gradient-end: #FFEFFD;     /* pale pink */
+        html.dark {
+            --bg: #121212;
+            --text: #F4F1EA;
+            --border: #F4F1EA;
+            --shadow: rgba(244,241,234,1);
+            --card: #1e1e1e;
+            --alt: #2a2a2a;
+            --inverse: #F4F1EA;
+            --inverse-text: #121212;
+            --inverse-border: #121212;
         }
 
-        /* Light Theme Specific Enhancements */
-        [data-theme="light"] h2 {
-            background: linear-gradient(45deg, #01CDFE, #FF71CE);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
-
-        [data-theme="light"] .ui-ux-highlight {
-            background: linear-gradient(45deg, #01CDFE, #FF71CE);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
-
-        [data-theme="light"] .ui-ux-highlight::before {
-            background: linear-gradient(45deg, #01CDFE, #FF71CE);
-        }
-
-        [data-theme="light"] .tech-tags span:hover {
-            background: linear-gradient(135deg, #01CDFE, #FF71CE);
-            color: #FFFFFF;
-            box-shadow: 0 8px 25px rgba(255, 113, 206, 0.28);
-        }
-
-
-        [data-theme="light"] .project-item:hover {
-            border-color: #01CDFE;
-            box-shadow: 0 8px 25px rgba(1, 205, 254, 0.18);
-        }
-
-
-        [data-theme="light"] .dot-nav a.active .nav-icon {
-            color: #01CDFE;
-            box-shadow: 0 0 0 4px rgba(1, 205, 254, 0.2);
-        }
-
-        [data-theme="light"] .dot-nav a:hover .nav-icon {
-            color: #01CDFE;
-        }
-
-        [data-theme="light"] .form-group input:focus,
-        [data-theme="light"] .form-group textarea:focus {
-            border-color: #01CDFE;
-            box-shadow: 0 0 0 3px rgba(1, 205, 254, 0.18);
-        }
-
-        [data-theme="light"] #contact-form button {
-            background: linear-gradient(135deg, #01CDFE, #FF71CE);
-            color: #FFFFFF;
-        }
-
-        [data-theme="light"] #contact-form button:hover {
-            background: linear-gradient(135deg, #01CDFE, #FF71CE);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 113, 206, 0.28);
-        }
-
-        [data-theme="light"] .theme-toggle {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-        }
-
-        [data-theme="light"] .theme-toggle:hover {
-            background: var(--primary-accent);
-            color: var(--background-dark);
-            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.25);
-        }
-
-        [data-theme="light"] .theme-toggle:hover i {
-            color: var(--background-dark);
-        }
-
-        [data-theme="light"] .theme-toggle::before {
-            background: rgba(255, 255, 255, 0.28);
-        }
-
-        [data-theme="dark"] .theme-toggle::before {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        [data-theme="dark"] .theme-toggle:hover {
-            background: var(--primary-accent);
-            color: var(--background-dark);
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
-        }
-
-        [data-theme="dark"] .theme-toggle:hover i {
-            color: var(--background-dark);
-        }
-
-        [data-theme="light"] .mobile-nav-toggle {
-            background: linear-gradient(135deg, #01CDFE, #FF71CE);
-            color: #FFFFFF;
-            border: none;
-        }
-
-        [data-theme="light"] .scroll-indicator {
-            background: transparent;
-            border: 1px solid rgba(1, 205, 254, 0.3);
-            color: #01CDFE;
-            opacity: 0.8;
-        }
-        [data-theme="light"] .scroll-indicator:hover {
-            background: linear-gradient(135deg, #01CDFE, #FF71CE);
-            color: #FFFFFF;
-            border-color: transparent;
-            opacity: 1;
-        }
-
-        
-
-        [data-theme="light"] .coding-journey {
-            background: linear-gradient(135deg, rgba(1, 205, 254, 0.06), rgba(255, 113, 206, 0.06));
-            border: 1px solid rgba(1, 205, 254, 0.18);
-        }
-
-        [data-theme="light"] .coding-journey h3 {
-            color: #01CDFE;
-        }
-
-        
-
-        [data-theme="light"] .private-project-notice i {
-            color: #01CDFE;
-        }
-
-        [data-theme="light"] .social-links a:hover {
-            color: #01CDFE;
-            transform: scale(1.1);
-        }
-
-        [data-theme="light"] .expandable-item .expand-btn:hover {
-            color: #01CDFE;
-        }
-
-        [data-theme="light"] .expandable-item.expanded .expand-btn i {
-            color: #01CDFE;
-        }
-
-        /* Light Theme Additional Enhancements */
-        [data-theme="light"] .at-a-glance {
-            border-top: 1px solid rgba(1, 205, 254, 0.18);
-        }
-
-        [data-theme="light"] .glance-item i {
-            color: #01CDFE;
-        }
-
-        [data-theme="light"] .glance-item strong {
-            color: #01CDFE;
-        }
-
-        [data-theme="light"] .intro-subtitle {
-            color: #5F6368;
-        }
-
-        [data-theme="light"] .avatar {
-            border: 3px solid #01CDFE;
-            box-shadow: 0 4px 12px rgba(1, 205, 254, 0.22);
-        }
-
-        [data-theme="light"] .dot-nav .nav-text {
-            background-color: rgba(1, 205, 254, 0.08);
-            color: #01CDFE;
-            border: 1px solid rgba(1, 205, 254, 0.2);
-        }
-
-        [data-theme="light"] .dot-nav a:hover .nav-text,
-        [data-theme="light"] .dot-nav a.active .nav-text {
-            background-color: rgba(1, 205, 254, 0.14);
-            border-color: rgba(1, 205, 254, 0.28);
-        }
-
-        [data-theme="light"] .mobile-nav-overlay {
-            background-color: rgba(1, 205, 254, 0.95);
-        }
-
-        [data-theme="light"] .mobile-nav-overlay a {
-            color: #FFFFFF;
-        }
-
-        [data-theme="light"] .mobile-nav-overlay a:hover {
-            color: #E8F0FE;
-        }
-
-        [data-theme="light"] .project-links a {
-            color: #01CDFE;
-        }
-
-        [data-theme="light"] .project-links a:hover {
-            color: #00B9E6;
-        }
-
-        [data-theme="light"] .journey-since {
-            color: #5F6368;
-        }
-
-        [data-theme="light"] .counter-since {
-            color: #5F6368;
-        }
-
-        [data-theme="light"] .counter-unit {
-            color: #5F6368;
-        }
-
-        [data-theme="light"] .counter-value {
-            border-bottom: 2px solid #01CDFE;
-        }
-
-        
-
-        
-
-        /* Light theme pulse animation */
-        [data-theme="light"] .dot-nav a.active .nav-icon {
-            animation: lightPulse 2s infinite;
-        }
-
-        @keyframes lightPulse {
-            0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.6); }
-            70% { box-shadow: 0 0 0 10px rgba(124, 58, 237, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
-        }
-
-        :root {
-            /* Typography */
-            --font-main: 'DM Sans', sans-serif;
-            --font-heading: 'Lobster', cursive;
-
-            /* Spacing */
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 4rem;
-
-            /* Effects */
-            --border-radius: 16px;
-            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --transition-speed: 0.3s;
-
-            /* Background gradient scroll-driven vars */
-            --bg-pos: 0%;        /* background-position-y */
-            --bg-shift: 50%;     /* middle stop position */
-        }
-
-        html {
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        *, *::before, *::after {
-            box-sizing: inherit;
-        }
-
-        html, body {
-            height: 100%;
-            overflow: hidden; /* Prevent the main body from scrolling on desktop */
-            margin: 0;
-            padding: 0;
-            font-family: var(--font-main);
-            color: var(--text-primary);
-            background-color: var(--background-dark);
-            background-image: linear-gradient(180deg, var(--gradient-start) 0%, var(--gradient-mid) var(--bg-shift), var(--gradient-end) 100%);
-            background-position: 50% var(--bg-pos);
-            background-size: 100% 200%;
-            background-attachment: fixed;
-            position: relative;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0s, color 0s; /* Brutalism demands instant snap, no fading */
+            -webkit-tap-highlight-color: transparent; /* Removes blue tap highlight on mobile */
         }
         
-        
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* --- Loading Overlay with Circle Cutout --- */
-        .loading-overlay {
+        ::selection {
+            background-color: #FFC900;
+            color: black;
+        }
+
+        .bg-noise {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--background-dark);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.5s ease-out;
-            /* Mask-based feathered cutout */
-            --cutout-radius: -200px;
-            --feather: 140px;
-            -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) calc(var(--cutout-radius)), rgba(0,0,0,1) calc(var(--cutout-radius) + var(--feather)));
-            mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0) calc(var(--cutout-radius)), rgba(0,0,0,1) calc(var(--cutout-radius) + var(--feather)));
-            -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
-            -webkit-mask-size: 100% 100%;
-            mask-size: 100% 100%;
-        }
-
-        .loading-overlay.fade-out {
-            opacity: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             pointer-events: none;
+            z-index: 50;
+            opacity: 0.04;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
         }
-
-        .circle-cutout { display: none; }
-
         
+        /* Ensure the noise is slightly more visible in dark mode */
+        html.dark .bg-noise { opacity: 0.08; }
 
-        .loading-text {
-            color: var(--primary-accent);
-            font-size: 1.5rem;
-            font-weight: 600;
-            z-index: 10000;
-            opacity: 0;
-            animation: fadeInOut 2s ease-in-out infinite;
-            transition: opacity 0.3s ease-out;
-        }
-        .loading-text.hidden {
-            animation: none;
-            opacity: 0;
-        }
-
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        /* Hide content initially */
-        .site-container {
-            display: flex;
-            height: 100vh;
+        .sketch-underline {
             position: relative;
-            z-index: 1;
-            scale: 0.5;
-            opacity: 0;
-            transition: opacity 1s ease-out, scale 3s cubic-bezier(0.075, 0.82, 0.165, 1);
-        }
-
-        .site-container.loaded {
-            scale: 1;
-            opacity: 1;
-        }
-
-        
-
-        /* Modify existing animations to start after loading */
-        #left-panel {
-            width: 40%;
-            max-width: 550px;
-            min-width: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: var(--spacing-lg);
-            background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.06), transparent 40%);
-            overflow: hidden;
-            opacity: 0;
-            animation: none; /* Remove initial animation */
-        }
-
-        .intro-header {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-            opacity: 0;
-            animation: none; /* Remove initial animation */
-        }
-
-        .left-panel-footer {
-            flex-shrink: 0;
-            opacity: 0;
-            animation: none; /* Remove initial animation */
-        }
-
-        .glance-item {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-md); 
-            opacity: 0;
-            animation: none; /* Remove initial animation */
-        }
-
-        /* Animation classes that will be added after loading */
-        .animate-left-panel {
-            animation: slideInLeft 0.6s ease-out forwards !important;
-        }
-
-        .animate-intro-header {
-            animation: fadeUp 0.6s ease-out 0.3s forwards !important;
-        }
-
-        .animate-footer {
-            animation: fadeUp 0.6s ease-out 0.9s forwards !important;
-        }
-
-        .animate-glance-item {
-            animation: fadeUp 0.5s ease-out forwards !important;
-        }
-
-        .animate-glance-item:nth-child(1) { animation-delay: 0.5s !important; }
-        .animate-glance-item:nth-child(2) { animation-delay: 0.6s !important; }
-        .animate-glance-item:nth-child(3) { animation-delay: 0.7s !important; }
-        .animate-glance-item:nth-child(4) { animation-delay: 0.8s !important; }
-
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 3px solid var(--primary-accent);
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        #left-panel h1 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--text-primary);
-        }
-        
-        .intro-subtitle {
-            font-family: var(--font-main);
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin: var(--spacing-md) 0;
-            padding: 0;
-            background: none;
-            -webkit-text-fill-color: inherit;
-            border: none;
-        }
-        
-        .at-a-glance {
-            margin-top: var(--spacing-lg);
-            padding-top: var(--spacing-lg);
-            border-top: 1px solid var(--section-bg);
-        }
-
-        .glance-item i {
-            color: var(--primary-accent);
-            font-size: 1rem;
-            margin-top: 5px;
-            width: 18px;
-            text-align: center;
-        }
-
-        .glance-item div {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .glance-item strong {
-            color: var(--text-primary);
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .glance-item span {
-            color: var(--text-secondary);
-            opacity: 0.8;
-            font-size: 0.9rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-lg); /* Reduced from xl */
-        }
-        .intro-header .social-links {
-            margin-left: 0;
-            margin-top: var(--spacing-md);
-        }
-        .social-links a {
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            transition: color var(--transition-speed) ease, transform var(--transition-speed) ease;
-        }
-        .social-links a:hover {
-            color: var(--primary-accent);
-            transform: scale(1.1);
-        }
-
-        /* --- Right Scrollable Panel --- */
-        #right-panel {
-            flex-grow: 1;
-            height: 100vh;
-            overflow-y: auto;
-            scroll-behavior: smooth;
-            position: relative;
-        }
-        #right-panel::-webkit-scrollbar {
-            display: none;
-        }
-        
-        main {
-            max-width: 768px;
-            margin: 0 auto;
-            padding: 0 80px var(--spacing-xl) var(--spacing-lg); /* Added right padding for nav */
-        }
-
-        /* --- Dot Navigation --- */
-        .dot-nav {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            z-index: 1000;
-        }
-
-        .dot-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .dot-nav li {
-            margin-bottom: var(--spacing-md);
-            animation: fadeInRight 0.5s ease-out backwards;
-        }
-        
-        .dot-nav li:nth-child(2) { animation-delay: 0.1s; }
-        .dot-nav li:nth-child(3) { animation-delay: 0.2s; }
-        .dot-nav li:nth-child(4) { animation-delay: 0.3s; }
-        .dot-nav li:nth-child(5) { animation-delay: 0.4s; }
-        .dot-nav li:nth-child(6) { animation-delay: 0.5s; }
-
-
-        .dot-nav a {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            text-decoration: none;
-            color: var(--text-secondary);
-            padding: var(--spacing-sm);
-        }
-
-        .dot-nav .nav-icon {
-            font-size: 1rem;
-            transition: all var(--transition-speed) ease;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .dot-nav a.active .nav-icon {
-            color: var(--primary-accent);
-            transform: scale(1.2);
-            animation: pulse 2s infinite;
-        }
-        
-        .dot-nav .nav-text {
-            visibility: hidden;
-            opacity: 0;
-            background-color:rgba(255, 255, 255, 0.178);
-            color: var(--text-primary);
-            padding: var(--spacing-sm) var(--spacing-md);
-            border-radius: 8px;
-            margin-right: var(--spacing-md);
-            white-space: nowrap;
-            transition: all var(--transition-speed) ease;
-            transform: translateX(10px);
-            backdrop-filter: blur(10px);
-        }
-
-        .dot-nav a:hover .nav-text,
-        .dot-nav a.active .nav-text {
-            visibility: visible;
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .dot-nav a:hover .nav-icon {
-            color: var(--primary-accent);
-        }
-        
-        .dot-nav a.clicked .nav-icon {
-            animation: clickPulse 0.3s ease-out;
-        }
-
-
-        /* --- Typography --- */
-        h2 {
-            font-family: var(--font-heading);
-            font-size: 2.75rem;
-            font-weight: 700;
-            margin-bottom: var(--spacing-lg);
-            background: linear-gradient(45deg, #FFFFFF, #CCCCCC);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        h4 {
-            font-size: 1.1rem;
-            color: var(--primary-accent);
-            margin-bottom: var(--spacing-sm);
-            margin-top: 0;
-            font-weight: 600;
-        }
-
-        p, li {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        p strong, li strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        /* --- Sections & Content --- */
-        section {
-            padding: var(--spacing-lg) 0 var(--spacing-xl) 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* --- Projects & Cards --- */
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: var(--spacing-lg);
-        }
-
-        .project-item {
-            background: var(--card-bg);
-            backdrop-filter: blur(4px);
-            border: 1px solid var(--card-border);
-            box-shadow: var(--shadow-sm);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius);
-            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-item:hover {
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary-accent);
-        }
-        .project-item .description {
-            flex-grow: 1;
-        }
-        .project-item .tech-stack, .project-item .project-links {
-            margin-top: var(--spacing-md);
-        }
-        .project-links {
-            text-align: right;
-        }
-        .project-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            margin-left: var(--spacing-md);
-            transition: color var(--transition-speed) ease;
-        }
-        .project-links a:hover {
-            color: var(--primary-accent);
-        }
-        .project-links a i {
-            margin-right: var(--spacing-sm);
-        }
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--spacing-sm);
-        }
-        .tech-tags span {
-            background: linear-gradient(135deg, var(--card-bg), var(--section-bg));
-            color: var(--text-secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: 1px solid var(--card-border);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .tech-tags span::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .tech-tags span:hover {
-            transform: scale(1.05);
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-            color: var(--background-dark);
-            border-color: var(--primary-accent);
-            box-shadow: 0 8px 25px var(--shadow-color);
-        }
-
-        .tech-tags span:hover::before {
-            left: 100%;
-        }
-
-        /* All tech tags use the same hover effect */
-        .tech-tags span[data-tech]:hover {
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-            border-color: var(--primary-accent);
-            box-shadow: 0 8px 25px var(--shadow-color);
-        }
-
-        
-
-        .private-project-notice {
-            color: var(--text-secondary);
-            font-style: italic;
-            font-size: 0.9rem;
-        }
-
-        .private-project-notice i {
-            margin-right: var(--spacing-sm);
-            color: var(--primary-accent);
-        }
-
-        /* --- Expandable Card Specifics (for Experience & Education) --- */
-        .expandable-item .expandable-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        .expandable-item .expand-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: transform var(--transition-speed) ease;
-            padding: 0;
-            margin-left: var(--spacing-md);
-        }
-        
-        .expandable-item .expand-btn i {
-             transition: transform var(--transition-speed) ease;
-        }
-
-        .expandable-item .expandable-header:hover .expand-btn {
-            color: var(--primary-accent);
-        }
-
-        .expandable-item .expandable-details {
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.5s ease-out, opacity 0.4s ease-out, margin-top 0.5s ease-out;
-            margin-top: 0;
-        }
-
-        .expandable-item.expanded .expandable-details {
-            max-height: 500px; /* Large enough to fit content */
-            opacity: 1;
-            margin-top: var(--spacing-md);
-        }
-
-        .expandable-item.expanded .expand-btn i {
-            transform: rotate(180deg);
-        }
-
-        .expandable-item .tech-stack {
-            margin-top: var(--spacing-md);
-        }
-
-        /* --- Skills (Glass Rows) --- */
-        .skills-rows {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 10px 12px;
-        }
-        .skill-row {
-            display: grid;
-            grid-template-columns: 28px 1fr;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 10px;
-            border-radius: 10px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            box-shadow: var(--shadow-sm);
-            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
-        }
-        .skill-row:hover {
-            border-color: var(--primary-accent);
-            box-shadow: 0 8px 25px var(--shadow-color);
-            transform: translateY(-2px);
-        }
-        .skill-row__icon {
-            width: 28px;
-            height: 28px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: var(--text-primary);
-        }
-        .skill-row__content { display: flex; flex-direction: column; }
-        .skill-row__title {
-            margin: 0;
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            font-weight: 700;
-        }
-        @media (max-width: 640px) {
-            .skill-row { grid-template-columns: 36px 1fr; }
-        }
-
-        
-
-        
-
-        /* --- Contact Form --- */
-        #contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-md);
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        .form-group label {
-            color: var(--text-secondary);
-            margin-bottom: var(--spacing-sm);
-            font-size: 0.9rem;
-        }
-        .form-group input,
-        .form-group textarea {
-            background-color: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            color: var(--text-primary);
-            font-family: var(--font-main);
-            font-size: 1rem;
-            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 0 3px var(--shadow-color);
-        }
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        #contact-form button {
-            background: var(--primary-accent);
-            color: var(--background-dark);
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
-        }
-        #contact-form button:hover {
-            background-color: var(--secondary-accent);
-            transform: translateY(-2px);
-        }
-        
-        
-        
-        /* --- Mobile Navigation --- */
-        .mobile-nav-toggle {
-            display: none; /* Hidden by default */
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1001;
-            background-color: var(--card-bg);
-            color: var(--primary-accent);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .mobile-nav-overlay {
-            display: flex;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(10, 7, 18, 0.98), rgba(18, 10, 28, 0.98));
-            backdrop-filter: blur(10px);
-            z-index: 1002;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity 0.35s ease, visibility 0.35s ease;
-        }
-
-        .mobile-nav-overlay.active {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto; /* Allow clicks when visible */
-        }
-
-        .mobile-nav-overlay ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-        }
-        
-        .mobile-nav-overlay li {
-            margin: var(--spacing-lg) 0;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease-out, transform 0.4s ease-out;
-        }
-
-        .mobile-nav-overlay.active li {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Staggered delay for each menu item */
-        .mobile-nav-overlay.active li:nth-child(1) { transition-delay: 0.20s; }
-        .mobile-nav-overlay.active li:nth-child(2) { transition-delay: 0.25s; }
-        .mobile-nav-overlay.active li:nth-child(3) { transition-delay: 0.30s; }
-        .mobile-nav-overlay.active li:nth-child(4) { transition-delay: 0.35s; }
-        .mobile-nav-overlay.active li:nth-child(5) { transition-delay: 0.40s; }
-        .mobile-nav-overlay.active li:nth-child(6) { transition-delay: 0.45s; }
-
-        .mobile-nav-overlay a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 1.75rem;
-            font-weight: 700;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .mobile-nav-overlay a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%) scaleX(0);
-            width: 60%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
-            transition: transform 0.3s ease;
-        }
-        .mobile-nav-overlay a:hover {
-            color: var(--primary-accent);
-        }
-        .mobile-nav-overlay a:hover::after {
-            transform: translateX(-50%) scaleX(1);
-        }
-
-        .mobile-nav-close {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 50%;
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            z-index: 1003;
-            box-shadow: var(--shadow-lg);
-        }
-        .mobile-nav-close:hover {
-            background: var(--primary-accent);
-            color: var(--background-dark);
-            transform: rotate(90deg) scale(1.1);
-        }
-
-        .mobile-nav-overlay a i {
-            margin-right: 12px;
-            font-size: 1.2rem;
-        }
-
-
-        /* --- Responsive Design --- */
-        @media (max-width: 1024px) {
-            html, body {
-                height: auto;
-                overflow: auto; /* Re-enable scrolling for mobile */
-            }
-            .site-container {
-                flex-direction: column;
-                height: auto;
-            }
-            #left-panel {
-                width: 100%;
-                max-width: none;
-                min-width: auto;
-                position: relative;
-                padding: var(--spacing-lg);
-                text-align: center;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-            }
-            .intro-header {
-                flex-direction: column;
-                text-align: center;
-            }
-            .intro-header .social-links { 
-                margin-left: 0; 
-                margin-top: var(--spacing-md);
-            }
-            .social-links {
-                justify-content: center;
-            }
-            .at-a-glance {
-                align-items: center;
-                text-align: left;
-                display: inline-block;
-            }
-            #right-panel {
-                height: auto;
-                overflow-y: visible;
-            }
-            main {
-                padding: var(--spacing-lg) var(--spacing-md);
-            }
-            h2 {
-                font-size: 2.25rem; 
-            }
-            
-            /* Hide dot nav and show mobile nav toggle */
-            .dot-nav {
-                display: none;
-            }
-            .mobile-nav-toggle {
-                display: block;
-            }
-            .scroll-indicator { bottom: 20px; left: 50%; }
-        }
-
-        /* Added for smaller mobile screens */
-        @media (max-width: 767px) {
-            #left-panel { min-height: 100vh; }
-            #left-panel h1 { font-size: clamp(1.9rem, 7vw, 2.4rem); line-height: 1.1; }
-            .intro-subtitle { font-size: clamp(1rem, 3.8vw, 1.2rem); }
-            .avatar { width: 88px; height: 88px; }
-            .intro-header { gap: 12px; }
-            .social-links { gap: 20px; }
-            .social-links a { font-size: 1.6rem; }
-            main { padding: var(--spacing-md); }
-            h2 {
-                font-size: 2rem;
-            }
-            .project-item {
-                padding: var(--spacing-md);
-            }
-        }
-        
-        /* --- Animations --- */
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
-        }
-
-        @keyframes clickPulse {
-            0% { transform: scale(1.2); }
-            50% { transform: scale(1.5); }
-            100% { transform: scale(1.2); }
-        }
-
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(12px);
-            z-index: 950;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-            pointer-events: auto;
-            cursor: pointer;
-            animation: scrollBounce 1.6s ease-in-out infinite;
-        }
-        .scroll-indicator:hover {
-            background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-            color: var(--background-dark);
-            transform: translateX(-50%) scale(1.1);
-            box-shadow: 0 8px 25px var(--shadow-color);
-            animation-play-state: paused;
-        }
-        .scroll-indicator i { font-size: 1.1rem; transition: transform 0.3s ease; }
-        .scroll-indicator:hover i { transform: translateY(2px); }
-        .scroll-indicator.hidden { opacity: 0; transform: translateX(-50%) translateY(8px); pointer-events: none; }
-        @keyframes scrollBounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-5px); }
-        }
-
-        /* UI/UX Highlight Styling */
-        .ui-ux-highlight {
-            background: linear-gradient(45deg, #FFFFFF, #CCCCCC, #999999, #666666);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 6px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: gradientShift 3s ease infinite;
-        }
-
-        .ui-ux-highlight:hover {
-            transform: scale(1.1) translateY(-2px);
-            filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.4));
-            animation-play-state: paused;
-        }
-
-        .ui-ux-highlight::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, #FFFFFF, #CCCCCC, #999999, #666666);
-            border-radius: 6px;
-            opacity: 0.1;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-        }
-
-        .ui-ux-highlight:hover::before {
-            opacity: 0.2;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* --- Text selection colors (global) --- */
-        ::selection { background: rgba(138, 43, 226, 0.35); color: #FFFFFF; }
-        ::-moz-selection { background: rgba(138, 43, 226, 0.35); color: #FFFFFF; }
-        [data-theme="light"] ::selection { background: rgba(138, 43, 226, 0.35); color: #FFFFFF; }
-        [data-theme="light"] ::-moz-selection { background: rgba(138, 43, 226, 0.35); color: #FFFFFF; }
-
-        /* --- Day Counter Styles --- */
-        #day-counter {
-            font-family: var(--font-heading);
-            font-variant-numeric: tabular-nums lining-nums;
-            display: inline-flex;
-            align-items: baseline;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-        }
-        #day-counter .counter-group {
-            display: inline-flex;
-            align-items: baseline;
-            gap: 0.25rem;
-        }
-        #day-counter .counter-value {
             display: inline-block;
-            font-size: 1.35em;
-            line-height: 1;
-            border-bottom: 2px solid var(--primary-accent);
-            padding-bottom: 2px;
-        }
-        #day-counter .counter-unit {
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-        #day-counter .counter-since {
-            color: var(--text-secondary);
-            font-size: 0.8em;
-            opacity: 0.9;
-        }
-
-        
-
-        
-
-        /* Coding Journey Section */
-        .coding-journey {
-            padding: var(--spacing-lg);
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: var(--border-radius);
-            backdrop-filter: blur(4px);
-        }
-
-        .coding-journey h3 {
-            margin: 0 0 var(--spacing-md) 0;
-            color: var(--primary-accent);
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .journey-counter {
-            text-align: center;
-        }
-
-        .journey-since {
-            margin-top: var(--spacing-sm);
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        /* Theme Toggle Button */
-        .theme-toggle {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            z-index: 1001;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .theme-toggle::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.08) translateY(-1px);
-            box-shadow: 0 6px 20px var(--shadow-color);
-            background: var(--primary-accent);
-            color: var(--background-dark);
-        }
-
-        .theme-toggle:active {
-            transform: scale(1.02) translateY(0);
-            transition: transform 0.1s ease;
-        }
-
-        .theme-toggle:active::before {
-            width: 50px;
-            height: 50px;
-        }
-
-        .theme-toggle i {
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
             z-index: 1;
         }
 
+        .sketch-underline::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: -2px;
+            right: -2px;
+            height: 10px;
+            background-color: #00E5FF;
+            z-index: -1;
+            transform: rotate(-1deg);
+            border: 2px solid var(--border);
+        }
+
+        .content-reveal {
+            animation: contentPop 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes contentPop {
+            0% { transform: scale(0.96) translateY(30px); opacity: 0; }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-marquee {
+            animation: marquee 20s linear infinite;
+        }
         
-
-        /* Theme transition animation */
-        .theme-toggle.animating {
-            animation: themeToggleBounce 0.5s ease-out;
+        .boot-transition {
+            transition: transform 0.7s cubic-bezier(0.8, 0, 0.2, 1);
         }
 
-        .theme-toggle.animating i {
-            animation: themeIconFlip 0.5s ease-out;
+        .spring-bounce {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
-        @keyframes themeToggleBounce {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1.1); }
-        }
-
-        @keyframes themeIconFlip {
-            0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(180deg) scale(1.2); }
-            100% { transform: rotate(180deg) scale(1); }
-        }
-
-        /* Smooth theme transitions */
-        * {
-            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, fill 0.3s ease, stroke 0.3s ease, filter 0.3s ease;
-        }
-
-        /* View Transitions API for whole-page theme crossfade (progressive enhancement) */
-        html { view-transition-name: root; }
-        ::view-transition-old(root),
-        ::view-transition-new(root) {
-            animation-duration: 300ms;
-            animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            ::view-transition-old(root),
-            ::view-transition-new(root) { animation: none; }
-        }
-
-        /* Override transitions for specific elements that shouldn't animate */
-        .loading-overlay,
-        .loading-text {
-            transition: none;
-        }
-
     </style>
 </head>
-<body>
-    
-    <div class="loading-overlay">
-        <div class="circle-cutout"></div>
-        <span class="loading-text">Loading...</span>
-    </div>
-            <div class="site-container">
-        <!-- Left Fixed Panel -->
-        <aside id="left-panel">
-            <div class="intro-content">
-                <div class="intro-header">
-                    <img src="./avatar.png" alt="Avatar of Monther Ibrahem" class="avatar">
-                    <div>
-                        <h1>Monther Ibrahem</h1>
-                        <h2 class="intro-subtitle">Full-Stack Software Engineer | Java, Spring Boot, React</h2>
-                        <div class="social-links">
-                            <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="mailto:mndr6702@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="at-a-glance">
-                    <div class="glance-item">
-                        <i class="fas fa-user-graduate"></i>
-                        <div>
-                            <strong>Status</strong>
-                            <span>Final-Year BSc Candidate</span>
-                        </div>
-                    </div>
-                    <div class="glance-item">
-                        <i class="fas fa-laptop-code"></i>
-                        <div>
-                            <strong>Focus</strong>
-                            <span>Full-Stack & Frontend</span>
-                        </div>
-                    </div>
-                    <div class="glance-item">
-                        <i class="fas fa-search"></i>
-                        <div>
-                            <strong>Seeking</strong>
-                            <span>Available for internships and junior roles (Full-Stack, Java, React)</span>
-                        </div>
-                    </div>
-                                            <div class="glance-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <strong>Location</strong>
-                                <span>Daburiyya, Israel</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="coding-journey">
-                    <h3>Coding Journey</h3>
-                    <div class="journey-counter">
-                        <span id="day-counter" data-mode="countdown"><span class="counter-group"><span class="counter-value" data-key="days">0</span> <span class="counter-unit">days</span></span> <span class="counter-group"><span class="counter-value" data-key="hours">00</span> <span class="counter-unit">hours</span></span> <span class="counter-group"><span class="counter-value" data-key="minutes">00</span> <span class="counter-unit">minutes</span></span> <span class="counter-group"><span class="counter-value" data-key="seconds">00</span> <span class="counter-unit">seconds</span></span> </span></span>
-                        <div class="journey-since">since 2022-10-01</div>
-                    </div>
-                </div>
+<body class="relative overflow-x-hidden min-h-screen">
+
+    <!-- Noise Overlay -->
+    <div class="bg-noise"></div>
+
+    <div id="boot-sequence" class="fixed inset-0 z-[100] bg-[#FFC900] flex flex-col items-center justify-center p-4 boot-transition">
+        <div class="w-full max-w-2xl bg-card border-4 border-border shadow-brutal-xl flex flex-col relative z-10 text-text">
+            <!-- Window Header -->
+            <div class="w-full h-10 border-b-4 border-border bg-alt flex items-center px-4 gap-2">
+                <div class="w-4 h-4 rounded-full border-2 border-border bg-[#FF90E8]"></div>
+                <div class="w-4 h-4 rounded-full border-2 border-border bg-[#FFC900]"></div>
+                <div class="w-4 h-4 rounded-full border-2 border-border bg-[#00E5FF]"></div>
+                <div class="ml-auto font-mono text-xs font-bold uppercase hidden sm:block">install.exe</div>
+            </div>
             
-            <div class="left-panel-footer"></div>
-        </aside>
-
-        <!-- Right Scrollable Panel -->
-        <div id="right-panel">
-            <nav class="dot-nav">
-                <ul>
-                    <li><a href="#about" title="About"><span class="nav-text">About</span><i class="nav-icon fas fa-user"></i></a></li>
-                    <li><a href="#experience" title="Experience"><span class="nav-text">Experience</span><i class="nav-icon fas fa-briefcase"></i></a></li>
-                    <li><a href="#education" title="Education"><span class="nav-text">Education</span><i class="nav-icon fas fa-graduation-cap"></i></a></li>
-                    <li><a href="#projects" title="Projects"><span class="nav-text">Projects</span><i class="nav-icon fas fa-code-branch"></i></a></li>
-                    <li><a href="#skills" title="Skills"><span class="nav-text">Skills</span><i class="nav-icon fas fa-cogs"></i></a></li>
-                    <li><a href="#contact" title="Contact"><span class="nav-text">Contact</span><i class="nav-icon fas fa-paper-plane"></i></a></li>
-                </ul>
-            </nav>
-            <main>
-                                 <!-- About Me Section -->
-                 <section id="about">
-                     <h2>About Me</h2>
-                     <div class="project-grid">
-                         <div class="project-item">
-                        <p>
-                            I build responsive web applications using Java, Spring Boot, and React, with a focus on clean architecture and practical <span class="ui-ux-highlight">UI/UX</span>.
-                            I also build AI-integrated features using external APIs, especially when they improve user experience or operational workflows.
-                        </p>
-                         </div>
-                     </div>
-                 </section>
-
-                <!-- Experience Section -->
-                <section id="experience">
-                    <h2>Experience</h2>
-                    <div class="project-grid">
-                        <div class="project-item expandable-item">
-                            <div class="expandable-header">
-                                <div class="expandable-info">
-                                    <h3>Software Developer Intern</h3>
-                                    <p><strong>Ceeras IT Services | Remote</strong></p>
-                                    <p><em>Feb 2025 - June 2025</em></p>
-                                </div>
-                                <button class="expand-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="tech-stack">
-                                                                 <div class="tech-tags">
-                                     <span data-tech="java">Java</span>
-                                     <span data-tech="spring">Spring Boot</span>
-                                     <span data-tech="postgresql">PostgreSQL</span>
-                                 </div>
-                            </div>
-                            <div class="expandable-details">
-                                <p class="description">
-                                   At Ceeras, I designed and normalized relational schemas, validated REST API endpoints in Postman, and implemented backend logic for secure user-detail retrieval in production-style workflows.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <!-- Window Body -->
+            <div class="p-4 sm:p-6 md:p-10">
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-black uppercase mb-6 tracking-tighter leading-none break-words">
+                    MONTHER_OS <br/><span class="text-[#00E5FF] text-2xl sm:text-3xl md:text-5xl">v1.0</span>
+                </h1>
                 
-                <!-- Education Section -->
-                <section id="education">
-                    <h2>Education</h2>
-                    <div class="project-grid">
-                        <div class="project-item expandable-item">
-                            <div class="expandable-header">
-                                <div class="expandable-info">
-                                    <h3>BSc in Software Engineering</h3>
-                                    <p><strong>Kinneret College</strong></p>
-                                    <p><em>October 2022 - October 2026 (Expected)</em></p>
-                                </div>
-                                <button class="expand-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="expandable-details">
-                                <p class="description">
-                                    Relevant courses include Object-Oriented Programming, Data Structures & Algorithms, and Introduction to Systems Programming.
-                                </p>
-                            </div>
-                        </div>
+                <!-- Progress Bar -->
+                <div class="h-8 sm:h-10 md:h-12 border-4 border-border bg-alt mb-6 flex p-1 relative">
+                    <div id="boot-progress" class="h-full bg-[#FF90E8] border-r-4 border-border transition-all duration-100 relative overflow-hidden flex items-center" style="width: 0%;">
+                        <div class="absolute inset-0 opacity-30" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, var(--border) 10px, var(--border) 20px)"></div>
                     </div>
-                </section>
-
-                <!-- Projects Section -->
-                <section id="projects">
-                    <h2>Projects</h2>
-                    <div class="project-grid">
-                        <!-- Project Item 1: WebChat -->
-                        <div class="project-item expandable-item">
-                            <div class="expandable-header">
-                                <h4>WebChat</h4>
-                                <button class="expand-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="tech-stack">
-                                                                 <div class="tech-tags">
-                                     <span data-tech="react">React 18</span>
-                                     <span data-tech="firebase">Firebase Firestore</span>
-                                     <span data-tech="css">CSS Animations</span>
-                                 </div>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                                <a href="https://webchat-1185b.web.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-                            </div>
-                                                         <div class="expandable-details">
-                                 <p class="description">A real-time anonymous chat application built with React 18 and Firebase Firestore, designed for low-latency communication and mobile-first use.</p>
-                                <p class="description"><strong>Features delivered:</strong> dynamic username generation, emoji-driven reaction flow, command actions (e.g., /wave, /dance, /celebrate), periodic icebreaker prompts, and an active-user celebration mode.</p>
-                                <p class="description"><strong>Technical implementation:</strong> used React hooks for state orchestration, responsive drawer UI for active users, contrast-aware color logic for readable avatars, and accessible keyboard-focused interaction patterns.</p>
-                                <p class="description"><em>Result:</em> shipped a production-capable app with strong engagement features and maintainable real-time architecture.</p>
-                             </div>
-                        </div>
-
-                        <!-- Project Item 2: Factory System -->
-                        <div class="project-item expandable-item">
-                             <div class="expandable-header">
-                                <h4>Factory Production Control System</h4>
-                                <button class="expand-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="tech-stack">
-                                                                 <div class="tech-tags">
-                                     <span data-tech="java">Java</span>
-                                     <span data-tech="javafx">JavaFX</span>
-                                     <span data-tech="mysql">MySQL</span>
-                                 </div>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/MontherIB-SWE/FactoryControlSystem" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                            </div>
-                            <div class="expandable-details">
-                                <p class="description">A Java desktop app to manage production data. Includes filtering to query and isolate information.</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Project Item 3: Car Rental -->
-                        <div class="project-item expandable-item">
-                            <div class="expandable-header">
-                                <h4>Car Rental Website (Private)</h4>
-                                <button class="expand-btn" aria-label="Toggle details">
-                                    <i class="fas fa-chevron-down"></i>
-                                </button>
-                            </div>
-                            <div class="tech-stack">
-                                                                 <div class="tech-tags">
-                                     <span data-tech="react">React</span>
-                                     <span data-tech="vite">Vite</span>
-                                     <span data-tech="firebase">Firebase</span>
-                                     <span data-tech="css">CSS</span>
-                                 </div>
-                            </div>
-                            <div class="project-links">
-                                <span class="private-project-notice"><i class="fas fa-lock"></i>Private Repository</span>
-                                <a href="https://aj-motors.site/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-                            </div>
-                            <div class="expandable-details">
-                                <p class="description">A complete car rental platform for a client, including a public booking flow and an admin dashboard for operations. The project was delivered with a mobile-first UX and robust data visibility for internal teams.</p>
-                                <p class="description"><strong>Key Features:</strong> authentication, advanced vehicle browsing with filtering and sorting, WhatsApp-integrated booking, admin calendar/Gantt workflows, car management tooling, analytics, and customer reviews.</p>
-                                <p class="description"><strong>Technical Implementation:</strong> built with React + Vite and Firebase for authentication/data, with advanced data-visualization components (charts, timelines, and responsive grids), image optimization, and DeepL-powered multilingual support.</p>
-                                <p class="description"><em>Note:</em> This was a private client project; source code is intentionally not public.</p>
-                            </div>
-                        </div>
-
-                                                 <!-- Project Item 4: Budget Management App -->
-                         <div class="project-item expandable-item">
-                             <div class="expandable-header">
-                                 <h4>AI-Powered Budget Management Application</h4>
-                                 <button class="expand-btn" aria-label="Toggle details">
-                                     <i class="fas fa-chevron-down"></i>
-                                 </button>
-                             </div>
-                             <div class="tech-stack">
-                                                                   <div class="tech-tags">
-                                      <span data-tech="angular">Angular</span>
-                                      <span data-tech="typescript">TypeScript</span>
-                                      <span data-tech="express">Express.js</span>
-                                      <span data-tech="postgresql">PostgreSQL</span>
-                                      <span data-tech="sequelize">Sequelize</span>
-                                      <span data-tech="chartjs">Chart.js</span>
-                                      <span data-tech="ai">AI Integration</span>
-                                  </div>
-                             </div>
-                             <div class="project-links">
-                                 <a href="https://github.com/MontherIB-SWE/budget_manager" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Source Code</a>
-                                 <a href="https://budget-manager-murex.vercel.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i>Live Demo</a>
-                             </div>
-                             <div class="expandable-details">
-                                <p class="description">A full-stack budget management system with authentication, transaction tracking, income/expense management, and dashboard analytics.</p>
-                                <p class="description">Frontend is built with Angular 19.2.14, backend with Express.js, PostgreSQL, and Sequelize. The product includes PDF/CSV export, role-aware budgeting views, and AI-generated financial prompts via external APIs.</p>
-                                 <p class="description"><em>Note:</em> AI prompt generation depends on external API availability and is currently being reliability-hardened.</p>
-                             </div>
-                         </div>
-
-                         <!-- Project Item 5: Java Games -->
-                         <div class="project-item expandable-item">
-                             <div class="expandable-header">
-                                 <h4>Java Logic Games (Chess & Minesweeper)</h4>
-                                 <button class="expand-btn" aria-label="Toggle details">
-                                     <i class="fas fa-chevron-down"></i>
-                                 </button>
-                             </div>
-                              <div class="tech-stack">
-                                                                    <div class="tech-tags">
-                                       <span data-tech="java">Java</span>
-                                       <span data-tech="javafx">JavaFX</span>
-                                   </div>
-                             </div>
-                             <div class="project-links">
-                                 <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Chess</a>
-                                 <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i>Minesweeper</a>
-                             </div>
-                             <div class="expandable-details">
-                                 <p class="description">Two Java games demonstrating algorithmic problem-solving and OOP patterns, including full chess rule enforcement and Minesweeper state management for grid-based logic behavior.</p>
-                             </div>
-                         </div>
-                    </div>
-                </section>
-
-                <!-- Skills Section -->
-                <section id="skills">
-                    <h2>Technical Skills</h2>
-                    <div class="skills-rows">
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-c-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">C</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-java-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">Java / JavaFX</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-javascript-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">JavaScript / Node.js</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-react-original colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">React</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="fas fa-robot"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">AI API Integration</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-express-original colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">Express.js</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-spring-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">Spring Boot</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-mysql-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">MySQL</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-postgresql-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">PostgreSQL</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-firebase-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">Firebase</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-git-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">Git & GitHub</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><img class="skill-img" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman"></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">Postman</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-figma-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">Figma</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-googlecloud-plain colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">Google Cloud</h4>
-                            </div>
-                        </div>
-                        <div class="skill-row">
-                            <div class="skill-row__icon"><i class="devicon-windows8-original colored"></i></div>
-                            <div class="skill-row__content">
-                                <h4 class="skill-row__title">Windows & Linux</h4>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Contact Section -->
-                <section id="contact">
-                    <h2>Get In Touch</h2>
-                    <p>
-                        I'm open to internship and junior software engineering opportunities and enjoy collaborating on meaningful full-stack projects. Feel free to send me a message.
-                    </p>
-                    <form id="contact-form" action="https://formspree.io/f/mgvzpzyj" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit">Send Message</button>
-                    </form>
-                </section>
-            </main>
+                </div>
+                
+                <!-- Progress Text -->
+                <div class="font-mono text-xs sm:text-sm md:text-xl font-bold uppercase flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div class="truncate" id="boot-text">&gt; WAKING_UP_SERVER... <span class="animate-pulse">_</span></div>
+                    <div class="shrink-0 bg-inverse text-inverseText px-2 py-1 self-start sm:self-auto" id="boot-pct">[0%]</div>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <!-- Theme Toggle -->
-        <button class="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">
-            <i class="fas fa-moon"></i>
-        </button>
-    
-    <!-- Mobile Navigation -->
-    <button class="mobile-nav-toggle" aria-label="Open navigation">
-        <i class="fas fa-bars"></i>
-    </button>
-    <div class="mobile-nav-overlay">
-        <button class="mobile-nav-close" aria-label="Close navigation">
-            <i class="fas fa-times"></i>
-        </button>
-        <ul>
-            <li><a href="#about"><i class="fas fa-user"></i>About</a></li>
-            <li><a href="#experience"><i class="fas fa-briefcase"></i>Experience</a></li>
-            <li><a href="#education"><i class="fas fa-graduation-cap"></i>Education</a></li>
-            <li><a href="#projects"><i class="fas fa-code-branch"></i>Projects</a></li>
-            <li><a href="#skills"><i class="fas fa-cogs"></i>Skills</a></li>
-            <li><a href="#contact"><i class="fas fa-paper-plane"></i>Contact</a></li>
-        </ul>
+
+    <div class="w-full bg-[#FFC900] border-b-4 border-border py-2 overflow-hidden relative z-50 flex items-center text-black">
+        <div class="animate-marquee flex items-center whitespace-nowrap gap-4 font-black uppercase text-xs sm:text-sm md:text-base">
+            <span>AVAILABLE FOR INTERNSHIPS</span> <span class="text-lg sm:text-xl">•</span>
+            <span>FULL-STACK SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
+            <span>JAVA</span> <span class="text-lg sm:text-xl">•</span>
+            <span>REACT</span> <span class="text-lg sm:text-xl">•</span>
+            <span>SPRING BOOT</span> <span class="text-lg sm:text-xl">•</span>
+            <span>AVAILABLE FOR INTERNSHIPS</span> <span class="text-lg sm:text-xl">•</span>
+            <span>FULL-STACK SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
+            <span>JAVA</span> <span class="text-lg sm:text-xl">•</span>
+            <span>REACT</span> <span class="text-lg sm:text-xl">•</span>
+            <span>SPRING BOOT</span> <span class="text-lg sm:text-xl">•</span>
+        </div>
     </div>
 
-    <!-- Scroll indicator (right panel) -->
-    <div class="scroll-indicator" id="scroll-indicator" aria-hidden="true" title="Scroll">
-        <i class="fas fa-arrow-down"></i>
+    <div id="main-content" class="pb-32 pt-6 sm:pt-8 opacity-0">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            <div class="md:col-span-8 flex flex-col justify-between border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FF90E8] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="flex flex-col sm:flex-row gap-5 sm:gap-6 items-start">
+                    
+                    <!-- Avatar scales down on mobile -->
+                    <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 shrink-0 border-4 border-border bg-card overflow-hidden shadow-brutal-sm relative">
+                        <img 
+                            src="./avatar.png" 
+                            alt="Monther Ibrahem" 
+                            class="w-full h-full object-cover"
+                            onerror="this.classList.add('hidden'); document.getElementById('avatar-fallback').classList.remove('hidden');"
+                        />
+                        <div id="avatar-fallback" class="hidden w-full h-full flex items-center justify-center bg-[#00E5FF] text-black font-black text-4xl sm:text-6xl">
+                            MI
+                        </div>
+                    </div>
+                    
+                    <div class="w-full">
+                        <div class="inline-block bg-inverse text-inverseText px-3 py-1 font-bold text-xs sm:text-sm uppercase mb-3 sm:mb-4 border-2 border-border transform -rotate-1">
+                            Final-Year BSc Candidate
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-2 break-words">
+                            Monther <br/> <span class="sketch-underline text-black">Ibrahem</span>
+                        </h1>
+                        <p class="text-lg sm:text-xl font-bold mt-4">Full-Stack Software Engineer</p>
+                        <p class="text-sm sm:text-base font-medium text-black/90 mt-2 max-w-xl">
+                            I build responsive web apps with Java, Spring Boot, and React. 
+                            Obsessed with clean architecture, practical UI/UX, and leveraging AI APIs for smarter workflows.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-stretch sm:items-center">
+                    <a href="mailto:mndr6702@gmail.com" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-card text-text text-sm sm:text-base">
+                        <i class="ph ph-envelope text-lg sm:text-xl"></i> Hire Me
+                    </a>
+                    <a href="./resume.pdf" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-[#00E5FF] text-black text-sm sm:text-base">
+                        <i class="ph ph-download-simple text-lg sm:text-xl"></i> Resume
+                    </a>
+                    <button class="w-full sm:w-auto theme-toggle sm:ml-auto inline-flex items-center justify-center gap-2 border-4 border-border px-4 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-inverse text-inverseText cursor-pointer text-sm sm:text-base">
+                        <i class="theme-icon ph-fill ph-moon text-lg sm:text-xl"></i> <span>Theme</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 flex flex-col gap-6">
+                <!-- Days Coding Tracker -->
+                <div class="flex-1 flex flex-col justify-center items-center text-center border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg text-text">
+                    <div id="days-coding" class="text-4xl sm:text-5xl font-black mb-2">0</div>
+                    <div class="font-bold uppercase text-xs sm:text-sm">Days Coding Journey</div>
+                    <div class="mt-4 text-[10px] sm:text-xs font-bold bg-inverse text-[#00E5FF] p-2 w-full text-center border-2 border-border font-mono break-all">
+                        &gt; init("2022-10-01");
+                    </div>
+                </div>
+                
+                <!-- Social Connect -->
+                <div id="connect-card" class="border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-alt transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg text-text">
+                    <h3 class="font-black uppercase mb-4 text-base sm:text-lg border-b-4 border-border pb-2">Connect</h3>
+                    <div class="flex flex-col gap-3">
+                        <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform">
+                            <i class="ph-fill ph-github-logo text-xl sm:text-2xl"></i> GitHub Profile
+                        </a>
+                        <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform">
+                            <i class="ph-fill ph-linkedin-logo text-xl sm:text-2xl"></i> LinkedIn Network
+                        </a>
+                        <a href="mailto:mndr6702@gmail.com" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform">
+                            <i class="ph-fill ph-envelope text-xl sm:text-2xl"></i> Email Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-12 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#00E5FF] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="flex flex-col md:flex-row gap-5 sm:gap-6 justify-between">
+                    <h2 class="text-2xl sm:text-3xl font-black uppercase shrink-0">Tech Arsenal</h2>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                        <div class="flex flex-col gap-2">
+                            <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Backend</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Java</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Spring Boot</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Node.js / Express</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Frontend</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">React 18</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Angular</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">JavaFX</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Data</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">PostgreSQL</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">MySQL</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Firebase</span>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Tools</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">AI Integrations</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Google Cloud</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Figma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 border-b-4 border-border pb-2">
+                    <i class="ph ph-terminal-window text-2xl sm:text-[28px]"></i>
+                    <h2 class="text-xl sm:text-2xl font-black uppercase">Experience</h2>
+                </div>
+                <div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
+                        <h3 class="font-bold text-base sm:text-lg">Software Dev Intern</h3>
+                        <span class="text-[10px] sm:text-xs font-bold bg-[#FFC900] text-black border-2 border-border px-2 py-1 uppercase self-start">Feb '25 - Jun '25</span>
+                    </div>
+                    <p class="font-black uppercase text-xs sm:text-sm mb-4">Ceeras IT Services • Remote</p>
+                    <p class="text-xs sm:text-sm font-medium mb-4">
+                        Designed normalized relational schemas and implemented backend logic using Java & Spring Boot for secure user-detail retrieval. Validated REST APIs via Postman.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Java</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Spring Boot</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FFC900] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 border-b-4 border-border pb-2">
+                    <i class="ph ph-file-text text-2xl sm:text-[28px]"></i>
+                    <h2 class="text-xl sm:text-2xl font-black uppercase">Education</h2>
+                </div>
+                <div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
+                        <h3 class="font-bold text-base sm:text-lg">BSc Software Engineering</h3>
+                        <span class="text-[10px] sm:text-xs font-bold bg-card text-text border-2 border-border px-2 py-1 uppercase self-start">Exp. Oct '26</span>
+                    </div>
+                    <p class="font-black uppercase text-xs sm:text-sm mb-4">Kinneret College</p>
+                    <p class="text-xs sm:text-sm font-medium">
+                        Focusing on core software architecture, data structures, and algorithms. <br/><br/>
+                        <strong>Relevant Coursework:</strong> Object-Oriented Programming, Data Structures & Algorithms, Systems Programming.
+                    </p>
+                </div>
+            </div>
+
+            <div class="md:col-span-12 mt-6 sm:mt-8 mb-2 sm:mb-4">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase inline-block sketch-underline">Featured Builds</h2>
+            </div>
+
+            <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="flex-1">
+                    <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">WebChat</h3>
+                    <p class="text-xs sm:text-sm font-medium mb-4">
+                        Mobile-first real-time anonymous chat application. Features dynamic usernames, emoji reactions, active-user celebrations, and slash commands (/wave, /dance). Built with an accessible drawer UI and contrast-aware avatars.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">React 18</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Firebase</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">CSS Animations</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-4 border-t-4 border-border pt-4">
+                    <a href="https://webchat-1185b.web.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                        <i class="ph ph-arrow-right text-base"></i> Live App
+                    </a>
+                    <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                        <i class="ph-fill ph-github-logo text-base"></i> Source
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FF90E8] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="flex-1">
+                    <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">AJ Motors (Client)</h3>
+                    <div class="inline-flex items-center gap-2 bg-inverse text-inverseText px-2 py-1 text-[10px] sm:text-xs font-bold uppercase mb-3 border-2 border-border">
+                        <i class="ph-fill ph-lock-key text-xs"></i> Private Repo
+                    </div>
+                    <p class="text-xs sm:text-sm font-medium mb-4">
+                        Full-stack car rental platform with a public booking system and admin dashboard. Features vehicle filtering, WhatsApp booking integration, Gantt-style admin calendar, DeepL multilingual support, and analytics.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">React + Vite</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Firebase</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Tailwind</span>
+                    </div>
+                </div>
+                <div class="flex gap-4 border-t-4 border-border pt-4">
+                    <a href="https://aj-motors.site/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                        <i class="ph ph-arrow-right text-base"></i> Live Booking Site
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:col-span-8 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="flex-1">
+                    <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">AI Budget Manager</h3>
+                    <p class="text-xs sm:text-sm font-medium mb-4">
+                        Full-stack financial dashboard for tracking transactions, analyzing income vs expenses, and generating AI-powered financial prompts based on user spending habits. Includes PDF/CSV exports and role-aware budgeting.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Angular 19</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Express.js</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">PostgreSQL</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">AI Integrations</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-4 border-t-4 border-border pt-4">
+                    <a href="https://budget-manager-murex.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                        <i class="ph ph-arrow-right text-base"></i> Live App
+                    </a>
+                    <a href="https://github.com/MontherIB-SWE/budget_manager" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                        <i class="ph-fill ph-github-logo text-base"></i> Source
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:col-span-4 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#00E5FF] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="flex-1">
+                    <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">Java Logic Games</h3>
+                    <p class="text-xs sm:text-sm font-medium mb-4">
+                        Desktop implementations of classic games showcasing strong object-oriented design and complex state/grid logic.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Java</span>
+                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">JavaFX</span>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 border-t-4 border-border pt-4">
+                    <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:underline">
+                        <i class="ph-fill ph-game-controller text-base"></i> Chess Repo
+                    </a>
+                    <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:underline">
+                        <i class="ph-fill ph-game-controller text-base"></i> Minesweeper Repo
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:col-span-12 mt-6 sm:mt-8 flex flex-col lg:flex-row gap-6 sm:gap-8 items-center border-4 border-[var(--inverse-border)] shadow-brutal-md p-5 sm:p-6 bg-inverse text-inverseText transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="flex-1 text-center lg:text-left w-full">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase mb-4 text-[#FFC900]">Let's Build Something</h2>
+                    <p class="font-medium text-sm sm:text-base lg:text-lg max-w-lg mx-auto lg:mx-0">
+                        I'm currently seeking junior roles and internships. If you're looking for a dedicated full-stack developer who loves practical UI and robust backends, reach out.
+                    </p>
+                </div>
+                <div class="w-full lg:w-[400px]">
+                    <form action="https://formspree.io/f/mgvzpzyj" method="POST" class="flex flex-col gap-4 bg-card p-5 sm:p-6 border-4 border-border text-text shadow-[-4px_4px_0px_0px_rgba(255,201,0,1)] sm:shadow-[-8px_8px_0px_0px_rgba(255,201,0,1)]">
+                        <h3 class="font-black uppercase text-lg sm:text-xl text-center border-b-4 border-border pb-2">Direct Message</h3>
+                        <div>
+                            <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Name</label>
+                            <input type="text" name="name" required class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt" />
+                        </div>
+                        <div>
+                            <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Email</label>
+                            <input type="email" name="email" required class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt" />
+                        </div>
+                        <div>
+                            <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Message</label>
+                            <textarea name="message" required rows="3" class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-[#FF90E8] text-black cursor-pointer text-sm sm:text-base">
+                            <i class="ph-fill ph-paper-plane-right text-lg sm:text-xl"></i> Send
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </div>
 
+    <div id="floating-dock" class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-2 sm:gap-4 p-2 sm:p-3 bg-card border-4 border-border shadow-brutal-md spring-bounce translate-y-[250%] w-max max-w-[90vw]">
+        <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#FFC900] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm active:translate-y-0 active:shadow-none">
+            <i class="ph-fill ph-github-logo text-xl"></i> <span class="hidden sm:inline">GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#00E5FF] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm active:translate-y-0 active:shadow-none">
+            <i class="ph-fill ph-linkedin-logo text-xl"></i> <span class="hidden sm:inline">LinkedIn</span>
+        </a>
+        <a href="mailto:mndr6702@gmail.com" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#FF90E8] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm active:translate-y-0 active:shadow-none">
+            <i class="ph-fill ph-envelope text-xl"></i> <span class="hidden sm:inline">Email</span>
+        </a>
+        
+        <!-- Divider -->
+        <div class="w-1 h-8 bg-border hidden sm:block mx-1"></div>
+        
+        <!-- Theme Toggle inside Dock -->
+        <button class="theme-toggle flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-inverse hover:text-inverseText hover:-translate-y-1 hover:shadow-brutal-sm active:translate-y-0 active:shadow-none cursor-pointer">
+            <i class="theme-icon ph-fill ph-moon text-xl"></i> <span class="hidden sm:inline">Theme</span>
+        </button>
+    </div>
 
-    <!-- JavaScript for animations and interactions -->
     <script>
-        if (history.scrollRestoration) {
-            history.scrollRestoration = 'manual';
+        // Set Initial Theme based on Local Storage or System Preference
+        const htmlEl = document.documentElement;
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlEl.classList.add('dark');
         }
-        document.addEventListener('DOMContentLoaded', function() {
-            window.scrollTo(0, 0);
-            const sections = document.querySelectorAll('#right-panel section');
-            const navLinks = document.querySelectorAll('.dot-nav a');
-            const rightPanel = document.querySelector('#right-panel');
-            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-            const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-overlay a');
-            const mobileNavClose = document.querySelector('.mobile-nav-close');
-            const themeToggle = document.querySelector('.theme-toggle');
-            const themeIcon = themeToggle.querySelector('i');
 
-            // --- Theme Management ---
-            function initTheme() {
-                const savedTheme = localStorage.getItem('theme');
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const theme = savedTheme || (prefersDark ? 'dark' : 'light');
-                
-                document.documentElement.setAttribute('data-theme', theme);
-                updateThemeIcon(theme);
-            }
-
-            function updateThemeIcon(theme) {
-                if (themeIcon) {
-                    themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-                }
-            }
-
-            function toggleTheme() {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                
-                // Button micro-animation
-                if (themeToggle) {
-                    themeToggle.classList.add('animating');
-                    setTimeout(() => themeToggle.classList.remove('animating'), 400);
-                }
-
-                // Use View Transitions API if available for whole-app crossfade
-                const applyTheme = () => {
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    localStorage.setItem('theme', newTheme);
-                    updateThemeIcon(newTheme);
-                };
-
-                if (document.startViewTransition) {
-                    document.startViewTransition(() => {
-                        applyTheme();
-                    });
-                } else {
-                    applyTheme();
-                }
-            }
-
-            // Initialize theme on load
-            initTheme();
-
-            // Theme toggle event listener
-            if (themeToggle) {
-                themeToggle.addEventListener('click', toggleTheme);
-            }
-
-            // Listen for system theme changes
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-                if (!localStorage.getItem('theme')) {
-                    const newTheme = e.matches ? 'dark' : 'light';
-                    document.documentElement.setAttribute('data-theme', newTheme);
-                    updateThemeIcon(newTheme);
-                }
-            });
-
-            // Minimum time the loading text should be visible (ms)
-            const MIN_LOADING_MS = 1200;
-            const appStart = performance.now();
-            const loadingOverlay = document.querySelector('.loading-overlay');
+        document.addEventListener("DOMContentLoaded", () => {
             
-            const loadingText = document.querySelector('.loading-text');
+            // 1. Setup Theme Toggle Icon Synchronization
+            const themeBtns = document.querySelectorAll(".theme-toggle");
+            const themeIcons = document.querySelectorAll(".theme-icon");
+            
+            if (htmlEl.classList.contains('dark')) {
+                themeIcons.forEach(icon => icon.classList.replace('ph-moon', 'ph-sun'));
+            }
 
-            const animateCutout = (durationMs = 1500) => {
-                const styles = getComputedStyle(loadingOverlay);
-                const featherStr = styles.getPropertyValue('--feather') || '140px';
-                const featherPx = parseFloat(featherStr);
-                const maxRadius = Math.hypot(window.innerWidth, window.innerHeight) / 2 + featherPx;
-                const start = performance.now();
-
-                const step = (now) => {
-                    const t = Math.min(1, (now - start) / durationMs);
-                    // Smoothstep easing
-                    const eased = t * t * (3 - 2 * t);
-                    const radius = eased * maxRadius;
-                    loadingOverlay.style.setProperty('--cutout-radius', `${radius}px`);
-                    if (t < 1) {
-                        requestAnimationFrame(step);
+            themeBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    htmlEl.classList.toggle('dark');
+                    const isDark = htmlEl.classList.contains('dark');
+                    
+                    if (isDark) {
+                        localStorage.theme = 'dark';
+                        themeIcons.forEach(icon => icon.classList.replace('ph-moon', 'ph-sun'));
                     } else {
-                        // After mask fully opened, fade out overlay
-                        fadeOutLoading();
+                        localStorage.theme = 'light';
+                        themeIcons.forEach(icon => icon.classList.replace('ph-sun', 'ph-moon'));
                     }
-                };
-
-                requestAnimationFrame(step);
-            };
-
-            // --- Fade out loading overlay ---
-            const fadeOutLoading = () => {
-                loadingOverlay.classList.add('fade-out');
-                loadingText.style.opacity = '0';
-                setTimeout(() => {
-                    loadingOverlay.style.display = 'none';
-                }, 500); // Match CSS transition duration
-            };
-
-            // --- Add animation classes after loading ---
-            const addAnimationClasses = () => {
-                document.body.classList.add('loaded');
-                document.querySelector('#left-panel').classList.add('animate-left-panel');
-                document.querySelector('.intro-header').classList.add('animate-intro-header');
-                document.querySelector('.left-panel-footer').classList.add('animate-footer');
-                document.querySelectorAll('.at-a-glance .glance-item').forEach((item) => {
-                    item.classList.add('animate-glance-item');
                 });
-            };
+            });
 
-            // Start when all assets are loaded
-            window.addEventListener('load', () => {
-                // Make content visible beneath the overlay
-                const site = document.querySelector('.site-container');
-                site.classList.add('loaded');
+            // 2. Setup Days Coding Counter dynamically
+            const start = new Date("2022-10-01").getTime();
+            const now = new Date().getTime();
+            const daysCount = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+            document.getElementById("days-coding").innerText = daysCount;
 
-                // Start UI animations immediately so left panel appears under the circle
-                addAnimationClasses();
+            // 3. Fake OS Boot Sequence Logic (Visual Only, perfectly safe for GH Pages)
+            const bootOverlay = document.getElementById("boot-sequence");
+            const mainContent = document.getElementById("main-content");
+            const progressBar = document.getElementById("boot-progress");
+            const progressText = document.getElementById("boot-text");
+            const progressPct = document.getElementById("boot-pct");
+            
+            const messages = [
+                "WAKING_UP_SERVER...",
+                "FETCHING_USER_DATA...",
+                "COMPILING_ASSETS...",
+                "BYPASSING_MAINFRAME...",
+                "READY."
+            ];
 
-                // Ensure Loading… shows for at least MIN_LOADING_MS from app start
-                const elapsed = performance.now() - appStart;
-                const delayNeeded = Math.max(0, MIN_LOADING_MS - elapsed);
+            let progress = 0;
+            let step = 0;
 
-                setTimeout(() => {
-                    // Hide the loading text first
-                    loadingText.classList.add('hidden');
-
-                    // Start the mask animation shortly after text fades
+            const bootInterval = setInterval(() => {
+                progress += Math.floor(Math.random() * 25) + 10;
+                
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(bootInterval);
+                    
                     setTimeout(() => {
-                        animateCutout(1500);
-                    }, 250);
-                }, delayNeeded);
-            });
-
-            // --- Scroll-driven gradient background ---
-            const setBgVars = (pos) => {
-                const clamped = Math.max(0, Math.min(1, pos));
-                const posY = (clamped * 100).toFixed(2) + '%';
-                const mid = (clamped * 60 + 20).toFixed(2) + '%'; // 20%..80%
-                document.documentElement.style.setProperty('--bg-pos', posY);
-                document.documentElement.style.setProperty('--bg-shift', mid);
-            };
-
-            const updateBgOnScroll = () => {
-                const scrollEl = rightPanel || document.documentElement;
-                const max = (scrollEl.scrollHeight - (scrollEl.clientHeight || window.innerHeight)) || 1;
-                const cur = rightPanel ? rightPanel.scrollTop : (window.pageYOffset || document.documentElement.scrollTop || 0);
-                setBgVars(cur / max);
-
-                // Toggle scroll indicator visibility
-                const indicator = document.getElementById('scroll-indicator');
-                if (!indicator) return;
-                const nearTop = cur < 24;
-                const nearBottom = cur > max - 24;
-                indicator.classList.toggle('hidden', !nearTop || nearBottom);
-            };
-
-            // initial
-            updateBgOnScroll();
-            // listeners
-            if (rightPanel) rightPanel.addEventListener('scroll', updateBgOnScroll, { passive: true });
-            window.addEventListener('scroll', updateBgOnScroll, { passive: true });
-
-            // --- Fade in sections on scroll ---
-            const sectionObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                root: rightPanel,
-                threshold: 0.1
-            });
-
-            sections.forEach(section => {
-                sectionObserver.observe(section);
-            });
-
-            // --- Active navigation highlighting on scroll ---
-            // Highlight all fully visible sections; if none, highlight the single best one
-            const visibilityById = new Map();
-
-            const setActiveForIds = (activeIds) => {
-                        navLinks.forEach(link => {
-                            const href = link.getAttribute('href').substring(1);
-                    link.classList.toggle('active', activeIds.has(href));
-                });
-            };
-
-            const pickAndSetActive = () => {
-                // First: highlight all fully visible sections (ratio ~ 1.0)
-                const fullyVisible = new Set();
-                visibilityById.forEach((ratio, id) => {
-                    if (ratio >= 0.99) fullyVisible.add(id);
-                });
-
-                if (fullyVisible.size > 0) {
-                    setActiveForIds(fullyVisible);
-                    return;
+                        bootOverlay.style.transform = 'translateY(-100%)';
+                        
+                        setTimeout(() => {
+                            bootOverlay.style.display = 'none';
+                            mainContent.classList.add('content-reveal');
+                        }, 700); 
+                    }, 600);
                 }
 
-                // Otherwise: prefer the section with the highest intersection ratio
-                let bestId = null;
-                let bestRatio = 0;
-                visibilityById.forEach((ratio, id) => {
-                    if (ratio > bestRatio) {
-                        bestRatio = ratio;
-                        bestId = id;
-                    }
-                });
+                progressBar.style.width = `${progress}%`;
+                progressPct.innerText = `[${progress}%]`;
+                
+                step = Math.min(Math.floor(progress / 20), messages.length - 1);
+                progressText.innerHTML = `&gt; ${messages[step]} <span class="animate-pulse">_</span>`;
+                
+            }, 150);
 
-                // Fallback: choose the section closest to the container's vertical center
-                if (!bestId) {
-                    let minDistance = Infinity;
-                    const containerRect = rightPanel ? rightPanel.getBoundingClientRect() : { top: 0, height: window.innerHeight };
-                    const viewCenterY = containerRect.top + containerRect.height / 2;
-                    sections.forEach(sec => {
-                        const rect = sec.getBoundingClientRect();
-                        const secCenterY = rect.top + rect.height / 2;
-                        const dist = Math.abs(secCenterY - viewCenterY);
-                        if (dist < minDistance) {
-                            minDistance = dist;
-                            bestId = sec.id;
-                        }
-                    });
-                }
+            // 4. Contextual Observer for the Floating Dock
+            const connectCard = document.getElementById("connect-card");
+            const floatingDock = document.getElementById("floating-dock");
 
-                if (bestId) setActiveForIds(new Set([bestId]));
-            };
-
-            const navObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    const id = entry.target.id;
-                    if (entry.isIntersecting) {
-                        visibilityById.set(id, entry.intersectionRatio);
+            if (connectCard && floatingDock) {
+                const observer = new IntersectionObserver((entries) => {
+                    const entry = entries[0];
+                    // If the main connect box scrolls out of view upwards (top < 0), show the dock
+                    if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+                        floatingDock.classList.remove('translate-y-[250%]');
                     } else {
-                        visibilityById.delete(id);
+                        floatingDock.classList.add('translate-y-[250%]');
                     }
-                });
-                pickAndSetActive();
-            }, {
-                root: rightPanel,
-                threshold: [0, 0.25, 0.5, 0.75, 0.99, 1]
-            });
+                }, { threshold: 0 }); 
 
-            sections.forEach(section => {
-                navObserver.observe(section);
-            });
-
-            // Also update on scroll to keep highlight stable while scrolling fast
-            const triggerActiveUpdate = () => pickAndSetActive();
-            if (rightPanel) rightPanel.addEventListener('scroll', triggerActiveUpdate, { passive: true });
-            window.addEventListener('scroll', triggerActiveUpdate, { passive: true });
-
-            // --- Accordion for Expandable Sections ---
-            const expandableItems = document.querySelectorAll('.expandable-item');
-            expandableItems.forEach(item => {
-                const header = item.querySelector('.expandable-header');
-                // Use the header for the click event to make a larger clickable area
-                if (header) {
-                    header.addEventListener('click', () => {
-                        item.classList.toggle('expanded');
-                    });
-                }
-            });
-
-            // --- Day Counter ---
-            const startDate = new Date('2022-10-01');
-            const now = () => new Date();
-            const dayCounterElement = document.getElementById('day-counter');
-
-            const diffParts = () => {
-                const ms = now() - startDate;
-                const totalSeconds = Math.max(0, Math.floor(ms / 1000));
-                const days = Math.floor(totalSeconds / (24 * 3600));
-                const remAfterDays = totalSeconds % (24 * 3600);
-                const hours = Math.floor(remAfterDays / 3600);
-                const remAfterHours = remAfterDays % 3600;
-                const minutes = Math.floor(remAfterHours / 60);
-                const seconds = remAfterHours % 60;
-                return { days, hours, minutes, seconds };
-            };
-
-            const pad2 = (n) => String(n).padStart(2, '0');
-
-            const updateCountdownDOM = () => {
-                const { days, hours, minutes, seconds } = diffParts();
-                const set = (key, val) => {
-                    const el = dayCounterElement.querySelector(`.counter-value[data-key="${key}"]`);
-                    if (el) el.textContent = key === 'days' ? String(val) : pad2(val);
-                };
-                set('days', days);
-                set('hours', hours);
-                set('minutes', minutes);
-                set('seconds', seconds);
-            };
-
-            if (dayCounterElement) {
-                updateCountdownDOM();
-                setInterval(updateCountdownDOM, 1000);
+                observer.observe(connectCard);
             }
-            
-            // Wire up mode switch
-            const modeSelect = document.getElementById('counter-mode');
-            if (modeSelect && dayCounterElement) {
-                const saved = localStorage.getItem('dayCounterMode');
-                if (saved) modeSelect.value = saved;
-                modeSelect.addEventListener('change', () => {
-                    const choice = modeSelect.value;
-                    localStorage.setItem('dayCounterMode', choice);
-                    dayCounterElement.className = '';
-                    if (choice !== 'default') {
-                        // For now only default mode is supported; persist selection but keep markup simple
-                        localStorage.setItem('dayCounterMode', 'default');
-                        modeSelect.value = 'default';
-                    }
-                    {
-                        dayCounterElement.innerHTML = '<span class="counter-group"><span class="counter-value" data-key="days">0</span> <span class="counter-unit">days</span></span> <span class="counter-group"><span class="counter-value" data-key="hours">00</span> <span class="counter-unit">hours</span></span> <span class="counter-group"><span class="counter-value" data-key="minutes">00</span> <span class="counter-unit">minutes</span></span> <span class="counter-group"><span class="counter-value" data-key="seconds">00</span> <span class="counter-unit">seconds</span></span> <span class="counter-since">since 2022-10-01</span>';
-                    }
-                });
-            }
-
-            // --- Click Feedback for Dot Nav ---
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    this.classList.add('clicked');
-                    setTimeout(() => {
-                        this.classList.remove('clicked');
-                    }, 300);
-                });
-            });
-            
-            // --- Mobile Navigation Toggle ---
-            if (mobileNavToggle && mobileNavOverlay) {
-                mobileNavToggle.addEventListener('click', () => {
-                    mobileNavOverlay.classList.add('active');
-                });
-                
-                if (mobileNavClose) {
-                    mobileNavClose.addEventListener('click', () => {
-                        mobileNavOverlay.classList.remove('active');
-                    });
-                }
-                
-                mobileNavLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileNavOverlay.classList.remove('active');
-                        });
-                    });
-            }
-
-            // background handled by CSS
         });
     </script>
 </body>
