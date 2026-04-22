@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Monther Ibrahem | Full-Stack Software Engineer</title>
     
+    <!-- Dynamic Brutalist Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%225%22 y=%225%22 width=%2290%22 height=%2290%22 fill=%22%23FFC900%22 stroke=%22%23000%22 stroke-width=%2210%22/><text x=%2250%22 y=%2270%22 font-family=%22monospace%22 font-size=%2260%22 font-weight=%22900%22 fill=%22%23000%22 text-anchor=%22middle%22>MI</text></svg>">
+    
     <!-- SEO and Social Meta Tags for GitHub Pages -->
-    <meta name="description" content="Portfolio for Monther Ibrahem, a full-stack software engineer focused on Java, Spring Boot, and React, with practical AI-enabled web features.">
+    <meta name="description" content="Portfolio for Monther Ibrahem, a full-stack software engineer focused on Java, Spring Boot, and React.">
     <meta property="og:title" content="Monther Ibrahem | Full-Stack Software Engineer">
     <meta property="og:description" content="Portfolio for Monther Ibrahem, a full-stack software engineer focused on Java, Spring Boot, and React.">
     <meta property="og:type" content="website">
@@ -21,7 +24,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700;900&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -78,8 +81,8 @@
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            transition: background-color 0s, color 0s; /* Brutalism demands instant snap, no fading */
-            -webkit-tap-highlight-color: transparent; /* Removes blue tap highlight on mobile */
+            transition: background-color 0s, color 0s; /* Brutalism demands instant snap */
+            -webkit-tap-highlight-color: transparent; 
         }
         
         .font-mono { font-family: 'JetBrains Mono', monospace; }
@@ -97,8 +100,6 @@
             opacity: 0.04;
             background-image: url("https://grainy-gradients.vercel.app/noise.svg");
         }
-        
-        /* Ensure the noise is slightly more visible in dark mode */
         html.dark .bg-noise { opacity: 0.08; }
 
         .sketch-underline {
@@ -106,7 +107,6 @@
             display: inline-block;
             z-index: 1;
         }
-
         .sketch-underline::after {
             content: '';
             position: absolute;
@@ -123,7 +123,6 @@
         .content-reveal {
             animation: contentPop 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
         @keyframes contentPop {
             0% { transform: scale(0.96) translateY(30px); opacity: 0; }
             100% { transform: scale(1) translateY(0); opacity: 1; }
@@ -133,7 +132,6 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-
         .animate-marquee {
             animation: marquee 20s linear infinite;
         }
@@ -145,14 +143,42 @@
         .spring-bounce {
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+
+        .os-desktop-pattern {
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .os-window {
+            /* Smooth scaling for window open effect */
+            transform-origin: center;
+            animation: windowOpen 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes windowOpen {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 12px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: var(--alt);
+            border-left: 2px solid var(--border);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--inverse);
+            border: 2px solid var(--border);
+        }
     </style>
 </head>
-<body class="relative overflow-x-hidden min-h-screen">
+<body class="relative overflow-hidden min-h-screen">
 
     <!-- Noise Overlay -->
     <div class="bg-noise"></div>
 
-    <div id="boot-sequence" class="fixed inset-0 z-[100] bg-[#FFC900] flex flex-col items-center justify-center p-4 boot-transition">
+    <div id="boot-sequence" class="fixed inset-0 z-[150] bg-[#FFC900] flex flex-col items-center justify-center p-4 boot-transition">
         <div class="w-full max-w-2xl bg-card border-4 border-border shadow-brutal-xl flex flex-col relative z-10 text-text">
             <!-- Window Header -->
             <div class="w-full h-10 border-b-4 border-border bg-alt flex items-center px-4 gap-2">
@@ -184,367 +210,514 @@
         </div>
     </div>
 
-    <div class="w-full bg-[#FFC900] border-b-4 border-border py-2 overflow-hidden relative z-50 flex items-center text-black">
-        <div class="animate-marquee flex items-center whitespace-nowrap gap-4 font-black uppercase text-xs sm:text-sm md:text-base">
-            <span>AVAILABLE FOR INTERNSHIPS</span> <span class="text-lg sm:text-xl">•</span>
-            <span>FULL-STACK SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
-            <span>JAVA</span> <span class="text-lg sm:text-xl">•</span>
-            <span>REACT</span> <span class="text-lg sm:text-xl">•</span>
-            <span>SPRING BOOT</span> <span class="text-lg sm:text-xl">•</span>
-            <span>AVAILABLE FOR INTERNSHIPS</span> <span class="text-lg sm:text-xl">•</span>
-            <span>FULL-STACK SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
-            <span>JAVA</span> <span class="text-lg sm:text-xl">•</span>
-            <span>REACT</span> <span class="text-lg sm:text-xl">•</span>
-            <span>SPRING BOOT</span> <span class="text-lg sm:text-xl">•</span>
+    <!-- Mode Transition Overlay -->
+    <div id="mode-transition-overlay" class="fixed inset-0 z-[250] bg-[#00E5FF] flex flex-col items-center justify-center transform -translate-y-full border-y-8 border-black text-black pointer-events-none" style="transition: transform 0.4s cubic-bezier(0.8, 0, 0.2, 1);">
+        <div class="border-4 border-black bg-[#FFC900] p-6 sm:p-10 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex items-center gap-4 sm:gap-6 transform -rotate-2">
+            <i class="ph-bold ph-plugs-connected text-4xl sm:text-6xl animate-pulse"></i> 
+            <span class="text-3xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter">Switching OS</span>
         </div>
+        <div class="absolute bottom-4 font-mono font-bold text-xs sm:text-sm uppercase tracking-widest bg-black text-white px-2 py-1">Executing System Override...</div>
     </div>
 
-    <div id="main-content" class="pb-32 pt-6 sm:pt-8 opacity-0">
-        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-6">
-            
-            <div class="md:col-span-8 flex flex-col justify-between border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FF90E8] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                <div class="flex flex-col sm:flex-row gap-5 sm:gap-6 items-start">
-                    
-                    <!-- Avatar scales down on mobile -->
-                    <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 shrink-0 border-4 border-border bg-card overflow-hidden shadow-brutal-sm relative">
-                        <img 
-                            src="./avatar.png" 
-                            alt="Monther Ibrahem" 
-                            class="w-full h-full object-cover"
-                            onerror="this.classList.add('hidden'); document.getElementById('avatar-fallback').classList.remove('hidden');"
-                        />
-                        <div id="avatar-fallback" class="hidden w-full h-full flex items-center justify-center bg-[#00E5FF] text-black font-black text-4xl sm:text-6xl">
-                            MI
+    <!-- ========================================== -->
+    <!-- STANDARD VIEW (Scrolling Web Mode)           -->
+    <!-- ========================================== -->
+    <div id="standard-view" class="h-screen overflow-y-auto overflow-x-hidden relative">
+        <div class="w-full bg-[#FFC900] border-b-4 border-border py-2 overflow-hidden relative z-50 flex items-center text-black">
+            <div class="animate-marquee flex items-center whitespace-nowrap gap-4 font-black uppercase text-xs sm:text-sm md:text-base">
+                <span>AVAILABLE FOR INTERNSHIPS</span> <span class="text-lg sm:text-xl">•</span>
+                <span>FULL-STACK SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
+                <span>JAVA</span> <span class="text-lg sm:text-xl">•</span>
+                <span>REACT</span> <span class="text-lg sm:text-xl">•</span>
+                <span>SPRING BOOT</span> <span class="text-lg sm:text-xl">•</span>
+                <span>AVAILABLE FOR INTERNSHIPS</span> <span class="text-lg sm:text-xl">•</span>
+                <span>FULL-STACK SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
+                <span>JAVA</span> <span class="text-lg sm:text-xl">•</span>
+                <span>REACT</span> <span class="text-lg sm:text-xl">•</span>
+                <span>SPRING BOOT</span> <span class="text-lg sm:text-xl">•</span>
+            </div>
+        </div>
+
+        <div id="main-content" class="pb-32 pt-6 sm:pt-8 opacity-0">
+            <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-6">
+                
+                <div class="md:col-span-8 flex flex-col justify-between border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FF90E8] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex flex-col sm:flex-row gap-5 sm:gap-6 items-start">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 shrink-0 border-4 border-border bg-card overflow-hidden shadow-brutal-sm relative">
+                            <img src="./avatar.png" alt="Monther Ibrahem" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); document.getElementById('avatar-fallback').classList.remove('hidden');" />
+                            <div id="avatar-fallback" class="hidden w-full h-full flex items-center justify-center bg-[#00E5FF] text-black font-black text-4xl sm:text-6xl">MI</div>
+                        </div>
+                        
+                        <div class="w-full">
+                            <div class="flex flex-wrap gap-2 mb-3 sm:mb-4">
+                                <div class="inline-block bg-inverse text-inverseText px-3 py-1 font-bold text-[10px] sm:text-xs uppercase border-2 border-border transform -rotate-1">
+                                    Final-Year BSc Candidate
+                                </div>
+                                <!-- Desktop-only OS Toggle -->
+                                <button onclick="setAppMode('os')" class="hidden md:inline-flex items-center gap-1 bg-[#FFC900] text-black px-3 py-1 font-bold text-[10px] sm:text-xs uppercase border-2 border-border transition-transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-brutal-sm">
+                                    <i class="ph-bold ph-desktop"></i> Switch to OS Mode
+                                </button>
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-2 break-words">
+                                Monther <br/> <span class="sketch-underline text-black">Ibrahem</span>
+                            </h1>
+                            <p class="text-lg sm:text-xl font-bold mt-4">Full-Stack Software Engineer</p>
+                            <p class="text-sm sm:text-base font-medium text-black/90 mt-2 max-w-xl">
+                                I build responsive web apps with Java, Spring Boot, and React. 
+                                Obsessed with clean architecture, practical UI/UX, and leveraging AI APIs for smarter workflows.
+                            </p>
                         </div>
                     </div>
                     
-                    <div class="w-full">
-                        <div class="inline-block bg-inverse text-inverseText px-3 py-1 font-bold text-xs sm:text-sm uppercase mb-3 sm:mb-4 border-2 border-border transform -rotate-1">
-                            Final-Year BSc Candidate
+                    <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-stretch sm:items-center w-full">
+                        <a href="mailto:mndr6702@gmail.com" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-card text-text text-sm sm:text-base">
+                            <i class="ph ph-envelope text-lg sm:text-xl"></i> Hire Me
+                        </a>
+                        <a href="./resume.pdf" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-[#00E5FF] text-black text-sm sm:text-base">
+                            <i class="ph ph-download-simple text-lg sm:text-xl"></i> Resume
+                        </a>
+                        <button class="theme-toggle flex-1 sm:flex-none sm:ml-auto inline-flex items-center justify-center gap-2 border-4 border-border px-4 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-inverse text-inverseText cursor-pointer text-sm sm:text-base">
+                            <i class="theme-icon ph-fill ph-moon text-lg sm:text-xl"></i> <span>Theme</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 flex flex-col gap-6">
+                    <div class="flex-1 flex flex-col justify-center items-center text-center border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg text-text">
+                        <div class="days-coding-counter text-4xl sm:text-5xl font-black mb-2">0</div>
+                        <div class="font-bold uppercase text-xs sm:text-sm">Days Coding Journey</div>
+                        <div class="mt-4 text-[10px] sm:text-xs font-bold bg-inverse text-[#00E5FF] p-2 w-full text-center border-2 border-border font-mono break-all">
+                            &gt; init("2022-10-01");
                         </div>
-                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-2 break-words">
-                            Monther <br/> <span class="sketch-underline text-black">Ibrahem</span>
-                        </h1>
-                        <p class="text-lg sm:text-xl font-bold mt-4">Full-Stack Software Engineer</p>
-                        <p class="text-sm sm:text-base font-medium text-black/90 mt-2 max-w-xl">
-                            I build responsive web apps with Java, Spring Boot, and React. 
-                            Obsessed with clean architecture, practical UI/UX, and leveraging AI APIs for smarter workflows.
+                    </div>
+                    
+                    <div id="connect-card" class="border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-alt transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg text-text">
+                        <h3 class="font-black uppercase mb-4 text-base sm:text-lg border-b-4 border-border pb-2">Connect</h3>
+                        <div class="flex flex-col gap-3">
+                            <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform">
+                                <i class="ph-fill ph-github-logo text-xl sm:text-2xl"></i> GitHub Profile
+                            </a>
+                            <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform">
+                                <i class="ph-fill ph-linkedin-logo text-xl sm:text-2xl"></i> LinkedIn Network
+                            </a>
+                            <a href="mailto:mndr6702@gmail.com" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform">
+                                <i class="ph-fill ph-envelope text-xl sm:text-2xl"></i> Email Me
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-12 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#00E5FF] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex flex-col md:flex-row gap-5 sm:gap-6 justify-between">
+                        <h2 class="text-2xl sm:text-3xl font-black uppercase shrink-0">Tech Arsenal</h2>
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                            <div class="flex flex-col gap-2">
+                                <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Backend</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Java</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Spring Boot</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Node.js / Express</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Frontend</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">React 18</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Angular</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">JavaFX</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Data</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">PostgreSQL</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">MySQL</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Firebase</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Tools</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">AI Integrations</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Google Cloud</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Figma</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-6 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 border-b-4 border-border pb-2">
+                        <i class="ph ph-terminal-window text-2xl sm:text-[28px]"></i>
+                        <h2 class="text-xl sm:text-2xl font-black uppercase">Experience</h2>
+                    </div>
+                    <div>
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
+                            <h3 class="font-bold text-base sm:text-lg">Software Dev Intern</h3>
+                            <span class="text-[10px] sm:text-xs font-bold bg-[#FFC900] text-black border-2 border-border px-2 py-1 uppercase self-start">Feb '25 - Jun '25</span>
+                        </div>
+                        <p class="font-black uppercase text-xs sm:text-sm mb-4">Ceeras IT Services • Remote</p>
+                        <p class="text-xs sm:text-sm font-medium mb-4">
+                            Designed normalized relational schemas and implemented backend logic using Java & Spring Boot for secure user-detail retrieval. Validated REST APIs via Postman.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Java</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Spring Boot</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-6 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FFC900] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 border-b-4 border-border pb-2">
+                        <i class="ph ph-file-text text-2xl sm:text-[28px]"></i>
+                        <h2 class="text-xl sm:text-2xl font-black uppercase">Education</h2>
+                    </div>
+                    <div>
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
+                            <h3 class="font-bold text-base sm:text-lg">BSc Software Engineering</h3>
+                            <span class="text-[10px] sm:text-xs font-bold bg-card text-text border-2 border-border px-2 py-1 uppercase self-start">Exp. Oct '26</span>
+                        </div>
+                        <p class="font-black uppercase text-xs sm:text-sm mb-4">Kinneret College</p>
+                        <p class="text-xs sm:text-sm font-medium">
+                            Focusing on core software architecture, data structures, and algorithms. <br/><br/>
+                            <strong>Relevant Coursework:</strong> Object-Oriented Programming, Data Structures & Algorithms, Systems Programming.
                         </p>
                     </div>
                 </div>
-                
-                <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-stretch sm:items-center">
-                    <a href="mailto:mndr6702@gmail.com" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-card text-text text-sm sm:text-base">
-                        <i class="ph ph-envelope text-lg sm:text-xl"></i> Hire Me
-                    </a>
-                    <a href="./resume.pdf" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-[#00E5FF] text-black text-sm sm:text-base">
-                        <i class="ph ph-download-simple text-lg sm:text-xl"></i> Resume
-                    </a>
-                    <button class="w-full sm:w-auto theme-toggle sm:ml-auto inline-flex items-center justify-center gap-2 border-4 border-border px-4 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-inverse text-inverseText cursor-pointer text-sm sm:text-base">
-                        <i class="theme-icon ph-fill ph-moon text-lg sm:text-xl"></i> <span>Theme</span>
-                    </button>
-                </div>
-            </div>
 
-            <div class="md:col-span-4 flex flex-col gap-6">
-                <!-- Days Coding Tracker -->
-                <div class="flex-1 flex flex-col justify-center items-center text-center border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg text-text">
-                    <div id="days-coding" class="text-4xl sm:text-5xl font-black mb-2">0</div>
-                    <div class="font-bold uppercase text-xs sm:text-sm">Days Coding Journey</div>
-                    <div class="mt-4 text-[10px] sm:text-xs font-bold bg-inverse text-[#00E5FF] p-2 w-full text-center border-2 border-border font-mono break-all">
-                        &gt; init("2022-10-01");
-                    </div>
+                <div class="md:col-span-12 mt-6 sm:mt-8 mb-2 sm:mb-4">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase inline-block sketch-underline">Featured Builds</h2>
                 </div>
-                
-                <!-- Social Connect -->
-                <div id="connect-card" class="border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-alt transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg text-text">
-                    <h3 class="font-black uppercase mb-4 text-base sm:text-lg border-b-4 border-border pb-2">Connect</h3>
-                    <div class="flex flex-col gap-3">
-                        <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform">
-                            <i class="ph-fill ph-github-logo text-xl sm:text-2xl"></i> GitHub Profile
+
+                <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex-1">
+                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">WebChat</h3>
+                        <p class="text-xs sm:text-sm font-medium mb-4">
+                            Mobile-first real-time anonymous chat application. Features dynamic usernames, emoji reactions, active-user celebrations, and slash commands.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">React 18</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Firebase</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4 border-t-4 border-border pt-4">
+                        <a href="https://webchat-1185b.web.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                            <i class="ph ph-arrow-right text-base"></i> Live App
                         </a>
-                        <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform">
-                            <i class="ph-fill ph-linkedin-logo text-xl sm:text-2xl"></i> LinkedIn Network
-                        </a>
-                        <a href="mailto:mndr6702@gmail.com" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform">
-                            <i class="ph-fill ph-envelope text-xl sm:text-2xl"></i> Email Me
+                        <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                            <i class="ph-fill ph-github-logo text-base"></i> Source
                         </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="md:col-span-12 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#00E5FF] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                <div class="flex flex-col md:flex-row gap-5 sm:gap-6 justify-between">
-                    <h2 class="text-2xl sm:text-3xl font-black uppercase shrink-0">Tech Arsenal</h2>
-                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-                        <div class="flex flex-col gap-2">
-                            <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Backend</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Java</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Spring Boot</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Node.js / Express</span>
+                <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FF90E8] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex-1">
+                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">AJ Motors (Client)</h3>
+                        <div class="inline-flex items-center gap-2 bg-inverse text-inverseText px-2 py-1 text-[10px] sm:text-xs font-bold uppercase mb-3 border-2 border-border">
+                            <i class="ph-fill ph-lock-key text-xs"></i> Private Repo
                         </div>
-                        <div class="flex flex-col gap-2">
-                            <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Frontend</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">React 18</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Angular</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">JavaFX</span>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Data</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">PostgreSQL</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">MySQL</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Firebase</span>
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Tools</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">AI Integrations</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Google Cloud</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Figma</span>
+                        <p class="text-xs sm:text-sm font-medium mb-4">
+                            Full-stack car rental platform with a public booking system and admin dashboard. Features vehicle filtering, WhatsApp booking integration, DeepL multi-lang.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">React + Vite</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Firebase</span>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="md:col-span-6 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 border-b-4 border-border pb-2">
-                    <i class="ph ph-terminal-window text-2xl sm:text-[28px]"></i>
-                    <h2 class="text-xl sm:text-2xl font-black uppercase">Experience</h2>
-                </div>
-                <div>
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
-                        <h3 class="font-bold text-base sm:text-lg">Software Dev Intern</h3>
-                        <span class="text-[10px] sm:text-xs font-bold bg-[#FFC900] text-black border-2 border-border px-2 py-1 uppercase self-start">Feb '25 - Jun '25</span>
-                    </div>
-                    <p class="font-black uppercase text-xs sm:text-sm mb-4">Ceeras IT Services • Remote</p>
-                    <p class="text-xs sm:text-sm font-medium mb-4">
-                        Designed normalized relational schemas and implemented backend logic using Java & Spring Boot for secure user-detail retrieval. Validated REST APIs via Postman.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Java</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Spring Boot</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">PostgreSQL</span>
+                    <div class="flex gap-4 border-t-4 border-border pt-4">
+                        <a href="https://aj-motors.site/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                            <i class="ph ph-arrow-right text-base"></i> Live Site
+                        </a>
                     </div>
                 </div>
-            </div>
 
-            <div class="md:col-span-6 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FFC900] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 border-b-4 border-border pb-2">
-                    <i class="ph ph-file-text text-2xl sm:text-[28px]"></i>
-                    <h2 class="text-xl sm:text-2xl font-black uppercase">Education</h2>
-                </div>
-                <div>
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
-                        <h3 class="font-bold text-base sm:text-lg">BSc Software Engineering</h3>
-                        <span class="text-[10px] sm:text-xs font-bold bg-card text-text border-2 border-border px-2 py-1 uppercase self-start">Exp. Oct '26</span>
-                    </div>
-                    <p class="font-black uppercase text-xs sm:text-sm mb-4">Kinneret College</p>
-                    <p class="text-xs sm:text-sm font-medium">
-                        Focusing on core software architecture, data structures, and algorithms. <br/><br/>
-                        <strong>Relevant Coursework:</strong> Object-Oriented Programming, Data Structures & Algorithms, Systems Programming.
-                    </p>
-                </div>
-            </div>
-
-            <div class="md:col-span-12 mt-6 sm:mt-8 mb-2 sm:mb-4">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-black uppercase inline-block sketch-underline">Featured Builds</h2>
-            </div>
-
-            <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                <div class="flex-1">
-                    <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">WebChat</h3>
-                    <p class="text-xs sm:text-sm font-medium mb-4">
-                        Mobile-first real-time anonymous chat application. Features dynamic usernames, emoji reactions, active-user celebrations, and slash commands (/wave, /dance). Built with an accessible drawer UI and contrast-aware avatars.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">React 18</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Firebase</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">CSS Animations</span>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-4 border-t-4 border-border pt-4">
-                    <a href="https://webchat-1185b.web.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
-                        <i class="ph ph-arrow-right text-base"></i> Live App
-                    </a>
-                    <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
-                        <i class="ph-fill ph-github-logo text-base"></i> Source
-                    </a>
-                </div>
-            </div>
-
-            <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FF90E8] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                <div class="flex-1">
-                    <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">AJ Motors (Client)</h3>
-                    <div class="inline-flex items-center gap-2 bg-inverse text-inverseText px-2 py-1 text-[10px] sm:text-xs font-bold uppercase mb-3 border-2 border-border">
-                        <i class="ph-fill ph-lock-key text-xs"></i> Private Repo
-                    </div>
-                    <p class="text-xs sm:text-sm font-medium mb-4">
-                        Full-stack car rental platform with a public booking system and admin dashboard. Features vehicle filtering, WhatsApp booking integration, Gantt-style admin calendar, DeepL multilingual support, and analytics.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">React + Vite</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Firebase</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Tailwind</span>
-                    </div>
-                </div>
-                <div class="flex gap-4 border-t-4 border-border pt-4">
-                    <a href="https://aj-motors.site/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
-                        <i class="ph ph-arrow-right text-base"></i> Live Booking Site
-                    </a>
-                </div>
-            </div>
-
-            <div class="md:col-span-8 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                <div class="flex-1">
-                    <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">AI Budget Manager</h3>
-                    <p class="text-xs sm:text-sm font-medium mb-4">
-                        Full-stack financial dashboard for tracking transactions, analyzing income vs expenses, and generating AI-powered financial prompts based on user spending habits. Includes PDF/CSV exports and role-aware budgeting.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Angular 19</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Express.js</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">PostgreSQL</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">AI Integrations</span>
-                    </div>
-                </div>
-                <div class="flex flex-wrap gap-4 border-t-4 border-border pt-4">
-                    <a href="https://budget-manager-murex.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
-                        <i class="ph ph-arrow-right text-base"></i> Live App
-                    </a>
-                    <a href="https://github.com/MontherIB-SWE/budget_manager" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
-                        <i class="ph-fill ph-github-logo text-base"></i> Source
-                    </a>
-                </div>
-            </div>
-
-            <div class="md:col-span-4 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#00E5FF] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                <div class="flex-1">
-                    <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">Java Logic Games</h3>
-                    <p class="text-xs sm:text-sm font-medium mb-4">
-                        Desktop implementations of classic games showcasing strong object-oriented design and complex state/grid logic.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-6">
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Java</span>
-                        <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">JavaFX</span>
-                    </div>
-                </div>
-                <div class="flex flex-col gap-3 border-t-4 border-border pt-4">
-                    <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:underline">
-                        <i class="ph-fill ph-game-controller text-base"></i> Chess Repo
-                    </a>
-                    <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:underline">
-                        <i class="ph-fill ph-game-controller text-base"></i> Minesweeper Repo
-                    </a>
-                </div>
-            </div>
-
-            <div class="md:col-span-12 mt-6 sm:mt-8 flex flex-col lg:flex-row gap-6 sm:gap-8 items-center border-4 border-[var(--inverse-border)] shadow-brutal-md p-5 sm:p-6 bg-inverse text-inverseText transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                <div class="flex-1 text-center lg:text-left w-full">
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase mb-4 text-[#FFC900]">Let's Build Something</h2>
-                    <p class="font-medium text-sm sm:text-base lg:text-lg max-w-lg mx-auto lg:mx-0">
-                        I'm currently seeking junior roles and internships. If you're looking for a dedicated full-stack developer who loves practical UI and robust backends, reach out.
-                    </p>
-                </div>
-                <div class="w-full lg:w-[400px]">
-                    <form action="https://formspree.io/f/mgvzpzyj" method="POST" class="flex flex-col gap-4 bg-card p-5 sm:p-6 border-4 border-border text-text shadow-[-4px_4px_0px_0px_rgba(255,201,0,1)] sm:shadow-[-8px_8px_0px_0px_rgba(255,201,0,1)]">
-                        <h3 class="font-black uppercase text-lg sm:text-xl text-center border-b-4 border-border pb-2">Direct Message</h3>
-                        <div>
-                            <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Name</label>
-                            <input type="text" name="name" required class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt" />
+                <div class="md:col-span-8 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex-1">
+                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">AI Budget Manager</h3>
+                        <p class="text-xs sm:text-sm font-medium mb-4">
+                            Full-stack financial dashboard for tracking transactions, analyzing income vs expenses, and generating AI-powered financial prompts based on user spending habits.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Angular 19</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">Express.js</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt">PostgreSQL</span>
                         </div>
-                        <div>
-                            <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Email</label>
-                            <input type="email" name="email" required class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt" />
-                        </div>
-                        <div>
-                            <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Message</label>
-                            <textarea name="message" required rows="3" class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt resize-none"></textarea>
-                        </div>
-                        <button type="submit" class="w-full inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-[#FF90E8] text-black cursor-pointer text-sm sm:text-base">
-                            <i class="ph-fill ph-paper-plane-right text-lg sm:text-xl"></i> Send
-                        </button>
-                    </form>
+                    </div>
+                    <div class="flex flex-wrap gap-4 border-t-4 border-border pt-4">
+                        <a href="https://budget-manager-murex.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                            <i class="ph ph-arrow-right text-base"></i> Live App
+                        </a>
+                        <a href="https://github.com/MontherIB-SWE/budget_manager" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:underline">
+                            <i class="ph-fill ph-github-logo text-base"></i> Source
+                        </a>
+                    </div>
                 </div>
-            </div>
 
+                <div class="md:col-span-4 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#00E5FF] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex-1">
+                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2">Java Logic Games</h3>
+                        <p class="text-xs sm:text-sm font-medium mb-4">
+                            Desktop implementations of classic games showcasing strong object-oriented design and complex state/grid logic.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Java</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">JavaFX</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-3 border-t-4 border-border pt-4">
+                        <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:underline">
+                            <i class="ph-fill ph-game-controller text-base"></i> Chess Repo
+                        </a>
+                        <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:underline">
+                            <i class="ph-fill ph-game-controller text-base"></i> Minesweeper
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-12 mt-6 sm:mt-8 flex flex-col lg:flex-row gap-6 sm:gap-8 items-center border-4 border-[var(--inverse-border)] shadow-brutal-md p-5 sm:p-6 bg-inverse text-inverseText transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex-1 text-center lg:text-left w-full">
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase mb-4 text-[#FFC900]">Let's Build Something</h2>
+                        <p class="font-medium text-sm sm:text-base lg:text-lg max-w-lg mx-auto lg:mx-0">
+                            I'm currently seeking junior roles and internships. If you're looking for a dedicated full-stack developer who loves practical UI and robust backends, reach out.
+                        </p>
+                    </div>
+                    <div class="w-full lg:w-[400px]">
+                        <form action="https://formspree.io/f/mgvzpzyj" method="POST" class="flex flex-col gap-4 bg-card p-5 sm:p-6 border-4 border-border text-text shadow-[-4px_4px_0px_0px_rgba(255,201,0,1)] sm:shadow-[-8px_8px_0px_0px_rgba(255,201,0,1)]">
+                            <h3 class="font-black uppercase text-lg sm:text-xl text-center border-b-4 border-border pb-2">Direct Message</h3>
+                            <div>
+                                <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Name</label>
+                                <input type="text" name="name" required class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt" />
+                            </div>
+                            <div>
+                                <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Email</label>
+                                <input type="email" name="email" required class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt" />
+                            </div>
+                            <div>
+                                <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Message</label>
+                                <textarea name="message" required rows="3" class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt resize-none"></textarea>
+                            </div>
+                            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-[#FF90E8] text-black cursor-pointer text-sm sm:text-base">
+                                <i class="ph-fill ph-paper-plane-right text-lg sm:text-xl"></i> Send
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Floating Dock (Only visible in standard view) -->
+        <div id="floating-dock" class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-2 sm:gap-4 p-2 sm:p-3 bg-card border-4 border-border shadow-brutal-md spring-bounce translate-y-[250%] w-max max-w-[90vw]">
+            <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#FFC900] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm">
+                <i class="ph-fill ph-github-logo text-xl"></i> <span class="hidden sm:inline">GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#00E5FF] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm">
+                <i class="ph-fill ph-linkedin-logo text-xl"></i> <span class="hidden sm:inline">LinkedIn</span>
+            </a>
+            
+            <div class="w-1 h-8 bg-border hidden sm:block mx-1"></div>
+            
+            <button class="theme-toggle flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-inverse hover:text-inverseText hover:-translate-y-1 hover:shadow-brutal-sm cursor-pointer">
+                <i class="theme-icon ph-fill ph-moon text-xl"></i> <span class="hidden sm:inline">Theme</span>
+            </button>
+            
+            <!-- OS toggle in dock (Desktop only) -->
+            <button onclick="setAppMode('os')" class="hidden md:flex items-center justify-center sm:w-auto sm:px-3 sm:py-2 gap-2 bg-[#FF90E8] border-2 border-border text-black font-bold uppercase text-sm transition-all hover:-translate-y-1 hover:shadow-brutal-sm cursor-pointer">
+                <i class="ph-bold ph-desktop text-xl"></i> <span class="hidden sm:inline">OS Mode</span>
+            </button>
         </div>
     </div>
 
-    <div id="floating-dock" class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-2 sm:gap-4 p-2 sm:p-3 bg-card border-4 border-border shadow-brutal-md spring-bounce translate-y-[250%] w-max max-w-[90vw]">
-        <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#FFC900] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm active:translate-y-0 active:shadow-none">
-            <i class="ph-fill ph-github-logo text-xl"></i> <span class="hidden sm:inline">GitHub</span>
-        </a>
-        <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#00E5FF] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm active:translate-y-0 active:shadow-none">
-            <i class="ph-fill ph-linkedin-logo text-xl"></i> <span class="hidden sm:inline">LinkedIn</span>
-        </a>
-        <a href="mailto:mndr6702@gmail.com" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#FF90E8] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm active:translate-y-0 active:shadow-none">
-            <i class="ph-fill ph-envelope text-xl"></i> <span class="hidden sm:inline">Email</span>
-        </a>
+
+    <!-- ========================================== -->
+    <!-- OS VIEW (Desktop Experience Mode)            -->
+    <!-- ========================================== -->
+    <div id="os-view" class="hidden absolute inset-0 z-[100] bg-[var(--bg)] font-mono flex flex-col">
+        <div class="absolute inset-0 os-desktop-pattern opacity-50 pointer-events-none"></div>
         
-        <!-- Divider -->
-        <div class="w-1 h-8 bg-border hidden sm:block mx-1"></div>
-        
-        <!-- Theme Toggle inside Dock -->
-        <button class="theme-toggle flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-inverse hover:text-inverseText hover:-translate-y-1 hover:shadow-brutal-sm active:translate-y-0 active:shadow-none cursor-pointer">
-            <i class="theme-icon ph-fill ph-moon text-xl"></i> <span class="hidden sm:inline">Theme</span>
-        </button>
+        <!-- Desktop Area -->
+        <div class="flex-1 relative p-6 w-full h-full overflow-hidden" id="desktop-area">
+            
+            <div class="flex flex-col gap-6 w-24 relative z-10">
+                <button class="os-icon flex flex-col items-center gap-1 text-text hover:bg-inverse/10 p-2 border-2 border-transparent hover:border-border cursor-pointer transition-colors" data-target="win-about">
+                    <i class="ph-fill ph-user text-4xl text-[#00E5FF] drop-shadow-[2px_2px_0_var(--border)]"></i>
+                    <span class="text-[10px] font-bold text-center bg-card border-2 border-border px-1 shadow-brutal-sm">About.exe</span>
+                </button>
+                
+                <button class="os-icon flex flex-col items-center gap-1 text-text hover:bg-inverse/10 p-2 border-2 border-transparent hover:border-border cursor-pointer transition-colors" data-target="win-projects">
+                    <i class="ph-fill ph-folder text-4xl text-[#FFC900] drop-shadow-[2px_2px_0_var(--border)]"></i>
+                    <span class="text-[10px] font-bold text-center bg-card border-2 border-border px-1 shadow-brutal-sm">Projects.dir</span>
+                </button>
+
+                <button class="os-icon flex flex-col items-center gap-1 text-text hover:bg-inverse/10 p-2 border-2 border-transparent hover:border-border cursor-pointer transition-colors" data-target="win-experience">
+                    <i class="ph-fill ph-terminal-window text-4xl text-[#FF90E8] drop-shadow-[2px_2px_0_var(--border)]"></i>
+                    <span class="text-[10px] font-bold text-center bg-card border-2 border-border px-1 shadow-brutal-sm">SysLog.txt</span>
+                </button>
+                
+                <a href="mailto:mndr6702@gmail.com" class="flex flex-col items-center gap-1 text-text hover:bg-inverse/10 p-2 border-2 border-transparent hover:border-border cursor-pointer transition-colors">
+                    <i class="ph-fill ph-envelope text-4xl text-text drop-shadow-[2px_2px_0_var(--border)]"></i>
+                    <span class="text-[10px] font-bold text-center bg-card border-2 border-border px-1 shadow-brutal-sm">Mail.app</span>
+                </a>
+            </div>
+
+            <div id="win-about" class="os-window hidden absolute top-10 left-32 w-[600px] bg-card border-4 border-border shadow-brutal-lg flex flex-col text-text z-20">
+                <div class="window-header bg-[#00E5FF] border-b-4 border-border flex justify-between items-center p-2 cursor-move select-none text-black">
+                    <span class="font-bold text-xs uppercase flex items-center gap-2"><i class="ph-bold ph-user"></i> About.exe</span>
+                    <button class="win-close hover:bg-[#FF90E8] border-2 border-border w-6 h-6 flex items-center justify-center font-black text-xs active:translate-y-[1px]">X</button>
+                </div>
+                <div class="window-body p-6 max-h-[60vh] overflow-y-auto custom-scrollbar font-sans bg-card text-text">
+                    <div class="flex items-center gap-4 border-b-4 border-border pb-4 mb-4">
+                        <img src="./avatar.png" alt="Avatar" class="w-20 h-20 border-4 border-border object-cover bg-[#FFC900]" onerror="this.style.display='none'">
+                        <div>
+                            <h2 class="text-3xl font-black uppercase tracking-tighter">Monther Ibrahem</h2>
+                            <p class="font-bold text-sm bg-inverse text-inverseText inline-block px-2 border-2 border-border mt-1">Full-Stack SWE</p>
+                        </div>
+                    </div>
+                    <p class="font-medium text-sm mb-4 leading-relaxed">
+                        I build responsive web apps with Java, Spring Boot, and React. Obsessed with clean architecture, practical UI/UX, and leveraging AI APIs for smarter workflows.
+                    </p>
+                    <div class="flex gap-2">
+                        <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" class="border-2 border-border px-3 py-1 font-bold text-xs bg-alt hover:bg-[#FFC900] transition-colors"><i class="ph-fill ph-github-logo"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" class="border-2 border-border px-3 py-1 font-bold text-xs bg-alt hover:bg-[#00E5FF] transition-colors"><i class="ph-fill ph-linkedin-logo"></i> LinkedIn</a>
+                        <a href="./resume.pdf" target="_blank" class="border-2 border-border px-3 py-1 font-bold text-xs bg-alt hover:bg-[#FF90E8] transition-colors"><i class="ph-fill ph-download-simple"></i> Resume</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="win-projects" class="os-window hidden absolute top-20 left-48 w-[650px] bg-card border-4 border-border shadow-brutal-lg flex flex-col text-text z-20">
+                <div class="window-header bg-[#FFC900] border-b-4 border-border flex justify-between items-center p-2 cursor-move select-none text-black">
+                    <span class="font-bold text-xs uppercase flex items-center gap-2"><i class="ph-bold ph-folder"></i> Projects.dir</span>
+                    <button class="win-close hover:bg-[#FF90E8] border-2 border-border w-6 h-6 flex items-center justify-center font-black text-xs active:translate-y-[1px]">X</button>
+                </div>
+                <div class="window-body p-4 max-h-[60vh] overflow-y-auto custom-scrollbar font-sans bg-card grid grid-cols-2 gap-4">
+                    <!-- Mini Cards -->
+                    <div class="border-4 border-border p-3 bg-alt flex flex-col justify-between">
+                        <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">WebChat</h3>
+                        <p class="text-[10px] font-medium mb-3">Real-time anonymous chat app with slash commands.</p>
+                        <a href="https://webchat-1185b.web.app/" target="_blank" class="bg-card border-2 border-border text-xs font-bold text-center py-1 hover:bg-[#00E5FF]">Launch App</a>
+                    </div>
+                    <div class="border-4 border-border p-3 bg-alt flex flex-col justify-between">
+                        <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">AI Budget</h3>
+                        <p class="text-[10px] font-medium mb-3">Angular/Node dashboard tracking expenses with AI prompts.</p>
+                        <a href="https://budget-manager-murex.vercel.app/" target="_blank" class="bg-card border-2 border-border text-xs font-bold text-center py-1 hover:bg-[#FF90E8]">Launch App</a>
+                    </div>
+                    <div class="border-4 border-border p-3 bg-alt flex flex-col justify-between">
+                        <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">AJ Motors</h3>
+                        <p class="text-[10px] font-medium mb-3">Car rental platform with admin dashboard. (Client)</p>
+                        <a href="https://aj-motors.site/" target="_blank" class="bg-card border-2 border-border text-xs font-bold text-center py-1 hover:bg-[#FFC900]">Live Site</a>
+                    </div>
+                    <div class="border-4 border-border p-3 bg-alt flex flex-col justify-between">
+                        <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">Java Games</h3>
+                        <p class="text-[10px] font-medium mb-3">Chess & Minesweeper implementations.</p>
+                        <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" class="bg-card border-2 border-border text-xs font-bold text-center py-1 hover:bg-inverse hover:text-inverseText">GitHub Repo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="win-experience" class="os-window hidden absolute top-32 left-64 w-[550px] bg-card border-4 border-border shadow-brutal-lg flex flex-col text-text z-20">
+                <div class="window-header bg-[#FF90E8] border-b-4 border-border flex justify-between items-center p-2 cursor-move select-none text-black">
+                    <span class="font-bold text-xs uppercase flex items-center gap-2"><i class="ph-bold ph-terminal-window"></i> SysLog.txt</span>
+                    <button class="win-close hover:bg-[#FFC900] border-2 border-border w-6 h-6 flex items-center justify-center font-black text-xs active:translate-y-[1px]">X</button>
+                </div>
+                <div class="window-body p-6 max-h-[60vh] overflow-y-auto custom-scrollbar font-mono bg-inverse text-inverseText text-xs leading-relaxed">
+                    <div class="text-[#00E5FF] mb-2">root@monther-os:~$ cat experience.log</div>
+                    <div class="mb-4 pl-4 border-l-2 border-[#FFC900]">
+                        <div class="font-bold uppercase text-[#FF90E8]">Software Dev Intern @ Ceeras IT Services</div>
+                        <div>[Feb 2025 - Jun 2025] | Remote</div>
+                        <div class="mt-2">- Designed normalized relational schemas in PostgreSQL.</div>
+                        <div>- Implemented secure backend retrieval using Java & Spring Boot.</div>
+                        <div>- Validated robust REST APIs via Postman.</div>
+                    </div>
+                    
+                    <div class="text-[#00E5FF] mb-2">root@monther-os:~$ cat education.log</div>
+                    <div class="pl-4 border-l-2 border-[#FFC900]">
+                        <div class="font-bold uppercase text-[#FF90E8]">BSc Software Engineering</div>
+                        <div>[Expected Oct 2026] | Kinneret College</div>
+                        <div class="mt-2">Core Focus: OOP, Data Structures, Algorithms, Systems Programming.</div>
+                    </div>
+                    <div class="text-[#00E5FF] mt-4 animate-pulse">root@monther-os:~$ _</div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="h-12 bg-alt border-t-4 border-border flex items-center justify-between px-2 z-[150] relative text-text">
+            
+            <div class="flex items-center gap-2">
+                <!-- Start Button & Menu Logic -->
+                <div class="relative">
+                    <button id="os-start-btn" class="bg-card text-text border-4 border-border px-4 py-1 font-black text-sm uppercase shadow-brutal-sm hover:bg-[#FFC900] hover:text-black active:translate-y-[2px] active:translate-x-[2px] active:shadow-none transition-all flex items-center gap-2">
+                        <div class="w-3 h-3 bg-[#FF90E8] border-2 border-border"></div> START
+                    </button>
+                    <!-- Start Menu Dropdown -->
+                    <div id="os-start-menu" class="hidden absolute bottom-full left-0 mb-2 w-48 bg-card border-4 border-border shadow-brutal-md flex flex-col font-sans">
+                        <div class="bg-inverse text-inverseText font-bold text-xs p-2 border-b-4 border-border">Monther_OS Programs</div>
+                        <button class="theme-toggle flex items-center gap-3 p-3 text-sm font-bold border-b-2 border-border hover:bg-[#00E5FF] hover:text-black text-left">
+                            <i class="theme-icon ph-fill ph-moon"></i> Toggle Theme
+                        </button>
+                        <a href="./resume.pdf" target="_blank" class="flex items-center gap-3 p-3 text-sm font-bold border-b-2 border-border hover:bg-[#FF90E8] hover:text-black">
+                            <i class="ph-fill ph-file-pdf"></i> Download Resume
+                        </a>
+                        <button onclick="setAppMode('standard')" class="flex items-center gap-3 p-3 text-sm font-bold bg-[#FFC900] text-black hover:bg-inverse hover:text-inverseText text-left">
+                            <i class="ph-bold ph-sign-out"></i> Exit to Website
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="w-1 h-6 bg-border mx-2"></div>
+                
+                <!-- Open Window Indicators (Taskbar Tabs) -->
+                <div id="os-taskbar-tabs" class="flex gap-2">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="flex items-center gap-4 bg-card border-4 border-border px-3 py-1 shadow-[inset_2px_2px_0px_0px_rgba(0,0,0,0.1)]">
+                <i class="ph-fill ph-speaker-high"></i>
+                <div id="os-clock" class="font-bold text-sm tracking-widest">12:00 PM</div>
+            </div>
+        </div>
     </div>
 
+
     <script>
-        // Set Initial Theme based on Local Storage or System Preference
+        // --- THEME MANAGEMENT ---
         const htmlEl = document.documentElement;
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             htmlEl.classList.add('dark');
         }
 
+        // --- GLOBAL STATE & INITIALIZATION ---
         document.addEventListener("DOMContentLoaded", () => {
             
-            // 1. Setup Theme Toggle Icon Synchronization
+            // 1. Sync Theme Icons
             const themeBtns = document.querySelectorAll(".theme-toggle");
-            const themeIcons = document.querySelectorAll(".theme-icon");
-            
-            if (htmlEl.classList.contains('dark')) {
-                themeIcons.forEach(icon => icon.classList.replace('ph-moon', 'ph-sun'));
-            }
+            const updateThemeIcons = () => {
+                const icons = document.querySelectorAll(".theme-icon");
+                const isDark = htmlEl.classList.contains('dark');
+                icons.forEach(icon => {
+                    icon.classList.remove('ph-moon', 'ph-sun');
+                    icon.classList.add(isDark ? 'ph-sun' : 'ph-moon');
+                });
+            };
+            updateThemeIcons();
 
             themeBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     htmlEl.classList.toggle('dark');
-                    const isDark = htmlEl.classList.contains('dark');
-                    
-                    if (isDark) {
-                        localStorage.theme = 'dark';
-                        themeIcons.forEach(icon => icon.classList.replace('ph-moon', 'ph-sun'));
-                    } else {
-                        localStorage.theme = 'light';
-                        themeIcons.forEach(icon => icon.classList.replace('ph-sun', 'ph-moon'));
-                    }
+                    localStorage.theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+                    updateThemeIcons();
                 });
             });
 
-            // 2. Setup Days Coding Counter dynamically
+            // 2. Setup Days Coding Counter (Populates both views)
             const start = new Date("2022-10-01").getTime();
             const now = new Date().getTime();
             const daysCount = Math.floor((now - start) / (1000 * 60 * 60 * 24));
-            document.getElementById("days-coding").innerText = daysCount;
+            document.querySelectorAll(".days-coding-counter").forEach(el => el.innerText = daysCount);
 
-            // 3. Fake OS Boot Sequence Logic (Visual Only, perfectly safe for GH Pages)
+            // 3. Boot Sequence Logic
             const bootOverlay = document.getElementById("boot-sequence");
-            const mainContent = document.getElementById("main-content");
+            const mainContent = document.getElementById("main-content"); // Only for standard view animation
             const progressBar = document.getElementById("boot-progress");
             const progressText = document.getElementById("boot-text");
             const progressPct = document.getElementById("boot-pct");
             
-            const messages = [
-                "WAKING_UP_SERVER...",
-                "FETCHING_USER_DATA...",
-                "COMPILING_ASSETS...",
-                "BYPASSING_MAINFRAME...",
-                "READY."
-            ];
-
             let progress = 0;
-            let step = 0;
-
             const bootInterval = setInterval(() => {
                 progress += Math.floor(Math.random() * 25) + 10;
                 
@@ -554,40 +727,237 @@
                     
                     setTimeout(() => {
                         bootOverlay.style.transform = 'translateY(-100%)';
-                        
                         setTimeout(() => {
                             bootOverlay.style.display = 'none';
-                            mainContent.classList.add('content-reveal');
+                            if (localStorage.getItem('portfolioMode') !== 'os') {
+                                mainContent.classList.add('content-reveal');
+                            }
                         }, 700); 
                     }, 600);
                 }
 
                 progressBar.style.width = `${progress}%`;
                 progressPct.innerText = `[${progress}%]`;
-                
-                step = Math.min(Math.floor(progress / 20), messages.length - 1);
-                progressText.innerHTML = `&gt; ${messages[step]} <span class="animate-pulse">_</span>`;
-                
+                const msgs = ["WAKING_UP_SERVER...", "FETCHING_USER_DATA...", "COMPILING_ASSETS...", "READY."];
+                const step = Math.min(Math.floor(progress / 25), msgs.length - 1);
+                progressText.innerHTML = `&gt; ${msgs[step]} <span class="animate-pulse">_</span>`;
             }, 150);
 
-            // 4. Contextual Observer for the Floating Dock
+            // 4. Standard View Contextual Floating Dock
             const connectCard = document.getElementById("connect-card");
             const floatingDock = document.getElementById("floating-dock");
 
             if (connectCard && floatingDock) {
                 const observer = new IntersectionObserver((entries) => {
+                    // Only trigger dock behavior if we are IN standard mode
+                    if (localStorage.getItem('portfolioMode') === 'os') return;
+                    
                     const entry = entries[0];
-                    // If the main connect box scrolls out of view upwards (top < 0), show the dock
                     if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
                         floatingDock.classList.remove('translate-y-[250%]');
                     } else {
                         floatingDock.classList.add('translate-y-[250%]');
                     }
                 }, { threshold: 0 }); 
-
                 observer.observe(connectCard);
             }
+
+            // Initialize App Mode (skip animation on first load)
+            setAppMode(localStorage.getItem('portfolioMode') || 'standard', true);
+            initOSLogic();
         });
+
+        let isSwitchingMode = false;
+
+        // --- STREAMING_CHUNK:App Mode Switching Logic ---
+        function setAppMode(mode, skipAnimation = false) {
+            const stdView = document.getElementById('standard-view');
+            const osView = document.getElementById('os-view');
+            const dock = document.getElementById('floating-dock');
+            const overlay = document.getElementById('mode-transition-overlay');
+            
+            // Safety fallback: OS mode is explicitly blocked on mobile screens (< 768px)
+            if (window.innerWidth < 768) {
+                mode = 'standard';
+            }
+
+            // Prevent double firing if clicking the button for the mode we are already in
+            if (mode === localStorage.getItem('portfolioMode') && !skipAnimation) return;
+
+            const applySwitch = () => {
+                if (mode === 'os') {
+                    stdView.classList.add('hidden');
+                    dock.classList.add('hidden');
+                    osView.classList.remove('hidden');
+                    document.body.classList.remove('overflow-y-auto'); // Lock main scroll
+                    localStorage.setItem('portfolioMode', 'os');
+                } else {
+                    stdView.classList.remove('hidden');
+                    osView.classList.add('hidden');
+                    document.body.classList.add('overflow-y-auto');
+                    localStorage.setItem('portfolioMode', 'standard');
+                    // Force dock hide on return, letting intersection observer handle it
+                    dock.classList.add('translate-y-[250%]'); 
+                }
+            };
+
+            if (skipAnimation) {
+                applySwitch();
+                return;
+            }
+
+            if (isSwitchingMode) return;
+            isSwitchingMode = true;
+
+            // 1. Slide the aggressive overlay down over the screen
+            overlay.style.transition = 'transform 0.4s cubic-bezier(0.8, 0, 0.2, 1)';
+            overlay.style.transform = 'translateY(0)';
+
+            // 2. Wait until the screen is fully covered, then instantly swap layouts
+            setTimeout(() => {
+                applySwitch();
+                
+                // 3. Slide the overlay off the bottom of the screen revealing the new UI
+                overlay.style.transform = 'translateY(100%)';
+                
+                // 4. Silently instantly snap the overlay back to the top once it is out of sight
+                setTimeout(() => {
+                    overlay.style.transition = 'none';
+                    overlay.style.transform = 'translateY(-100%)';
+                    
+                    // Force a browser reflow so it registers the snap-back before the next transition
+                    void overlay.offsetWidth;
+                    isSwitchingMode = false;
+                }, 400); // Waits for the bottom slide to finish
+            }, 400); // Waits for the top slide to finish
+        }
+
+        // Resize listener to prevent being stuck in OS mode if resized to mobile
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 768 && localStorage.getItem('portfolioMode') === 'os') {
+                setAppMode('standard');
+            }
+        });
+
+        // --- STREAMING_CHUNK:OS Environment Logic (Windows, Dragging, Taskbar) ---
+        function initOSLogic() {
+            let highestZ = 30;
+
+            // Clock Logic
+            const updateClock = () => {
+                const now = new Date();
+                let h = now.getHours();
+                const m = now.getMinutes().toString().padStart(2, '0');
+                const ampm = h >= 12 ? 'PM' : 'AM';
+                h = h % 12 || 12;
+                document.getElementById('os-clock').innerText = `${h}:${m} ${ampm}`;
+            };
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            // Start Menu Toggle
+            const startBtn = document.getElementById('os-start-btn');
+            const startMenu = document.getElementById('os-start-menu');
+            startBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                startMenu.classList.toggle('hidden');
+            });
+            document.addEventListener('click', () => startMenu.classList.add('hidden')); // Close on outside click
+
+            // Window Management
+            const windows = document.querySelectorAll('.os-window');
+            const icons = document.querySelectorAll('.os-icon');
+            const taskbarTabs = document.getElementById('os-taskbar-tabs');
+
+            const bringToFront = (win) => {
+                highestZ++;
+                win.style.zIndex = highestZ;
+            };
+
+            const toggleWindow = (winId) => {
+                const win = document.getElementById(winId);
+                if (!win) return;
+                
+                if (win.classList.contains('hidden')) {
+                    // Open it
+                    win.classList.remove('hidden');
+                    bringToFront(win);
+                    
+                    // Add to Taskbar if not there
+                    if (!document.getElementById(`tab-${winId}`)) {
+                        const title = win.querySelector('.window-header span').innerText;
+                        const tab = document.createElement('button');
+                        tab.id = `tab-${winId}`;
+                        tab.className = 'bg-card border-2 border-border px-3 py-1 text-xs font-bold shadow-[inset_-2px_-2px_0px_0px_rgba(0,0,0,0.2)] active:shadow-[inset_2px_2px_0px_0px_rgba(0,0,0,0.3)] hover:bg-alt truncate max-w-[120px]';
+                        tab.innerText = title;
+                        tab.onclick = () => bringToFront(win);
+                        taskbarTabs.appendChild(tab);
+                    }
+                } else {
+                    bringToFront(win); // Just focus it if already open
+                }
+            };
+
+            const closeWindow = (win) => {
+                win.classList.add('hidden');
+                const tab = document.getElementById(`tab-${win.id}`);
+                if (tab) tab.remove();
+            };
+
+            // Bind Icon double-clicks (and single clicks for ease of use)
+            icons.forEach(icon => {
+                icon.addEventListener('click', () => toggleWindow(icon.dataset.target));
+            });
+
+            // Bind Window Close buttons & Focus logic
+            windows.forEach(win => {
+                win.addEventListener('mousedown', () => bringToFront(win));
+                const closeBtn = win.querySelector('.win-close');
+                if (closeBtn) closeBtn.addEventListener('click', () => closeWindow(win));
+                
+                // Make draggable
+                makeDraggable(win);
+            });
+
+            function makeDraggable(element) {
+                let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                const header = element.querySelector('.window-header');
+                
+                if (header) {
+                    header.onmousedown = dragMouseDown;
+                }
+
+                function dragMouseDown(e) {
+                    e.preventDefault();
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    document.onmousemove = elementDrag;
+                    bringToFront(element);
+                }
+
+                function elementDrag(e) {
+                    e.preventDefault();
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // Simple boundary checks to keep windows accessible
+                    let newTop = element.offsetTop - pos2;
+                    let newLeft = element.offsetLeft - pos1;
+                    
+                    if(newTop < 0) newTop = 0;
+                    
+                    element.style.top = newTop + "px";
+                    element.style.left = newLeft + "px";
+                }
+
+                function closeDragElement() {
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+        }
     </script>
 </body>
 </html>
