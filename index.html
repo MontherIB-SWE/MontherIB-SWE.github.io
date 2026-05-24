@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Monther Ibrahem | Full-Stack Software Engineer</title>
+    <title>Monther Ibrahem | Junior Software Engineer</title>
     
     <!-- Dynamic Brutalist Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%225%22 y=%225%22 width=%2290%22 height=%2290%22 fill=%22%23FFC900%22 stroke=%22%23000%22 stroke-width=%2210%22/><text x=%2250%22 y=%2270%22 font-family=%22monospace%22 font-size=%2260%22 font-weight=%22900%22 fill=%22%23000%22 text-anchor=%22middle%22>MI</text></svg>">
     
     <!-- SEO and Social Meta Tags for GitHub Pages -->
-    <meta name="description" content="Portfolio for Monther Ibrahem, a full-stack software engineer focused on Java, Spring Boot, and React.">
-    <meta property="og:title" content="Monther Ibrahem | Full-Stack Software Engineer">
-    <meta property="og:description" content="Portfolio for Monther Ibrahem, a full-stack software engineer focused on Java, Spring Boot, and React.">
+    <meta name="description" content="Portfolio for Monther Ibrahem, a junior software engineer focused on React, PostgreSQL/Supabase, Spring Boot, and AI API integrations.">
+    <meta property="og:title" content="Monther Ibrahem | Junior Software Engineer">
+    <meta property="og:description" content="Portfolio for Monther Ibrahem, a junior software engineer focused on React, PostgreSQL/Supabase, Spring Boot, and AI API integrations.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="./avatar.png">
     
@@ -32,7 +32,7 @@
             theme: {
                 extend: {
                     colors: {
-                        base: 'var(--bg)',
+                        page: 'var(--bg)',
                         text: 'var(--text)',
                         border: 'var(--border)',
                         card: 'var(--card)',
@@ -52,44 +52,162 @@
     </script>
 
     <style>
-        /* CSS Variables for seamless Light/Dark X-Ray inversion */
+        /* CSS Variables — unified theme tokens */
         :root {
             --bg: #F4F1EA;
             --text: #000000;
             --border: #000000;
-            --shadow: rgba(0,0,0,1);
+            --shadow: rgba(0, 0, 0, 1);
             --card: #ffffff;
             --alt: #EAE8E3;
             --inverse: #000000;
             --inverse-text: #ffffff;
             --inverse-border: #ffffff;
+            /* Brand accents — stable in both themes */
+            --accent-pink: #FF90E8;
+            --accent-yellow: #FFC900;
+            --accent-cyan: #00E5FF;
+            --accent-green: #00FF88;
+            --on-accent: #000000;
+            --on-accent-muted: rgba(0, 0, 0, 0.85);
+            /* Terminal panels — always dark readout aesthetic */
+            --terminal-bg: #121212;
+            --terminal-text: #F4F1EA;
+            --terminal-muted: rgba(244, 241, 234, 0.75);
+            --terminal-accent: #00E5FF;
+            --terminal-success: #00FF88;
+            --terminal-footer-bg: rgba(0, 0, 0, 0.45);
+            --status-header-bg: #121212;
+            --badge-bg: #000000;
+            --badge-fg: var(--accent-green);
+            --badge-border: #000000;
+            --code-snippet-bg: var(--terminal-bg);
+            --code-snippet-fg: var(--terminal-accent);
+            --overlay-scrim: rgba(0, 0, 0, 0.6);
+            --form-shadow: -4px 4px 0 0 var(--accent-yellow);
+            --form-shadow-lg: -8px 8px 0 0 var(--accent-yellow);
+            --chip-bg: var(--card);
+            --chip-fg: var(--text);
+            --link-hover-cyan: var(--accent-cyan);
+            --link-hover-pink: var(--accent-pink);
         }
 
         html.dark {
             --bg: #121212;
             --text: #F4F1EA;
             --border: #F4F1EA;
-            --shadow: rgba(244,241,234,1);
+            --shadow: rgba(244, 241, 234, 1);
             --card: #1e1e1e;
             --alt: #2a2a2a;
             --inverse: #F4F1EA;
             --inverse-text: #121212;
             --inverse-border: #121212;
+            --terminal-bg: #1c1c1c;
+            --terminal-text: #F4F1EA;
+            --terminal-muted: rgba(244, 241, 234, 0.65);
+            --terminal-footer-bg: rgba(0, 0, 0, 0.55);
+            --status-header-bg: #141414;
+            --badge-bg: #0a0a0a;
+            --badge-border: #F4F1EA;
+            --code-snippet-bg: #1a1a1a;
+            --code-snippet-fg: var(--accent-cyan);
+            --overlay-scrim: rgba(0, 0, 0, 0.82);
+            --chip-bg: var(--alt);
+            --chip-fg: var(--text);
+            color-scheme: dark;
+        }
+
+        html { color-scheme: light; }
+
+        /* Semantic surface utilities */
+        .bg-accent-pink { background-color: var(--accent-pink); }
+        .bg-accent-yellow { background-color: var(--accent-yellow); }
+        .bg-accent-cyan { background-color: var(--accent-cyan); }
+        .text-on-accent { color: var(--on-accent); }
+        .text-on-accent-muted { color: var(--on-accent-muted); }
+        .text-accent-pink { color: var(--accent-pink); }
+        .text-accent-yellow { color: var(--accent-yellow); }
+        .text-accent-cyan { color: var(--accent-cyan); }
+        .text-accent-green { color: var(--accent-green); }
+        .border-accent-pink { border-color: var(--accent-pink); }
+        .border-accent-yellow { border-color: var(--accent-yellow); }
+        .border-accent-cyan { border-color: var(--accent-cyan); }
+        .chip-surface { background-color: var(--chip-bg); color: var(--chip-fg); }
+        .badge-terminal {
+            background-color: var(--badge-bg);
+            color: var(--badge-fg);
+            border: 2px solid var(--badge-border);
+        }
+        .badge-hash {
+            background-color: var(--badge-bg);
+            color: var(--accent-yellow);
+            border: 2px solid var(--border);
+        }
+        .overlay-scrim { background-color: var(--overlay-scrim); }
+        .form-brutal-shadow { box-shadow: var(--form-shadow); }
+        @media (min-width: 640px) {
+            .form-brutal-shadow { box-shadow: var(--form-shadow-lg); }
+        }
+        .link-hover-cyan:hover { color: var(--link-hover-cyan); }
+        .link-hover-pink:hover { color: var(--link-hover-pink); }
+        .dock-hover-yellow:hover { background-color: var(--accent-yellow); color: var(--on-accent); }
+        .dock-hover-cyan:hover { background-color: var(--accent-cyan); color: var(--on-accent); }
+
+        .os-terminal-body {
+            background: var(--terminal-bg);
+            color: var(--terminal-text);
+        }
+
+        /* Theme transition — View Transitions API (primary) + lightweight fallback */
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+            animation-duration: 0.22s;
+            animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            ::view-transition-old(root),
+            ::view-transition-new(root) {
+                animation: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            html.theme-animate {
+                transition: background-color 0.2s ease-out, color 0.2s ease-out;
+            }
+            html.theme-animate body,
+            html.theme-animate #standard-view,
+            html.theme-animate #connect-card,
+            html.theme-animate .chip-surface,
+            html.theme-animate .status-panel,
+            html.theme-animate #section-oss-stats,
+            html.theme-animate .grades-terminal,
+            html.theme-animate #section-manifesto,
+            html.theme-animate #section-credits,
+            html.theme-animate .magazine-cover,
+            html.theme-animate #cmd-palette > div,
+            html.theme-animate .code-snippet-box,
+            html.theme-animate .badge-terminal,
+            html.theme-animate .badge-hash,
+            html.theme-animate .overlay-scrim,
+            html.theme-animate .bg-noise {
+                transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out, opacity 0.2s ease-out;
+            }
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            transition: background-color 0s, color 0s; /* Brutalism demands instant snap */
             -webkit-tap-highlight-color: transparent; 
         }
         
         .font-mono { font-family: 'JetBrains Mono', monospace; }
 
         ::selection {
-            background-color: #FFC900;
-            color: black;
+            background-color: var(--accent-yellow);
+            color: var(--on-accent);
         }
 
         .bg-noise {
@@ -114,7 +232,7 @@
             left: -2px;
             right: -2px;
             height: 10px;
-            background-color: #00E5FF;
+            background-color: var(--accent-cyan);
             z-index: -1;
             transform: rotate(-1deg);
             border: 2px solid var(--border);
@@ -171,6 +289,506 @@
             background: var(--inverse);
             border: 2px solid var(--border);
         }
+
+        .connect-link {
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .connect-link:hover {
+            transform: translate(4px, -2px);
+            box-shadow: 3px 3px 0 0 var(--inverse-text);
+        }
+        .connect-link:active {
+            transform: translate(6px, 0);
+            box-shadow: none;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+        .status-dot {
+            animation: statusPulse 2s ease-in-out infinite;
+            background-color: var(--accent-green);
+            border-color: var(--accent-green);
+        }
+
+        #cmd-palette {
+            transition: opacity 0.15s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        #cmd-palette.cmd-hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.96) translateY(-8px);
+        }
+        .cmd-item {
+            color: var(--text);
+            transition: background-color 0.12s ease, color 0.12s ease;
+        }
+        .cmd-item:hover:not(.cmd-active) {
+            background: var(--alt);
+        }
+        .cmd-item.cmd-active {
+            background: var(--accent-yellow);
+            color: var(--on-accent);
+        }
+
+        .manifesto-card {
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+        }
+        .manifesto-card.manifesto-exit {
+            transform: translateX(-40px) rotate(-2deg);
+            opacity: 0;
+        }
+        .manifesto-card.manifesto-enter {
+            transform: translateX(40px) rotate(2deg);
+            opacity: 0;
+        }
+        .manifesto-nav-btn {
+            transition: background-color 0.15s ease, color 0.15s ease;
+        }
+        .manifesto-dot {
+            transition: background-color 0.15s ease, transform 0.15s ease;
+        }
+        .manifesto-dot-active {
+            background-color: var(--inverse) !important;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .manifesto-dot:hover:not(.manifesto-dot-active) {
+                background-color: var(--accent-yellow) !important;
+            }
+        }
+
+        /* Theme-aware panels — always dark terminal readout in both themes */
+        .status-panel-header {
+            background: var(--status-header-bg);
+            color: var(--terminal-accent);
+            border-color: var(--border);
+        }
+        .status-panel-header .status-clock-text { color: var(--terminal-text); }
+        .status-label { color: var(--accent-pink); }
+        .status-deploy-num { color: var(--accent-yellow); }
+        .status-value { color: var(--terminal-text); }
+        .status-meta { color: var(--terminal-muted); }
+
+        .code-snippet-box {
+            background: var(--code-snippet-bg);
+            color: var(--code-snippet-fg);
+            border-color: var(--border);
+        }
+
+        .status-panel {
+            background: var(--terminal-bg);
+            color: var(--terminal-text);
+        }
+        .status-panel .status-grid-cell { border-color: var(--border); }
+        .status-progress-track {
+            background: color-mix(in srgb, var(--terminal-text) 20%, transparent);
+            border-color: color-mix(in srgb, var(--terminal-text) 45%, transparent);
+        }
+        .status-progress-fill { background: var(--accent-yellow); }
+
+        .oss-lang-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.35rem;
+        }
+        .oss-lang-row:last-child { margin-bottom: 0; }
+        .oss-lang-name {
+            width: 4.5rem;
+            flex-shrink: 0;
+            color: var(--terminal-muted);
+            font-size: 0.65rem;
+        }
+        @media (min-width: 640px) {
+            .oss-lang-name { font-size: 0.7rem; width: 5.5rem; }
+        }
+        .oss-lang-track {
+            flex: 1;
+            height: 0.5rem;
+            border: 1px solid var(--border);
+            background: color-mix(in srgb, var(--terminal-text) 12%, transparent);
+            overflow: hidden;
+        }
+        .oss-lang-fill {
+            display: block;
+            height: 100%;
+            background: var(--accent-cyan);
+            transition: width 0.4s ease;
+        }
+        .oss-lang-row:nth-child(1) .oss-lang-fill { background: var(--accent-cyan); }
+        .oss-lang-row:nth-child(2) .oss-lang-fill { background: var(--accent-pink); }
+        .oss-lang-row:nth-child(3) .oss-lang-fill { background: var(--accent-yellow); }
+        .oss-lang-row:nth-child(4) .oss-lang-fill { background: var(--accent-green); }
+        .oss-lang-pct {
+            width: 2rem;
+            text-align: right;
+            color: var(--terminal-text);
+            font-size: 0.65rem;
+        }
+        .oss-stat-link {
+            color: var(--terminal-accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .oss-stat-link:hover { color: var(--accent-yellow); }
+
+        /* Coursework grades terminal table */
+        .grades-terminal {
+            background: var(--terminal-bg);
+            color: var(--terminal-text);
+        }
+        .grades-terminal-header {
+            background: var(--status-header-bg);
+            color: var(--terminal-accent);
+            border-color: var(--border);
+        }
+        .grades-cmd { color: var(--terminal-muted); }
+        .grades-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+        }
+        @media (min-width: 640px) {
+            .grades-table { font-size: 0.75rem; }
+        }
+        .grades-table th {
+            text-align: left;
+            color: var(--accent-pink);
+            border-bottom: 2px solid var(--border);
+            padding: 0.35rem 0.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .grades-table td {
+            padding: 0.4rem 0.5rem;
+            border-bottom: 1px solid color-mix(in srgb, var(--terminal-text) 12%, transparent);
+            color: var(--terminal-text);
+        }
+        .grades-table tr:last-child td { border-bottom: none; }
+        .grades-table .grades-code { color: var(--terminal-muted); }
+        .grades-table .grades-score { font-weight: 900; text-align: right; }
+        .grades-score-a { color: var(--accent-green); }
+        .grades-score-b { color: var(--accent-yellow); }
+        .grades-score-c { color: var(--accent-cyan); }
+        .grades-score-d { color: var(--accent-pink); }
+        .grades-summary {
+            border-color: var(--border);
+            color: var(--terminal-muted);
+        }
+        .grades-summary strong { color: var(--terminal-accent); }
+        .grades-pass { color: var(--accent-green); }
+
+        /* Mobile command palette */
+        @media (max-width: 639px) {
+            #cmd-palette { padding-top: max(1rem, env(safe-area-inset-top)); align-items: flex-start; }
+            #cmd-palette > div { max-height: calc(100dvh - 2rem); display: flex; flex-direction: column; }
+            #cmd-list { max-height: min(280px, 50dvh); }
+            .manifesto-card { font-size: 1.125rem; line-height: 1.35; }
+            #section-status .status-grid-cell:nth-child(odd) { border-right: 4px solid var(--border); }
+            #section-status .status-grid-cell:nth-child(-n+2) { border-bottom: 4px solid var(--border); }
+        }
+
+        /* Magazine cover hero */
+        .magazine-cover {
+            background: var(--card);
+            color: var(--text);
+            padding: 0;
+            overflow: hidden;
+        }
+        .magazine-masthead {
+            background: var(--inverse);
+            color: var(--inverse-text);
+            border-bottom: 4px solid var(--border);
+            padding: 0.75rem 1rem 0.65rem;
+        }
+        .magazine-cover-photo {
+            position: relative;
+            border: 4px solid var(--border);
+            background: var(--accent-yellow);
+            box-shadow: 8px 8px 0 0 var(--shadow);
+            aspect-ratio: 3 / 4;
+            max-height: 280px;
+            overflow: hidden;
+        }
+        .magazine-cover-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .magazine-cover-sticker {
+            position: absolute;
+            top: 0.5rem;
+            left: -0.25rem;
+            background: var(--accent-pink);
+            color: var(--on-accent);
+            border: 2px solid var(--border);
+            font-size: 0.55rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 0.2rem 0.45rem;
+            transform: rotate(-6deg);
+            box-shadow: 3px 3px 0 0 var(--shadow);
+        }
+        .magazine-pullquote {
+            background: var(--accent-yellow);
+            color: var(--on-accent);
+            border: 3px solid var(--border);
+            padding: 0.5rem 0.75rem;
+            font-weight: 900;
+            font-size: 0.7rem;
+            line-height: 1.35;
+            text-transform: uppercase;
+            box-shadow: 4px 4px 0 0 var(--shadow);
+            margin-bottom: 0.75rem;
+        }
+        @media (min-width: 640px) {
+            .magazine-pullquote { font-size: 0.8rem; }
+        }
+        .magazine-barcode {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.15rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            opacity: 0.85;
+        }
+        .magazine-barcode-lines {
+            display: flex;
+            gap: 2px;
+            height: 28px;
+            align-items: stretch;
+        }
+        .magazine-barcode-lines span {
+            display: block;
+            background: var(--text);
+            width: 2px;
+        }
+        .magazine-barcode-lines span:nth-child(3n) { width: 3px; }
+        .magazine-barcode-lines span:nth-child(5n) { width: 1px; }
+        .magazine-barcode-lines span:nth-child(7n) { width: 4px; }
+
+        /* Movie credits roll */
+        .credits-wrap { padding: 0; }
+        .credits-viewport {
+            background: var(--inverse);
+            color: var(--inverse-text);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .credits-viewport::before,
+        .credits-viewport::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2.5rem;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .credits-viewport::before {
+            top: 0;
+            background: linear-gradient(to bottom, var(--inverse) 15%, transparent);
+        }
+        .credits-viewport::after {
+            bottom: 0;
+            background: linear-gradient(to top, var(--inverse) 15%, transparent);
+        }
+        .credits-track {
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
+        }
+        .credits-scroll {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 1.25rem 2.5rem;
+            font-family: 'Inter', sans-serif;
+            flex-shrink: 0;
+            width: 100%;
+        }
+        @media (min-width: 640px) {
+            .credits-scroll { padding: 0 2rem 3rem; }
+        }
+        .credits-spacer {
+            height: 1rem;
+            flex-shrink: 0;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .credits-viewport {
+                overflow-y: auto;
+            }
+            .credits-track {
+                transform: none !important;
+            }
+        }
+        .credits-heading {
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            opacity: 0.55;
+            margin: 1.75rem 0 0.35rem;
+        }
+        .credits-scroll .credits-heading:first-of-type {
+            margin-top: 0.5rem;
+        }
+        .credits-title {
+            font-size: 1.35rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.25rem;
+        }
+        @media (min-width: 640px) {
+            .credits-title { font-size: 1.75rem; }
+        }
+        .credits-name {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.15rem;
+        }
+        .credits-role {
+            font-size: 0.7rem;
+            opacity: 0.65;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1.5rem;
+        }
+        .credits-the-end {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            margin: 2.5rem 0 1rem;
+            color: var(--accent-yellow);
+        }
+
+        /* Bug hunt */
+        .bug-spot {
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s ease, background-color 0.2s ease;
+        }
+        .bug-spot:hover {
+            outline: 1px dashed color-mix(in srgb, var(--accent-pink) 70%, transparent);
+            outline-offset: 2px;
+        }
+        .bug-spot.bug-found {
+            cursor: default;
+            outline: none !important;
+            animation: bug-squash 0.45s ease;
+        }
+        .bug-glitch {
+            display: inline-block;
+            position: relative;
+            vertical-align: baseline;
+        }
+        .bug-glitch .bug-glitch-label {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+        }
+        .bug-glitch:not(.bug-found)::before,
+        .bug-glitch:not(.bug-found)::after {
+            content: 'J@vαScr1pt';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.85;
+            pointer-events: none;
+        }
+        .bug-glitch:not(.bug-found)::before {
+            color: var(--accent-cyan);
+            clip-path: inset(0 0 55% 0);
+            transform: translateX(-2px);
+            animation: bug-glitch-cyan 2.2s infinite linear;
+        }
+        .bug-glitch:not(.bug-found)::after {
+            color: var(--accent-pink);
+            clip-path: inset(45% 0 0 0);
+            transform: translateX(2px);
+            animation: bug-glitch-pink 1.8s infinite linear reverse;
+        }
+        .bug-glitch:not(.bug-found) .bug-glitch-label {
+            animation: bug-glitch-flicker 3s infinite;
+        }
+        @keyframes bug-glitch-cyan {
+            0%, 90%, 100% { transform: translateX(-2px); clip-path: inset(0 0 55% 0); }
+            20% { transform: translateX(3px); clip-path: inset(8% 0 40% 0); }
+            40% { transform: translateX(-4px); clip-path: inset(20% 0 50% 0); }
+            60% { transform: translateX(2px); clip-path: inset(0 0 70% 0); }
+        }
+        @keyframes bug-glitch-pink {
+            0%, 88%, 100% { transform: translateX(2px); clip-path: inset(45% 0 0 0); }
+            25% { transform: translateX(-3px); clip-path: inset(55% 0 0 0); }
+            50% { transform: translateX(4px); clip-path: inset(35% 0 10% 0); }
+            75% { transform: translateX(-1px); clip-path: inset(60% 0 0 0); }
+        }
+        @keyframes bug-glitch-flicker {
+            0%, 94%, 100% { opacity: 1; transform: translate(0); }
+            95% { opacity: 0.65; transform: translate(-1px, 1px); }
+            96% { opacity: 1; transform: translate(2px, -1px); }
+            97% { opacity: 0.8; transform: translate(-2px, 0); }
+            98% { opacity: 1; transform: translate(0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .bug-glitch:not(.bug-found)::before,
+            .bug-glitch:not(.bug-found)::after,
+            .bug-glitch:not(.bug-found) .bug-glitch-label {
+                animation: none;
+            }
+            .bug-glitch:not(.bug-found)::before { transform: translateX(-2px); }
+            .bug-glitch:not(.bug-found)::after { transform: translateX(2px); }
+        }
+        @keyframes bug-squash {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.08); color: var(--accent-green); }
+            100% { transform: scale(1); }
+        }
+        #bug-hunt-hud {
+            position: fixed;
+            top: max(0.75rem, env(safe-area-inset-top));
+            right: 0.75rem;
+            z-index: 85;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            border: 2px solid var(--border);
+            background: var(--card);
+            color: var(--text);
+            padding: 0.35rem 0.55rem;
+            box-shadow: 4px 4px 0 0 var(--shadow);
+            opacity: 0.72;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        #bug-hunt-hud:hover { opacity: 1; }
+        #bug-hunt-hud.bug-hunt-done {
+            background: var(--accent-green);
+            color: var(--on-accent);
+            opacity: 1;
+        }
+        #bug-hunt-win {
+            background: color-mix(in srgb, var(--inverse) 88%, transparent);
+        }
+        #bug-hunt-win:not(.hidden) {
+            display: flex;
+        }
+        #confetti-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 410;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="relative overflow-hidden min-h-screen">
@@ -211,29 +829,31 @@
     </div>
 
     <!-- Mode Transition Overlay -->
-    <div id="mode-transition-overlay" class="fixed inset-0 z-[250] bg-[#00E5FF] flex flex-col items-center justify-center transform -translate-y-full border-y-8 border-black text-black pointer-events-none" style="transition: transform 0.4s cubic-bezier(0.8, 0, 0.2, 1);">
-        <div class="border-4 border-black bg-[#FFC900] p-6 sm:p-10 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] flex items-center gap-4 sm:gap-6 transform -rotate-2">
+    <div id="mode-transition-overlay" class="fixed inset-0 z-[250] bg-accent-cyan flex flex-col items-center justify-center transform -translate-y-full border-y-8 border-border text-on-accent pointer-events-none" style="transition: transform 0.4s cubic-bezier(0.8, 0, 0.2, 1);">
+        <div class="border-4 border-border bg-accent-yellow p-6 sm:p-10 shadow-brutal-xl flex items-center gap-4 sm:gap-6 transform -rotate-2">
             <i class="ph-bold ph-plugs-connected text-4xl sm:text-6xl animate-pulse"></i> 
             <span class="text-3xl sm:text-5xl md:text-7xl font-black uppercase tracking-tighter">Switching OS</span>
         </div>
-        <div class="absolute bottom-4 font-mono font-bold text-xs sm:text-sm uppercase tracking-widest bg-black text-white px-2 py-1">Executing System Override...</div>
+        <div class="absolute bottom-4 font-mono font-bold text-xs sm:text-sm uppercase tracking-widest bg-inverse text-inverseText px-2 py-1 border-2 border-border">Executing System Override...</div>
     </div>
 
     <!-- ========================================== -->
     <!-- STANDARD VIEW (Scrolling Web Mode)           -->
     <!-- ========================================== -->
     <div id="standard-view" class="h-screen overflow-y-auto overflow-x-hidden relative">
-        <div class="w-full bg-[#FFC900] border-b-4 border-border py-2 overflow-hidden relative z-50 flex items-center text-black">
+        <div class="w-full bg-accent-yellow border-b-4 border-border py-2 overflow-hidden relative z-50 flex items-center text-on-accent">
             <div class="animate-marquee flex items-center whitespace-nowrap gap-4 font-black uppercase text-xs sm:text-sm md:text-base">
                 <span>AVAILABLE FOR INTERNSHIPS</span> <span class="text-lg sm:text-xl">•</span>
-                <span>FULL-STACK SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
-                <span>JAVA</span> <span class="text-lg sm:text-xl">•</span>
+                <span>JUNIOR SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
                 <span>REACT</span> <span class="text-lg sm:text-xl">•</span>
+                <span>NEXT.JS</span> <span class="text-lg sm:text-xl">•</span>
+                <span>SUPABASE</span> <span class="text-lg sm:text-xl">•</span>
                 <span>SPRING BOOT</span> <span class="text-lg sm:text-xl">•</span>
                 <span>AVAILABLE FOR INTERNSHIPS</span> <span class="text-lg sm:text-xl">•</span>
-                <span>FULL-STACK SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
-                <span>JAVA</span> <span class="text-lg sm:text-xl">•</span>
+                <span>JUNIOR SOFTWARE ENGINEER</span> <span class="text-lg sm:text-xl">•</span>
                 <span>REACT</span> <span class="text-lg sm:text-xl">•</span>
+                <span>NEXT.JS</span> <span class="text-lg sm:text-xl">•</span>
+                <span>SUPABASE</span> <span class="text-lg sm:text-xl">•</span>
                 <span>SPRING BOOT</span> <span class="text-lg sm:text-xl">•</span>
             </div>
         </div>
@@ -241,44 +861,65 @@
         <div id="main-content" class="pb-32 pt-6 sm:pt-8 opacity-0">
             <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-6">
                 
-                <div class="md:col-span-8 flex flex-col justify-between border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FF90E8] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
-                    <div class="flex flex-col sm:flex-row gap-5 sm:gap-6 items-start">
-                        <div class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 shrink-0 border-4 border-border bg-card overflow-hidden shadow-brutal-sm relative">
-                            <img src="./avatar.png" alt="Monther Ibrahem" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); document.getElementById('avatar-fallback').classList.remove('hidden');" />
-                            <div id="avatar-fallback" class="hidden w-full h-full flex items-center justify-center bg-[#00E5FF] text-black font-black text-4xl sm:text-6xl">MI</div>
+                <div id="section-hero" class="md:col-span-8 magazine-cover border-4 border-border shadow-brutal-md transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="magazine-masthead">
+                        <div class="flex flex-wrap justify-between items-end gap-x-3 gap-y-1">
+                            <span class="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter leading-none">DEV WEEKLY</span>
+                            <span class="font-mono text-[10px] sm:text-xs font-bold uppercase opacity-80">Issue 01 · May 2026</span>
                         </div>
-                        
-                        <div class="w-full">
-                            <div class="flex flex-wrap gap-2 mb-3 sm:mb-4">
-                                <div class="inline-block bg-inverse text-inverseText px-3 py-1 font-bold text-[10px] sm:text-xs uppercase border-2 border-border transform -rotate-1">
-                                    Final-Year BSc Candidate
-                                </div>
-                                <!-- Desktop-only OS Toggle -->
-                                <button onclick="setAppMode('os')" class="hidden md:inline-flex items-center gap-1 bg-[#FFC900] text-black px-3 py-1 font-bold text-[10px] sm:text-xs uppercase border-2 border-border transition-transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-brutal-sm">
-                                    <i class="ph-bold ph-desktop"></i> Switch to OS Mode
-                                </button>
-                            </div>
-                            <h1 class="text-4xl sm:text-5xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-2 break-words">
-                                Monther <br/> <span class="sketch-underline text-black">Ibrahem</span>
-                            </h1>
-                            <p class="text-lg sm:text-xl font-bold mt-4">Full-Stack Software Engineer</p>
-                            <p class="text-sm sm:text-base font-medium text-black/90 mt-2 max-w-xl">
-                                I build responsive web apps with Java, Spring Boot, and React. 
-                                Obsessed with clean architecture, practical UI/UX, and leveraging AI APIs for smarter workflows.
-                            </p>
+                        <div class="flex flex-wrap justify-between items-center gap-2 mt-1.5 text-[10px] sm:text-xs font-bold uppercase">
+                            <span class="bg-accent-yellow text-on-accent border-2 border-[var(--inverse-border)] px-2 py-0.5">Grad Edition</span>
+                            <span class="font-mono opacity-45 hidden sm:inline">Portfolio Vol. 1 · Free</span>
                         </div>
                     </div>
-                    
-                    <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-stretch sm:items-center w-full">
-                        <a href="mailto:mndr6702@gmail.com" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-inverse text-inverseText text-sm sm:text-base">
-                            <i class="ph ph-envelope text-lg sm:text-xl"></i> Hire Me
-                        </a>
-                        <a href="./Resume.pdf" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-[#00E5FF] text-black text-sm sm:text-base">
-                            <i class="ph ph-download-simple text-lg sm:text-xl"></i> Resume
-                        </a>
-                        <button class="theme-toggle flex-1 sm:flex-none sm:ml-auto inline-flex items-center justify-center gap-2 border-4 border-border px-4 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-inverse text-inverseText cursor-pointer text-sm sm:text-base">
-                            <i class="theme-icon ph-fill ph-moon text-lg sm:text-xl"></i> <span>Theme</span>
-                        </button>
+
+                    <div class="p-4 sm:p-6">
+                        <div class="grid sm:grid-cols-[minmax(120px,32%)_1fr] gap-4 sm:gap-6 items-start">
+                            <div class="magazine-cover-photo mx-auto sm:mx-0 w-full max-w-[200px] sm:max-w-none">
+                                <span class="magazine-cover-sticker">Cover Star</span>
+                                <img src="./avatar.png" alt="Monther Ibrahem — cover" class="w-full h-full object-cover" onerror="this.classList.add('hidden'); document.getElementById('avatar-fallback').classList.remove('hidden');" />
+                                <div id="avatar-fallback" class="hidden w-full h-full flex items-center justify-center bg-accent-cyan text-on-accent font-black text-4xl sm:text-6xl">MI</div>
+                            </div>
+
+                            <div class="min-w-0">
+                                <blockquote class="magazine-pullquote">
+                                    "The junior engineer who ships before he graduates."
+                                </blockquote>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <div class="inline-block bg-accent-pink text-on-accent px-3 py-1 font-bold text-[10px] sm:text-xs uppercase border-2 border-border transform -rotate-1">
+                                        Graduating July 2026
+                                    </div>
+                                    <button onclick="setAppMode('os')" class="hidden md:inline-flex items-center gap-1 bg-accent-cyan text-on-accent px-3 py-1 font-bold text-[10px] sm:text-xs uppercase border-2 border-border transition-transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-brutal-sm">
+                                        <i class="ph-bold ph-desktop"></i> OS Mode
+                                    </button>
+                                </div>
+                                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter leading-[0.95] mb-2 break-words">
+                                    Monther <span class="sketch-underline">Ibrahem</span>
+                                </h1>
+                                <p class="text-base sm:text-lg font-black uppercase border-b-2 border-border pb-2 mb-3">Junior Software Engineer</p>
+                                <p class="text-xs sm:text-sm font-medium opacity-85 max-w-xl leading-relaxed">
+                                    Full-stack developer integrating AI APIs into web apps. React, PostgreSQL/Supabase, and Spring Boot — from internship and freelance client work to live deployments on Vercel and Firebase.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 items-stretch sm:items-center mt-5 sm:mt-6 pt-4 border-t-4 border-border">
+                            <div class="magazine-barcode shrink-0 hidden sm:flex mr-auto">
+                                <div class="magazine-barcode-lines" aria-hidden="true">
+                                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                                </div>
+                                <span>MI-2026-001</span>
+                            </div>
+                            <a href="mailto:mndr6702@gmail.com" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 border-4 border-border px-5 sm:px-6 py-2.5 sm:py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-accent-pink text-on-accent text-sm sm:text-base">
+                                <i class="ph ph-envelope text-lg sm:text-xl"></i> Hire Me
+                            </a>
+                            <a href="./Resume.pdf" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 border-4 border-border px-5 sm:px-6 py-2.5 sm:py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-accent-yellow text-on-accent text-sm sm:text-base">
+                                <i class="ph ph-download-simple text-lg sm:text-xl"></i> Resume
+                            </a>
+                            <button class="theme-toggle flex-1 sm:flex-none inline-flex items-center justify-center gap-2 border-4 border-border px-4 py-2.5 sm:py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-inverse text-inverseText cursor-pointer text-sm sm:text-base">
+                                <i class="theme-icon ph-fill ph-moon text-lg sm:text-xl"></i> <span>Theme</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -286,99 +927,253 @@
                     <div class="flex-1 flex flex-col justify-center items-center text-center border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg text-text">
                         <div class="days-coding-counter text-4xl sm:text-5xl font-black mb-2">0</div>
                         <div class="font-bold uppercase text-xs sm:text-sm">Days Coding Journey</div>
-                        <div class="mt-4 text-[10px] sm:text-xs font-bold bg-[#121212] text-[#00E5FF] p-2 w-full text-center border-2 border-border font-mono break-all">
+                        <div class="mt-4 text-[10px] sm:text-xs font-bold code-snippet-box p-2 w-full text-center border-2 font-mono break-all">
                             &gt; init("2022-10-01");
                         </div>
                     </div>
                     
-                    <div id="connect-card" class="border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-inverse transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg text-inverseText">
+                    <div id="connect-card" class="border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-inverse text-inverseText">
                         <h3 class="font-black uppercase mb-4 text-base sm:text-lg border-b-4 border-border pb-2 text-inverseText">Connect</h3>
-                        <div class="flex flex-col gap-3">
-                            <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform text-inverseText">
-                                <i class="ph-fill ph-github-logo text-xl sm:text-2xl text-[#FFC900]"></i> GitHub Profile
+                        <div class="flex flex-col gap-2">
+                            <a href="tel:+972503019542" class="connect-link flex items-center gap-3 font-bold text-sm sm:text-base px-2 py-2 -mx-2 border-2 border-transparent hover:border-inverseText hover:bg-inverseText/10 text-inverseText">
+                                <i class="ph-fill ph-phone text-xl sm:text-2xl text-accent-yellow shrink-0"></i> +972 50-301-9542
                             </a>
-                            <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform text-inverseText">
-                                <i class="ph-fill ph-linkedin-logo text-xl sm:text-2xl text-[#00E5FF]"></i> LinkedIn Network
+                            <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" class="connect-link flex items-center gap-3 font-bold text-sm sm:text-base px-2 py-2 -mx-2 border-2 border-transparent hover:border-inverseText hover:bg-inverseText/10 text-inverseText">
+                                <i class="ph-fill ph-github-logo text-xl sm:text-2xl text-accent-yellow shrink-0"></i> GitHub Profile
                             </a>
-                            <a href="mailto:mndr6702@gmail.com" class="flex items-center gap-3 font-bold text-sm sm:text-base hover:underline hover:translate-x-2 transition-transform text-inverseText">
-                                <i class="ph-fill ph-envelope text-xl sm:text-2xl text-[#FF90E8]"></i> Email Me
+                            <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" rel="noopener noreferrer" class="connect-link flex items-center gap-3 font-bold text-sm sm:text-base px-2 py-2 -mx-2 border-2 border-transparent hover:border-inverseText hover:bg-inverseText/10 text-inverseText">
+                                <i class="ph-fill ph-linkedin-logo text-xl sm:text-2xl text-accent-cyan shrink-0"></i> LinkedIn Network
+                            </a>
+                            <a href="mailto:mndr6702@gmail.com" class="connect-link flex items-center gap-3 font-bold text-sm sm:text-base px-2 py-2 -mx-2 border-2 border-transparent hover:border-inverseText hover:bg-inverseText/10 text-inverseText">
+                                <i class="ph-fill ph-envelope text-xl sm:text-2xl text-accent-pink shrink-0"></i> Email Me
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="md:col-span-12 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#00E5FF] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="md:col-span-12 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-accent-cyan text-on-accent transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
                     <div class="flex flex-col md:flex-row gap-5 sm:gap-6 justify-between">
                         <h2 class="text-2xl sm:text-3xl font-black uppercase shrink-0">Tech Arsenal</h2>
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+                        <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 w-full">
                             <div class="flex flex-col gap-2">
-                                <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Backend</span>
+                                <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Languages</span>
                                 <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Java</span>
-                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Spring Boot</span>
-                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Node.js / Express</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">C</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">JavaScript</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">TypeScript</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Dart</span>
                             </div>
                             <div class="flex flex-col gap-2">
                                 <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Frontend</span>
-                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">React 18</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">React</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Next.js</span>
                                 <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Angular</span>
-                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">JavaFX</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Vite</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left bug-spot" data-bug-id="1" data-bug-fix="Tailwind">Tailwinds</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Framer Motion</span>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Data</span>
+                                <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Backend & Mobile</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Node</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Express</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Spring Boot</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Flutter</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Firebase Functions</span>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Data & Cloud</span>
                                 <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">PostgreSQL</span>
-                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">MySQL</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Supabase</span>
                                 <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Firebase</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">MySQL</span>
                             </div>
                             <div class="flex flex-col gap-2">
                                 <span class="font-black uppercase border-b-2 border-border pb-1 text-xs sm:text-sm">Tools</span>
-                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">AI Integrations</span>
-                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Google Cloud</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Git</span>
                                 <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Figma</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Vercel</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text text-center sm:text-left">Firebase Hosting</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="md:col-span-6 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <!-- Live Dev Status (system readout) -->
+                <div id="section-status" class="status-panel md:col-span-12 border-4 border-border shadow-brutal-md font-mono text-[10px] sm:text-xs transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="status-panel-header flex items-center justify-between border-b-4 px-3 py-1.5 font-bold uppercase gap-2">
+                        <span class="flex items-center gap-2 min-w-0 truncate"><span class="status-dot w-2 h-2 border inline-block shrink-0"></span> <span class="truncate">status.sys</span></span>
+                        <span id="status-clock" class="status-clock-text text-[10px] sm:text-xs shrink-0">--:--:--</span>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4">
+                        <div class="status-grid-cell p-3 sm:p-4 md:border-r-4">
+                            <div class="status-label font-bold uppercase mb-1">State</div>
+                            <div class="status-value font-black uppercase text-xs sm:text-sm flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                                <span class="status-progress-track inline-block w-full max-w-[80px] h-2 border overflow-hidden shrink-0"><span class="status-progress-fill block h-full w-[78%]"></span></span>
+                                <span class="bug-spot" data-bug-id="2" data-bug-fix="SHIPPING">SHIPPONG</span>
+                            </div>
+                        </div>
+                        <div class="status-grid-cell p-3 sm:p-4 md:border-r-4">
+                            <div class="status-label font-bold uppercase mb-1">Now</div>
+                            <div id="status-now" class="status-value font-bold text-xs sm:text-sm leading-tight">OLGE Foundation tickets</div>
+                        </div>
+                        <div class="status-grid-cell p-3 sm:p-4 md:border-r-4">
+                            <div class="status-label font-bold uppercase mb-1">Deploys</div>
+                            <div class="font-black text-xl sm:text-3xl status-deploy-num"><span id="status-deploy-count">5</span><span class="status-meta text-[10px] sm:text-sm ml-1">live</span></div>
+                        </div>
+                        <div class="status-grid-cell p-3 sm:p-4">
+                            <div class="status-label font-bold uppercase mb-1">Uptime</div>
+                            <div class="status-value font-bold text-xs sm:text-sm"><span class="days-coding-counter">0</span> days<span class="block text-[10px] status-meta mt-0.5">since init("2022-10-01")</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Open Source Stats (GitHub API) -->
+                <div id="section-oss-stats" class="status-panel md:col-span-12 border-4 border-border shadow-brutal-md font-mono text-[10px] sm:text-xs transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="status-panel-header flex items-center justify-between border-b-4 px-3 py-1.5 font-bold uppercase gap-2">
+                        <span class="flex items-center gap-2 min-w-0 truncate"><i class="ph-bold ph-github-logo shrink-0"></i> <span class="truncate">open source --stats</span></span>
+                        <span class="font-mono text-[10px] font-bold uppercase badge-terminal px-2 py-0.5 shrink-0">--user=MontherIB-SWE</span>
+                    </div>
+                    <p class="grades-cmd px-3 sm:px-4 pt-3 pb-1 border-b border-border/20">&gt; curl -s api.github.com/users/MontherIB-SWE/repos | jq '.stats'</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4">
+                        <div class="status-grid-cell p-3 sm:p-4 md:border-r-4">
+                            <div class="status-label font-bold uppercase mb-1">Repos</div>
+                            <div class="font-black text-xl sm:text-3xl status-deploy-num"><span id="oss-repo-count">…</span></div>
+                        </div>
+                        <div class="status-grid-cell p-3 sm:p-4 md:border-r-4">
+                            <div class="status-label font-bold uppercase mb-1">Stars</div>
+                            <div class="font-black text-xl sm:text-3xl status-deploy-num"><span id="oss-star-count">…</span></div>
+                        </div>
+                        <div class="status-grid-cell p-3 sm:p-4 md:border-r-4">
+                            <div class="status-label font-bold uppercase mb-1">Last Push</div>
+                            <div id="oss-last-push" class="status-value font-bold text-xs sm:text-sm leading-tight">fetching…</div>
+                        </div>
+                        <div class="status-grid-cell p-3 sm:p-4">
+                            <div class="status-label font-bold uppercase mb-1">Top Lang</div>
+                            <div id="oss-top-lang" class="status-value font-black uppercase text-xs sm:text-base">…</div>
+                        </div>
+                    </div>
+                    <div class="border-t-4 border-border px-3 sm:px-4 py-3 sm:py-4">
+                        <div class="status-label font-bold uppercase mb-2">Language Mix</div>
+                        <div id="oss-lang-bars" class="space-y-1">
+                            <div class="status-meta text-[10px]">aggregating repo languages…</div>
+                        </div>
+                    </div>
+                    <div class="border-t-4 border-border px-3 sm:px-4 py-2 font-mono text-[10px] flex flex-wrap items-center justify-between gap-2" style="color: var(--terminal-accent); background: var(--terminal-footer-bg);">
+                        <span>&gt; <span id="oss-sync-status">connecting to GitHub API…</span></span>
+                        <a id="oss-profile-link" href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" class="oss-stat-link font-bold uppercase shrink-0">view profile →</a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-12 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
                     <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 border-b-4 border-border pb-2">
                         <i class="ph ph-terminal-window text-2xl sm:text-[28px] text-text"></i>
                         <h2 class="text-xl sm:text-2xl font-black uppercase text-text">Experience</h2>
                     </div>
-                    <div>
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
-                            <h3 class="font-bold text-base sm:text-lg text-text">Software Dev Intern</h3>
-                            <span class="text-[10px] sm:text-xs font-bold bg-[#FFC900] text-black border-2 border-border px-2 py-1 uppercase self-start">Feb '25 - Jun '25</span>
+                    <div class="flex flex-col gap-8">
+                        <div class="border-l-4 border-accent-yellow pl-4 sm:pl-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
+                                <h3 class="font-bold text-base sm:text-lg text-text">Software Engineer</h3>
+                                <span class="text-[10px] sm:text-xs font-bold bg-accent-yellow text-on-accent border-2 border-border px-2 py-1 uppercase self-start">Apr '26 - Present</span>
+                            </div>
+                            <p class="font-black uppercase text-xs sm:text-sm mb-3 text-text">OLGE Foundation • Remote</p>
+                            <ul class="text-xs sm:text-sm font-medium mb-4 text-text list-disc list-inside space-y-1">
+                                <li>Build and maintain web applications using Next.js, React, and Supabase (PostgreSQL), deployed on Vercel</li>
+                                <li>Implement features and fixes from tickets; participate in code reviews, planning, and QA</li>
+                                <li>Write tested, documented code and collaborate on technical planning and timely delivery</li>
+                            </ul>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Next.js</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">React</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Supabase</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Vercel</span>
+                            </div>
                         </div>
-                        <p class="font-black uppercase text-xs sm:text-sm mb-4 text-text">Ceeras IT Services • Remote</p>
-                        <p class="text-xs sm:text-sm font-medium mb-4 text-text">
-                            Designed normalized relational schemas and implemented backend logic using Java & Spring Boot for secure user-detail retrieval. Validated REST APIs via Postman.
-                        </p>
-                        <a href="./WXZ70399 - Monder Mohammed Ibrahem .pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mb-4 border-2 border-border px-3 py-1 text-[10px] sm:text-xs font-bold uppercase bg-[#00E5FF] text-black hover:bg-[#FFC900] transition-colors">
-                            <i class="ph-fill ph-seal-check text-sm"></i> View Internship Certificate
-                        </a>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Java</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Spring Boot</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">PostgreSQL</span>
+                        <div class="border-l-4 border-accent-pink pl-4 sm:pl-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
+                                <h3 class="font-bold text-base sm:text-lg text-text">Freelance Developer</h3>
+                                <span class="text-[10px] sm:text-xs font-bold bg-accent-pink text-on-accent border-2 border-border px-2 py-1 uppercase self-start">Jun '25 - Present</span>
+                            </div>
+                            <p class="font-black uppercase text-xs sm:text-sm mb-3 text-text">Self-Employed • Remote</p>
+                            <ul class="text-xs sm:text-sm font-medium mb-4 text-text list-disc list-inside space-y-1">
+                                <li><strong>AJ Motors:</strong> Live car rental platform with React 19, Vite, Firebase, DeepL multi-language, and WhatsApp booking</li>
+                                <li><strong>Baby Fashion Store:</strong> Live e-commerce with cart/checkout, inventory tracking, and Stripe-ready payment architecture</li>
+                            </ul>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">React</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Firebase</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Vite</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Tailwind</span>
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-accent-cyan pl-4 sm:pl-6">
+                            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
+                                <h3 class="font-bold text-base sm:text-lg text-text">Software Developer Intern</h3>
+                                <span class="text-[10px] sm:text-xs font-bold bg-accent-cyan text-on-accent border-2 border-border px-2 py-1 uppercase self-start">Feb '25 - Jun '25</span>
+                            </div>
+                            <p class="font-black uppercase text-xs sm:text-sm mb-3 text-text">Ceeras IT Services • Remote</p>
+                            <ul class="text-xs sm:text-sm font-medium mb-4 text-text list-disc list-inside space-y-1">
+                                <li>Built backend services using Java Spring Boot with JPA for database integration and entity management</li>
+                                <li>Built and consumed REST APIs between backend services and client applications</li>
+                                <li>Worked with a remote team on integration, testing, and on-time feature delivery</li>
+                            </ul>
+                            <a href="./WXZ70399 - Monder Mohammed Ibrahem .pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mb-4 border-2 border-border px-3 py-1 text-[10px] sm:text-xs font-bold uppercase bg-accent-yellow text-on-accent hover:bg-accent-pink transition-colors">
+                                <i class="ph-fill ph-seal-check text-sm"></i> View Internship Certificate
+                            </a>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Java</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Spring Boot</span>
+                                <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">REST APIs</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="md:col-span-6 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FFC900] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="md:col-span-12 border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-accent-yellow text-on-accent transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
                     <div class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 border-b-4 border-border pb-2">
-                        <i class="ph ph-file-text text-2xl sm:text-[28px] text-black"></i>
-                        <h2 class="text-xl sm:text-2xl font-black uppercase text-black">Education</h2>
+                        <i class="ph ph-file-text text-2xl sm:text-[28px] text-on-accent"></i>
+                        <h2 class="text-xl sm:text-2xl font-black uppercase text-on-accent">Education</h2>
                     </div>
                     <div>
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
-                            <h3 class="font-bold text-base sm:text-lg text-black">BSc Software Engineering</h3>
-                            <span class="text-[10px] sm:text-xs font-bold bg-card text-text border-2 border-border px-2 py-1 uppercase self-start">Exp. Oct '26</span>
+                            <h3 class="font-bold text-base sm:text-lg text-on-accent">BSc Software Engineering</h3>
+                            <span class="text-[10px] sm:text-xs font-bold chip-surface border-2 border-border px-2 py-1 uppercase self-start">Oct '22 - Jul '26</span>
                         </div>
-                        <p class="font-black uppercase text-xs sm:text-sm mb-4 text-black">Kinneret College</p>
-                        <p class="text-xs sm:text-sm font-medium text-black">
-                            Focusing on core software architecture, data structures, and algorithms. <br/><br/>
-                            <strong>Relevant Coursework:</strong> Object-Oriented Programming, Data Structures & Algorithms, Systems Programming.
+                        <p class="font-black uppercase text-xs sm:text-sm mb-3 text-on-accent">Kinneret College</p>
+                        <p class="text-xs sm:text-sm font-medium text-on-accent mb-4">
+                            B.Sc. in Software Engineering, graduating July 2026.
                         </p>
+
+                        <div id="section-coursework" class="grades-terminal border-4 border-border overflow-hidden shadow-brutal-sm">
+                            <div class="grades-terminal-header flex items-center justify-between border-b-4 px-3 py-1.5 font-mono font-bold uppercase text-[10px] sm:text-xs gap-2">
+                                <span class="flex items-center gap-2 min-w-0 truncate"><i class="ph-bold ph-table shrink-0"></i> coursework --grades</span>
+                                <span class="font-mono text-[10px] font-bold uppercase badge-terminal px-2 py-0.5 shrink-0">--student=MI</span>
+                            </div>
+                            <div class="p-3 sm:p-4 font-mono text-[10px] sm:text-xs overflow-x-auto">
+                                <p class="grades-cmd mb-3 whitespace-nowrap sm:whitespace-normal">&gt; coursework --grades --sem=all --format=table</p>
+                                <table class="grades-table min-w-[280px]">
+                                    <thead>
+                                        <tr>
+                                            <th>Course</th>
+                                            <th>Code</th>
+                                            <th class="text-right">Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="grades-table-body">
+                                        <tr><td>Intro to Computer Science</td><td class="grades-code">CS101</td><td class="grades-score grades-score-a">100</td></tr>
+                                        <tr><td>Operating Systems</td><td class="grades-code">OS201</td><td class="grades-score grades-score-a">95</td></tr>
+                                        <tr><td>Systems Programming</td><td class="grades-code">SYSPROG301</td><td class="grades-score grades-score-b">92</td></tr>
+                                        <tr><td>Systems Integration &amp; Software</td><td class="grades-code">SIS210</td><td class="grades-score grades-score-b">90</td></tr>
+                                        <tr><td>Object-Oriented Programming</td><td class="grades-code">OOP220</td><td class="grades-score grades-score-b">90</td></tr>
+                                        <tr><td>Computer Networks</td><td class="grades-code">NET340</td><td class="grades-score grades-score-c">84</td></tr>
+                                    </tbody>
+                                </table>
+                                <div class="grades-summary mt-3 pt-2 border-t-2 font-bold uppercase flex flex-wrap gap-x-4 gap-y-1 text-[9px] sm:text-[10px]">
+                                    <span>avg: <strong id="grades-avg">91.8</strong></span>
+                                    <span>entries: <strong>6</strong></span>
+                                    <span>status: <strong class="grades-pass">PASS</strong></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -390,7 +1185,7 @@
                     <div class="flex-1">
                         <h3 class="text-xl sm:text-2xl font-black uppercase mb-2 text-text">WebChat</h3>
                         <p class="text-xs sm:text-sm font-medium mb-4 text-text">
-                            Mobile-first real-time anonymous chat application. Features dynamic usernames, emoji reactions, active-user celebrations, and slash commands.
+                            React 18/Firebase real-time chat with slash commands, emoji reactions, and a mobile-first UI.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">React 18</span>
@@ -398,53 +1193,56 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-4 border-t-4 border-border pt-4">
-                        <a href="https://webchat-1185b.web.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:text-[#00E5FF] transition-colors text-text">
+                        <a href="https://webchat-1185b.web.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm link-hover-cyan transition-colors text-text">
                             <i class="ph-bold ph-arrow-right text-base text-inherit"></i> Live App
                         </a>
-                        <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:text-[#FF90E8] transition-colors text-text">
+                        <a href="https://github.com/MontherIB-SWE/WebChat" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm link-hover-pink transition-colors text-text">
                             <i class="ph-fill ph-github-logo text-base text-inherit"></i> Source
                         </a>
                     </div>
                 </div>
 
-                <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FF90E8] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-accent-pink text-on-accent transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
                     <div class="flex-1">
-                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2 text-black">AJ Motors (Client)</h3>
+                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2 text-on-accent">AJ Motors (Client)</h3>
                         <div class="inline-flex items-center gap-2 bg-inverse text-inverseText px-2 py-1 text-[10px] sm:text-xs font-bold uppercase mb-3 border-2 border-border">
                             <i class="ph-fill ph-lock-key text-xs"></i> Private Repo
                         </div>
-                        <p class="text-xs sm:text-sm font-medium mb-4 text-black">
-                            Full-stack car rental platform with a public booking system and admin dashboard. Features vehicle filtering, WhatsApp booking integration, DeepL multi-lang.
+                        <p class="text-xs sm:text-sm font-medium mb-4 text-on-accent">
+                            Full-stack car rental platform with admin dashboard and analytics. React 19, Vite, Tailwind, Firebase — features vehicle filtering, WhatsApp booking, and DeepL multi-language support.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">React + Vite</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">React 19</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Vite</span>
                             <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Firebase</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Tailwind</span>
                         </div>
                     </div>
                     <div class="flex gap-4 border-t-4 border-border pt-4">
-                        <a href="https://aj-motors.site/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:opacity-70 transition-opacity text-black">
+                        <a href="https://aj-motors.site/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:opacity-70 transition-opacity text-on-accent">
                             <i class="ph-bold ph-arrow-right text-base text-inherit"></i> Live Site
                         </a>
                     </div>
                 </div>
 
-                <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#FFC900] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-accent-yellow text-on-accent transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
                     <div class="flex-1">
-                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2 text-black">Baby Fashion (Client)</h3>
+                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2 text-on-accent">Baby Fashion (Client)</h3>
                         <div class="inline-flex items-center gap-2 bg-inverse text-inverseText px-2 py-1 text-[10px] sm:text-xs font-bold uppercase mb-3 border-2 border-border">
-                            <i class="ph-fill ph-lock-key text-xs"></i> Private Repo (or Public if needed)
+                            <i class="ph-fill ph-lock-key text-xs"></i> Private Repo
                         </div>
-                        <p class="text-xs sm:text-sm font-medium mb-4 text-black">
-                            Full-stack baby fashion e-commerce platform with a customer storefront and admin dashboard. Includes product filtering, variant stock management, secure server-side checkout logic, and multilingual support (EN/AR/HE).
+                        <p class="text-xs sm:text-sm font-medium mb-4 text-on-accent">
+                            Custom e-commerce platform with full cart/checkout flow, order management, inventory tracking, Framer Motion animations, and Stripe-ready payment architecture.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">React + Vite</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">React</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Vite</span>
                             <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Firebase</span>
-                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Cloud Functions</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Framer Motion</span>
                         </div>
                     </div>
                     <div class="flex gap-4 border-t-4 border-border pt-4">
-                        <a href="https://baby-fashion.site/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:opacity-70 transition-opacity text-black">
+                        <a href="https://baby-fashion.site/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:opacity-70 transition-opacity text-on-accent">
                             <i class="ph-bold ph-arrow-right text-base text-inherit"></i> Live Site
                         </a>
                     </div>
@@ -452,9 +1250,9 @@
 
                 <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-card text-text transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
                     <div class="flex-1">
-                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2 text-text">AI Budget Manager</h3>
+                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2 text-text">AI Budget App</h3>
                         <p class="text-xs sm:text-sm font-medium mb-4 text-text">
-                            Full-stack financial dashboard for tracking transactions, analyzing income vs expenses, and generating AI-powered financial prompts based on user spending habits.
+                            Angular + Express + PostgreSQL financial dashboard with DeepSeek AI insights, transaction tracking, and secure auth.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-alt text-text">Angular 19</span>
@@ -463,45 +1261,124 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap gap-4 border-t-4 border-border pt-4">
-                        <a href="https://budget-manager-murex.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:text-[#00E5FF] transition-colors text-text">
+                        <a href="https://budget-manager-murex.vercel.app/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm link-hover-cyan transition-colors text-text">
                             <i class="ph-bold ph-arrow-right text-base text-inherit"></i> Live App
                         </a>
-                        <a href="https://github.com/MontherIB-SWE/budget_manager" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm hover:text-[#FF90E8] transition-colors text-text">
+                        <a href="https://github.com/MontherIB-SWE/budget_manager" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1 font-bold text-xs sm:text-sm link-hover-pink transition-colors text-text">
                             <i class="ph-fill ph-github-logo text-base text-inherit"></i> Source
                         </a>
                     </div>
                 </div>
 
-                <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-[#00E5FF] text-black transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                <div class="md:col-span-6 flex flex-col border-4 border-border shadow-brutal-md p-5 sm:p-6 bg-accent-cyan text-on-accent transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
                     <div class="flex-1">
-                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2 text-black">Java Logic Games</h3>
-                        <p class="text-xs sm:text-sm font-medium mb-4 text-black">
-                            Desktop implementations of classic games showcasing strong object-oriented design and complex state/grid logic.
+                        <h3 class="text-xl sm:text-2xl font-black uppercase mb-2 text-on-accent">Java Logic Games</h3>
+                        <p class="text-xs sm:text-sm font-medium mb-4 text-on-accent">
+                            Chess and Minesweeper in JavaFX — desktop games showcasing OOP design and MVC architecture with complex state/grid logic.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">Java</span>
                             <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">JavaFX</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">OOP</span>
+                            <span class="border-2 border-border px-2 py-1 text-[10px] sm:text-xs font-bold uppercase bg-card text-text">MVC</span>
                         </div>
                     </div>
                     <div class="flex flex-col gap-3 border-t-4 border-border pt-4">
-                        <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:opacity-70 transition-opacity text-black">
+                        <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:opacity-70 transition-opacity text-on-accent">
                             <i class="ph-fill ph-game-controller text-base text-inherit"></i> Chess Repo
                         </a>
-                        <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:opacity-70 transition-opacity text-black">
+                        <a href="https://github.com/MontherIB-SWE/minesweeper" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 font-bold text-xs sm:text-sm hover:opacity-70 transition-opacity text-on-accent">
                             <i class="ph-fill ph-game-controller text-base text-inherit"></i> Minesweeper
                         </a>
                     </div>
                 </div>
 
+                <!-- Build Manifesto -->
+                <div id="section-manifesto" class="md:col-span-12 border-4 border-border shadow-brutal-md p-4 sm:p-6 bg-accent-pink text-on-accent transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5 border-b-4 border-border pb-4">
+                        <div>
+                            <h2 class="text-2xl sm:text-3xl font-black uppercase flex items-center gap-2"><i class="ph-bold ph-quotes"></i> Build Manifesto</h2>
+                            <p class="font-mono text-[10px] sm:text-xs font-bold uppercase mt-1 text-on-accent-muted">unpopular opinions i ship by</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button type="button" id="manifesto-prev" class="manifesto-nav-btn border-4 border-border w-10 h-10 flex items-center justify-center font-black chip-surface hover:bg-accent-yellow hover:text-on-accent shadow-brutal-sm active:translate-x-0.5 active:translate-y-0.5 active:shadow-none" aria-label="Previous manifesto">&lt;</button>
+                            <span id="manifesto-counter" class="font-mono text-xs font-bold border-2 border-border px-2 py-1 chip-surface">01 / 05</span>
+                            <button type="button" id="manifesto-next" class="manifesto-nav-btn border-4 border-border w-10 h-10 flex items-center justify-center font-black chip-surface hover:bg-accent-yellow hover:text-on-accent shadow-brutal-sm active:translate-x-0.5 active:translate-y-0.5 active:shadow-none" aria-label="Next manifesto">&gt;</button>
+                        </div>
+                    </div>
+                    <div class="relative min-h-[100px] sm:min-h-[80px] overflow-hidden">
+                        <blockquote id="manifesto-quote" class="manifesto-card text-xl sm:text-2xl md:text-3xl font-black uppercase leading-snug tracking-tight">
+                            "If it's not deployed, it didn't happen."
+                        </blockquote>
+                    </div>
+                    <div id="manifesto-dots" class="flex gap-2 mt-4"></div>
+                </div>
+
+                <!-- Movie Credits Roll -->
+                <div id="section-credits" class="md:col-span-12 credits-wrap border-4 border-border shadow-brutal-md overflow-hidden">
+                    <div class="flex items-center justify-between border-b-4 border-border bg-accent-yellow text-on-accent px-3 sm:px-4 py-2 font-black uppercase text-xs sm:text-sm">
+                        <span class="flex items-center gap-2"><i class="ph-bold ph-film-strip"></i> Roll Credits</span>
+                        <span class="font-mono text-[10px] font-bold opacity-70">hover to pause</span>
+                    </div>
+                    <div class="credits-viewport h-[220px] sm:h-[280px] md:h-[320px]" aria-label="Scrolling credits — hover to pause">
+                        <div class="credits-track" id="credits-track">
+                            <div class="credits-scroll" id="credits-scroll-primary">
+                            <div class="credits-spacer" aria-hidden="true"></div>
+                            <p class="credits-heading">Dev Weekly Presents</p>
+                            <p class="credits-title">Monther Ibrahem</p>
+                            <p class="credits-role">Portfolio · Issue 01</p>
+
+                            <p class="credits-heading">Starring</p>
+                            <p class="credits-name">Monther Ibrahem</p>
+                            <p class="credits-role">as The Junior Software Engineer</p>
+
+                            <p class="credits-heading">Also Featuring</p>
+                            <p class="credits-name">React · Next.js · Supabase</p>
+                            <p class="credits-name">Spring Boot · Firebase · PostgreSQL</p>
+                            <p class="credits-role">with special appearances by DeepSeek &amp; DeepL</p>
+
+                            <p class="credits-heading">Production</p>
+                            <p class="credits-name">Written &amp; Directed by</p>
+                            <p class="credits-role">Monther Ibrahem</p>
+                            <p class="credits-name">Design &amp; Code</p>
+                            <p class="credits-role">Monther Ibrahem</p>
+
+                            <p class="credits-heading">Built With</p>
+                            <p class="credits-name">HTML · CSS · <span class="bug-spot bug-glitch" data-bug-id="3" data-bug-type="glitch" data-bug-fix="JavaScript"><span class="bug-glitch-label">J@vαScr1pt</span></span></p>
+                            <p class="credits-name">Tailwind CSS · Phosphor Icons</p>
+                            <p class="credits-role">Inter &amp; JetBrains Mono</p>
+
+                            <p class="credits-heading">Infrastructure</p>
+                            <p class="credits-name">GitHub Pages</p>
+                            <p class="credits-role">Formspree · GitHub API</p>
+
+                            <p class="credits-heading">Special Thanks</p>
+                            <p class="credits-name">OLGE Foundation</p>
+                            <p class="credits-name">Ceeras IT Services</p>
+                            <p class="credits-name">AJ Motors · Baby Fashion Clients</p>
+                            <p class="credits-name">Kinneret College</p>
+                            <p class="credits-role">Freelance clients who trusted a student to ship</p>
+
+                            <p class="credits-heading">Soundtrack</p>
+                            <p class="credits-name">Keyboard clicks at 2 AM</p>
+                            <p class="credits-role">feat. Vercel deploy notifications</p>
+
+                            <p class="credits-the-end">The End</p>
+                            <p class="credits-role">No post-credits scene — unless you find all 3 bugs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="md:col-span-12 mt-6 sm:mt-8 flex flex-col lg:flex-row gap-6 sm:gap-8 items-center border-4 border-[var(--inverse-border)] shadow-brutal-md p-5 sm:p-6 bg-inverse text-inverseText transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-lg">
                     <div class="flex-1 text-center lg:text-left w-full">
-                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase mb-4"><span class="bg-[#FFC900] text-black border-2 border-black px-3 py-1 inline-block transform -rotate-1">Let's Build Something</span></h2>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase mb-4"><span class="bg-accent-yellow text-on-accent border-2 border-border px-3 py-1 inline-block transform -rotate-1">Let's Build Something</span></h2>
                         <p class="font-medium text-sm sm:text-base lg:text-lg max-w-lg mx-auto lg:mx-0">
-                            I'm currently seeking junior roles and internships. If you're looking for a dedicated full-stack developer who loves practical UI and robust backends, reach out.
+                            I'm currently seeking junior roles and internships. With experience at OLGE Foundation, freelance client deliveries, and a Spring Boot internship, I bring practical full-stack skills across React, Supabase, and robust backends — reach out if that's what you need.
                         </p>
                     </div>
                     <div class="w-full lg:w-[400px]">
-                        <form action="https://formspree.io/f/mgvzpzyj" method="POST" class="flex flex-col gap-4 bg-card p-5 sm:p-6 border-4 border-border text-text shadow-[-4px_4px_0px_0px_rgba(255,201,0,1)] sm:shadow-[-8px_8px_0px_0px_rgba(255,201,0,1)]">
+                        <form action="https://formspree.io/f/mgvzpzyj" method="POST" class="flex flex-col gap-4 bg-card p-5 sm:p-6 border-4 border-border text-text form-brutal-shadow">
                             <h3 class="font-black uppercase text-lg sm:text-xl text-center border-b-4 border-border pb-2">Direct Message</h3>
                             <div>
                                 <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Name</label>
@@ -515,7 +1392,7 @@
                                 <label class="block text-[10px] sm:text-xs font-bold uppercase mb-1">Message</label>
                                 <textarea name="message" required rows="3" class="w-full border-4 border-border p-2 font-medium bg-card text-text focus:outline-none focus:bg-alt resize-none"></textarea>
                             </div>
-                            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-[#FF90E8] text-black cursor-pointer text-sm sm:text-base">
+                            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase transition-all duration-200 active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-md shadow-brutal-sm bg-accent-pink text-on-accent cursor-pointer text-sm sm:text-base">
                                 <i class="ph-fill ph-paper-plane-right text-lg sm:text-xl"></i> Send
                             </button>
                         </form>
@@ -526,11 +1403,17 @@
         </div>
 
         <!-- Floating Dock (Only visible in standard view) -->
-        <div id="floating-dock" class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-2 sm:gap-4 p-2 sm:p-3 bg-card border-4 border-border shadow-brutal-md spring-bounce translate-y-[250%] w-max max-w-[90vw]">
-            <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#FFC900] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm">
+        <div id="floating-dock" class="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-[90] flex items-center gap-2 sm:gap-4 p-2 sm:p-3 bg-card border-4 border-border shadow-brutal-md spring-bounce translate-y-[250%] w-max max-w-[95vw]" style="padding-bottom: max(0.5rem, env(safe-area-inset-bottom));">
+            <button type="button" id="cmd-dock-btn" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-accent-yellow text-on-accent border-2 border-border font-bold uppercase text-sm transition-all active:scale-95 hover:-translate-y-1 hover:shadow-brutal-sm touch-manipulation" aria-label="Open commands">
+                <i class="ph-bold ph-terminal-window text-xl"></i> <span class="hidden sm:inline">Cmd</span>
+            </button>
+            
+            <div class="w-1 h-8 bg-border hidden sm:block mx-1"></div>
+            
+            <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all dock-hover-yellow hover:-translate-y-1 hover:shadow-brutal-sm">
                 <i class="ph-fill ph-github-logo text-xl"></i> <span class="hidden sm:inline">GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all hover:bg-[#00E5FF] hover:text-black hover:-translate-y-1 hover:shadow-brutal-sm">
+            <a href="https://www.linkedin.com/in/mibrahem1/" target="_blank" class="flex items-center justify-center w-10 h-10 sm:w-auto sm:px-3 sm:py-2 gap-2 bg-alt border-2 border-border text-text font-bold uppercase text-sm transition-all dock-hover-cyan hover:-translate-y-1 hover:shadow-brutal-sm">
                 <i class="ph-fill ph-linkedin-logo text-xl"></i> <span class="hidden sm:inline">LinkedIn</span>
             </a>
             
@@ -541,7 +1424,7 @@
             </button>
             
             <!-- OS toggle in dock (Desktop only) -->
-            <button onclick="setAppMode('os')" class="hidden md:flex items-center justify-center sm:w-auto sm:px-3 sm:py-2 gap-2 bg-[#FF90E8] border-2 border-border text-black font-bold uppercase text-sm transition-all hover:-translate-y-1 hover:shadow-brutal-sm cursor-pointer">
+            <button onclick="setAppMode('os')" class="hidden md:flex items-center justify-center sm:w-auto sm:px-3 sm:py-2 gap-2 bg-accent-pink text-on-accent border-2 border-border font-bold uppercase text-sm transition-all hover:-translate-y-1 hover:shadow-brutal-sm cursor-pointer">
                 <i class="ph-bold ph-desktop text-xl"></i> <span class="hidden sm:inline">OS Mode</span>
             </button>
         </div>
@@ -572,6 +1455,11 @@
                     <i class="ph-fill ph-terminal-window text-4xl text-[#FF90E8] drop-shadow-[2px_2px_0_var(--border)]"></i>
                     <span class="text-[10px] font-bold text-center bg-card border-2 border-border px-1 shadow-brutal-sm">SysLog.txt</span>
                 </button>
+
+                <button class="os-icon flex flex-col items-center gap-1 text-text hover:bg-inverse/10 p-2 border-2 border-transparent hover:border-border cursor-pointer transition-colors" data-target="win-manifesto">
+                    <i class="ph-fill ph-quotes text-4xl text-[#FFC900] drop-shadow-[2px_2px_0_var(--border)]"></i>
+                    <span class="text-[10px] font-bold text-center bg-card border-2 border-border px-1 shadow-brutal-sm">manifesto.txt</span>
+                </button>
                 
                 <a href="mailto:mndr6702@gmail.com" class="flex flex-col items-center gap-1 text-text hover:bg-inverse/10 p-2 border-2 border-transparent hover:border-border cursor-pointer transition-colors">
                     <i class="ph-fill ph-envelope text-4xl text-text drop-shadow-[2px_2px_0_var(--border)]"></i>
@@ -589,11 +1477,11 @@
                         <img src="./avatar.png" alt="Avatar" class="w-20 h-20 border-4 border-border object-cover bg-[#FFC900]" onerror="this.style.display='none'">
                         <div>
                             <h2 class="text-3xl font-black uppercase tracking-tighter">Monther Ibrahem</h2>
-                            <p class="font-bold text-sm bg-inverse text-inverseText inline-block px-2 border-2 border-border mt-1">Full-Stack SWE</p>
+                            <p class="font-bold text-sm bg-inverse text-inverseText inline-block px-2 border-2 border-border mt-1">Junior SWE</p>
                         </div>
                     </div>
                     <p class="font-medium text-sm mb-4 leading-relaxed">
-                        I build responsive web apps with Java, Spring Boot, and React. Obsessed with clean architecture, practical UI/UX, and leveraging AI APIs for smarter workflows.
+                        Junior Software Engineer graduating July 2026, focused on full-stack development and integrating AI APIs into web apps. Strong in React, PostgreSQL/Supabase, and Spring Boot through internship, freelance client work, and shipped live deployments.
                     </p>
                     <div class="flex gap-2">
                         <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" class="border-2 border-border px-3 py-1 font-bold text-xs bg-alt hover:bg-[#FFC900] hover:text-black transition-colors"><i class="ph-fill ph-github-logo"></i> GitHub</a>
@@ -612,27 +1500,27 @@
                     <!-- Mini Cards -->
                     <div class="border-4 border-border p-3 bg-alt flex flex-col justify-between">
                         <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">WebChat</h3>
-                        <p class="text-[10px] font-medium mb-3">Real-time anonymous chat app with slash commands.</p>
+                        <p class="text-[10px] font-medium mb-3">Real-time chat with commands, reactions, and mobile UI.</p>
                         <a href="https://webchat-1185b.web.app/" target="_blank" class="bg-card border-2 border-border text-xs font-bold text-center py-1 hover:bg-[#00E5FF] hover:text-black">Launch App</a>
                     </div>
                     <div class="border-4 border-border p-3 bg-alt flex flex-col justify-between">
                         <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">Baby Fashion</h3>
-                        <p class="text-[10px] font-medium mb-3">Client e-commerce platform with storefront, admin, and multilingual support.</p>
+                        <p class="text-[10px] font-medium mb-3">E-commerce with cart/checkout, inventory, and Stripe-ready architecture.</p>
                         <a href="https://baby-fashion.site/" target="_blank" class="bg-card border-2 border-border text-xs font-bold text-center py-1 hover:bg-[#FFC900] hover:text-black">Live Site</a>
                     </div>
                     <div class="border-4 border-border p-3 bg-alt flex flex-col justify-between">
                         <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">AJ Motors</h3>
-                        <p class="text-[10px] font-medium mb-3">Car rental platform with admin dashboard. (Client)</p>
+                        <p class="text-[10px] font-medium mb-3">Car rental platform with admin analytics dashboard. (Client)</p>
                         <a href="https://aj-motors.site/" target="_blank" class="bg-card border-2 border-border text-xs font-bold text-center py-1 hover:bg-[#FFC900] hover:text-black">Live Site</a>
                     </div>
                     <div class="border-4 border-border p-3 bg-alt flex flex-col justify-between">
-                        <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">AI Budget</h3>
-                        <p class="text-[10px] font-medium mb-3">Angular/Node dashboard tracking expenses with AI prompts.</p>
+                        <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">AI Budget App</h3>
+                        <p class="text-[10px] font-medium mb-3">Angular/Express/PostgreSQL with DeepSeek AI insights and secure auth.</p>
                         <a href="https://budget-manager-murex.vercel.app/" target="_blank" class="bg-card border-2 border-border text-xs font-bold text-center py-1 hover:bg-[#FF90E8] hover:text-black">Launch App</a>
                     </div>
                     <div class="border-4 border-border p-3 bg-alt flex flex-col justify-between">
                         <h3 class="font-black uppercase text-sm border-b-2 border-border pb-1 mb-2">Java Games</h3>
-                        <p class="text-[10px] font-medium mb-3">Chess & Minesweeper implementations.</p>
+                        <p class="text-[10px] font-medium mb-3">Chess & Minesweeper in JavaFX — OOP and MVC.</p>
                         <a href="https://github.com/MontherIB-SWE/Chess" target="_blank" class="bg-card border-2 border-border text-xs font-bold text-center py-1 hover:bg-inverse hover:text-inverseText">GitHub Repo</a>
                     </div>
                 </div>
@@ -643,14 +1531,27 @@
                     <span class="font-bold text-xs uppercase flex items-center gap-2"><i class="ph-bold ph-terminal-window"></i> SysLog.txt</span>
                     <button class="win-close hover:bg-[#FFC900] border-2 border-border w-6 h-6 flex items-center justify-center font-black text-xs active:translate-y-[1px]">X</button>
                 </div>
-                <div class="window-body p-6 max-h-[60vh] overflow-y-auto custom-scrollbar font-mono bg-[#121212] text-[#F4F1EA] text-xs leading-relaxed">
+                <div class="window-body p-6 max-h-[60vh] overflow-y-auto custom-scrollbar font-mono os-terminal-body text-xs leading-relaxed">
                     <div class="text-[#00E5FF] mb-2">root@monther-os:~$ cat experience.log</div>
                     <div class="mb-4 pl-4 border-l-2 border-[#FFC900]">
-                        <div class="font-bold uppercase text-[#FF90E8]">Software Dev Intern @ Ceeras IT Services</div>
+                        <div class="font-bold uppercase text-[#FF90E8]">Software Engineer @ OLGE Foundation</div>
+                        <div>[Apr 2026 - Present] | Remote</div>
+                        <div class="mt-2">- Next.js, React, Supabase (PostgreSQL) on Vercel.</div>
+                        <div>- Ticket-driven features, code reviews, planning, and QA.</div>
+                        <div>- Tested, documented code; technical planning and delivery.</div>
+                    </div>
+                    <div class="mb-4 pl-4 border-l-2 border-[#FF90E8]">
+                        <div class="font-bold uppercase text-[#FF90E8]">Freelance Developer @ Self-Employed</div>
+                        <div>[Jun 2025 - Present] | Remote</div>
+                        <div class="mt-2">- AJ Motors: live car rental (React 19, Firebase, DeepL, WhatsApp).</div>
+                        <div>- Baby Fashion Store: live e-commerce (cart/checkout, Stripe-ready).</div>
+                    </div>
+                    <div class="mb-4 pl-4 border-l-2 border-[#00E5FF]">
+                        <div class="font-bold uppercase text-[#FF90E8]">Software Developer Intern @ Ceeras IT Services</div>
                         <div>[Feb 2025 - Jun 2025] | Remote</div>
-                        <div class="mt-2">- Designed normalized relational schemas in PostgreSQL.</div>
-                        <div>- Implemented secure backend retrieval using Java & Spring Boot.</div>
-                        <div>- Validated robust REST APIs via Postman.</div>
+                        <div class="mt-2">- Backend services with Java Spring Boot and JPA.</div>
+                        <div>- Built and consumed REST APIs between services and clients.</div>
+                        <div>- Remote team integration, testing, and on-time delivery.</div>
                         <a href="./WXZ70399 - Monder Mohammed Ibrahem .pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-3 border-2 border-[#F4F1EA] px-2 py-1 font-bold uppercase text-[10px] hover:bg-[#00E5FF] hover:text-black transition-colors">
                             <i class="ph-fill ph-seal-check text-xs"></i> View Certificate
                         </a>
@@ -659,10 +1560,33 @@
                     <div class="text-[#00E5FF] mb-2">root@monther-os:~$ cat education.log</div>
                     <div class="pl-4 border-l-2 border-[#FFC900]">
                         <div class="font-bold uppercase text-[#FF90E8]">BSc Software Engineering</div>
-                        <div>[Expected Oct 2026] | Kinneret College</div>
-                        <div class="mt-2">Core Focus: OOP, Data Structures, Algorithms, Systems Programming.</div>
+                        <div>[Oct 2022 - Jul 2026] | Kinneret College</div>
+                        <div class="mt-2">Coursework (coursework --grades):</div>
+                        <div class="mt-2 font-mono text-[10px] space-y-0.5 pl-2 border-l-2 border-[#00E5FF]">
+                            <div>CS101  Intro to CS .................. 100</div>
+                            <div>OS201  Operating Systems ........... 95</div>
+                            <div>SYSPROG301  Systems Programming ..... 92</div>
+                            <div>SIS210  Sys Integration &amp; SW ....... 90</div>
+                            <div>OOP220  Object-Oriented Prog ........ 90</div>
+                            <div>NET340  Computer Networks ........... 84</div>
+                            <div class="text-[#FFC900] mt-1">AVG: 91.8 | 6 entries | PASS</div>
+                        </div>
                     </div>
                     <div class="text-[#00E5FF] mt-4 animate-pulse">root@monther-os:~$ _</div>
+                </div>
+            </div>
+
+            <div id="win-manifesto" class="os-window hidden absolute top-24 left-56 w-[480px] bg-card border-4 border-border shadow-brutal-lg flex flex-col text-text z-20">
+                <div class="window-header bg-[#FFC900] border-b-4 border-border flex justify-between items-center p-2 cursor-move select-none text-black">
+                    <span class="font-bold text-xs uppercase flex items-center gap-2"><i class="ph-bold ph-quotes"></i> manifesto.txt</span>
+                    <button class="win-close hover:bg-[#FF90E8] border-2 border-border w-6 h-6 flex items-center justify-center font-black text-xs active:translate-y-[1px]">X</button>
+                </div>
+                <div class="window-body p-5 max-h-[50vh] overflow-y-auto custom-scrollbar font-sans bg-accent-pink text-on-accent text-sm space-y-4">
+                    <p class="font-black uppercase text-base border-l-4 border-border pl-3">"If it's not deployed, it didn't happen."</p>
+                    <p class="font-black uppercase text-base border-l-4 border-border pl-3">"Ship the UI first. Nobody sees your perfect backend."</p>
+                    <p class="font-black uppercase text-base border-l-4 border-border pl-3">"Freelance clients taught me more than any lecture."</p>
+                    <p class="font-black uppercase text-base border-l-4 border-border pl-3">"AI APIs are tools, not magic — prompt design is API design."</p>
+                    <p class="font-black uppercase text-base border-l-4 border-border pl-3">"Code review is a conversation, not a verdict."</p>
                 </div>
             </div>
             
@@ -706,12 +1630,90 @@
         </div>
     </div>
 
+    <!-- Bug Hunt HUD + Victory -->
+    <div id="bug-hunt-hud" title="Find 3 hidden bugs on this page" aria-live="polite">🐛 <span id="bug-hunt-count">0</span>/3</div>
+    <div id="bug-hunt-win" class="hidden fixed inset-0 z-[400] items-center justify-center p-4 overlay-scrim backdrop-blur-sm" role="dialog" aria-labelledby="bug-hunt-win-title">
+        <div class="w-full max-w-md border-4 border-border shadow-brutal-xl bg-card text-text p-6 sm:p-8 text-center">
+            <div class="text-4xl mb-3" aria-hidden="true">✓</div>
+            <h2 id="bug-hunt-win-title" class="text-2xl sm:text-3xl font-black uppercase mb-2">All Bugs Squashed</h2>
+            <p class="font-medium text-sm sm:text-base mb-6 opacity-85">Sharp eyes. You caught every typo and glitch — that's QA instincts.</p>
+            <button type="button" id="bug-hunt-win-close" class="inline-flex items-center justify-center gap-2 border-4 border-border px-6 py-3 font-bold uppercase bg-accent-green text-on-accent shadow-brutal-sm hover:-translate-y-0.5 transition-transform cursor-pointer">
+                Keep Exploring
+            </button>
+        </div>
+    </div>
+
+    <!-- Command Palette (press / or tap Commands) -->
+    <div id="cmd-palette" class="cmd-hidden fixed inset-0 z-[300] flex items-start justify-center pt-[10vh] sm:pt-[15vh] px-4 overlay-scrim backdrop-blur-sm">
+        <div class="w-full max-w-lg border-4 border-border shadow-brutal-xl bg-card text-text overflow-hidden" role="dialog" aria-label="Command palette">
+            <div class="flex items-center gap-2 sm:gap-3 border-b-4 border-border bg-accent-yellow text-on-accent px-3 sm:px-4 py-3">
+                <i class="ph-bold ph-terminal-window text-lg sm:text-xl shrink-0"></i>
+                <input id="cmd-input" type="text" placeholder="Type a command..." autocomplete="off" class="flex-1 min-w-0 bg-transparent font-mono font-bold text-xs sm:text-sm uppercase placeholder:text-on-accent-muted focus:outline-none" />
+                <kbd class="font-mono text-[10px] font-bold border-2 border-border px-1.5 py-0.5 bg-inverse text-inverseText shrink-0">ESC</kbd>
+            </div>
+            <ul id="cmd-list" class="max-h-[320px] overflow-y-auto custom-scrollbar font-mono text-xs sm:text-sm">
+                <li><button type="button" data-cmd="scroll:#section-oss-stats" class="cmd-item w-full text-left px-4 py-3 border-b-2 border-border flex items-center gap-3"><i class="ph-bold ph-github-logo"></i> Open Source Stats</button></li>
+                <li><button type="button" data-cmd="scroll:#section-coursework" class="cmd-item w-full text-left px-4 py-3 border-b-2 border-border flex items-center gap-3"><i class="ph-bold ph-table"></i> View Coursework Grades</button></li>
+                <li><button type="button" data-cmd="scroll:#section-manifesto" class="cmd-item w-full text-left px-4 py-3 border-b-2 border-border flex items-center gap-3"><i class="ph-bold ph-quotes"></i> Read Build Manifesto</button></li>
+                <li><button type="button" data-cmd="scroll:#section-credits" class="cmd-item w-full text-left px-4 py-3 border-b-2 border-border flex items-center gap-3"><i class="ph-bold ph-film-strip"></i> Roll Credits</button></li>
+                <li><button type="button" data-cmd="scroll:#main-content" class="cmd-item w-full text-left px-4 py-3 border-b-2 border-border flex items-center gap-3"><i class="ph-bold ph-house"></i> Go to Top</button></li>
+                <li><button type="button" data-cmd="theme" class="cmd-item w-full text-left px-4 py-3 border-b-2 border-border flex items-center gap-3"><i class="ph-bold ph-moon"></i> Toggle Theme</button></li>
+                <li class="hidden md:block"><button type="button" data-cmd="os" class="cmd-item w-full text-left px-4 py-3 border-b-2 border-border flex items-center gap-3"><i class="ph-bold ph-desktop"></i> Switch to OS Mode</button></li>
+                <li><button type="button" data-cmd="resume" class="cmd-item w-full text-left px-4 py-3 border-b-2 border-border flex items-center gap-3"><i class="ph-bold ph-file-pdf"></i> Download Resume</button></li>
+                <li><button type="button" data-cmd="mailto:mndr6702@gmail.com" class="cmd-item w-full text-left px-4 py-3 flex items-center gap-3"><i class="ph-bold ph-envelope"></i> Send Email</button></li>
+            </ul>
+        </div>
+    </div>
+
 
     <script>
         // --- THEME MANAGEMENT ---
         const htmlEl = document.documentElement;
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             htmlEl.classList.add('dark');
+        }
+
+        let themeSwitching = false;
+        let updateThemeIcons = () => {};
+        const THEME_TRANSITION_MS = 220;
+
+        function applyThemeToggle() {
+            htmlEl.classList.toggle('dark');
+            localStorage.theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
+            updateThemeIcons();
+        }
+
+        function toggleTheme() {
+            if (themeSwitching) return;
+            themeSwitching = true;
+
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const finish = () => {
+                htmlEl.classList.remove('theme-animate');
+                themeSwitching = false;
+            };
+
+            if (reducedMotion) {
+                applyThemeToggle();
+                finish();
+                return;
+            }
+
+            if (document.startViewTransition) {
+                const transition = document.startViewTransition(() => applyThemeToggle());
+                transition.finished.then(finish).catch(finish);
+                return;
+            }
+
+            /* Fallback for browsers without View Transitions */
+            htmlEl.classList.add('theme-animate');
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    applyThemeToggle();
+                    window.setTimeout(finish, THEME_TRANSITION_MS);
+                });
+            });
         }
 
         // --- GLOBAL STATE & INITIALIZATION ---
@@ -734,7 +1736,7 @@
             
             // 1. Sync Theme Icons
             const themeBtns = document.querySelectorAll(".theme-toggle");
-            const updateThemeIcons = () => {
+            updateThemeIcons = () => {
                 const icons = document.querySelectorAll(".theme-icon");
                 const isDark = htmlEl.classList.contains('dark');
                 icons.forEach(icon => {
@@ -745,10 +1747,9 @@
             updateThemeIcons();
 
             themeBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    htmlEl.classList.toggle('dark');
-                    localStorage.theme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
-                    updateThemeIcons();
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    toggleTheme();
                 });
             });
 
@@ -807,6 +1808,7 @@
             // Initialize App Mode (skip animation on first load)
             setAppMode(localStorage.getItem('portfolioMode') || 'standard', true);
             initOSLogic();
+            initCreativeSections();
         });
 
         let isSwitchingMode = false;
@@ -1006,6 +2008,486 @@
                     document.onmousemove = null;
                 }
             }
+        }
+
+        // --- CREATIVE SECTIONS ---
+        function initCreativeSections() {
+            initStatusClock();
+            initOpenSourceStats();
+            initManifesto();
+            initCreditsRoll();
+            initBugHunt();
+            initCommandPalette();
+        }
+
+        function initStatusClock() {
+            const clockEl = document.getElementById('status-clock');
+            if (!clockEl) return;
+            const tick = () => {
+                const now = new Date();
+                clockEl.textContent = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            };
+            tick();
+            setInterval(tick, 1000);
+
+            const nowItems = ['OLGE Foundation tickets', 'Supabase migrations', 'Code review queue', 'Vercel deploy pipeline', 'Client feature requests'];
+            const nowEl = document.getElementById('status-now');
+            if (nowEl) {
+                nowEl.style.transition = 'opacity 0.2s ease';
+                let i = 0;
+                setInterval(() => {
+                    i = (i + 1) % nowItems.length;
+                    nowEl.style.opacity = '0';
+                    setTimeout(() => {
+                        nowEl.textContent = nowItems[i];
+                        nowEl.style.opacity = '1';
+                    }, 200);
+                }, 6000);
+            }
+        }
+
+        function initOpenSourceStats() {
+            const GITHUB_USER = 'MontherIB-SWE';
+            const section = document.getElementById('section-oss-stats');
+            if (!section) return;
+
+            const repoEl = document.getElementById('oss-repo-count');
+            const starEl = document.getElementById('oss-star-count');
+            const pushEl = document.getElementById('oss-last-push');
+            const topLangEl = document.getElementById('oss-top-lang');
+            const langBarsEl = document.getElementById('oss-lang-bars');
+            const syncEl = document.getElementById('oss-sync-status');
+
+            const ghHeaders = { Accept: 'application/vnd.github+json' };
+
+            const formatRelative = (iso) => {
+                const diff = Date.now() - new Date(iso).getTime();
+                const mins = Math.floor(diff / 60000);
+                if (mins < 60) return `${mins}m ago`;
+                const hrs = Math.floor(mins / 60);
+                if (hrs < 48) return `${hrs}h ago`;
+                const days = Math.floor(hrs / 24);
+                if (days < 14) return `${days}d ago`;
+                return new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+            };
+
+            const renderLangBars = (langCounts) => {
+                const entries = Object.entries(langCounts).sort((a, b) => b[1] - a[1]).slice(0, 4);
+                if (!entries.length) {
+                    langBarsEl.innerHTML = '<div class="status-meta text-[10px]">no language data</div>';
+                    return;
+                }
+                const max = entries[0][1];
+                langBarsEl.innerHTML = entries.map(([lang, count]) => {
+                    const pct = Math.round((count / max) * 100);
+                    return `<div class="oss-lang-row"><span class="oss-lang-name">${lang}</span><span class="oss-lang-track"><span class="oss-lang-fill" style="width:${pct}%"></span></span><span class="oss-lang-pct">${count}</span></div>`;
+                }).join('');
+            };
+
+            const applyFallback = () => {
+                repoEl.textContent = '—';
+                starEl.textContent = '—';
+                pushEl.textContent = 'unavailable';
+                topLangEl.textContent = '—';
+                langBarsEl.innerHTML = '<div class="status-meta text-[10px]">API rate limit or offline — <a href="https://github.com/MontherIB-SWE?tab=repositories" target="_blank" rel="noopener noreferrer" class="oss-stat-link">view on GitHub</a></div>';
+                syncEl.textContent = 'sync failed — try again later';
+            };
+
+            (async () => {
+                try {
+                    const [userRes, reposRes] = await Promise.all([
+                        fetch(`https://api.github.com/users/${GITHUB_USER}`, { headers: ghHeaders }),
+                        fetch(`https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated&type=owner`, { headers: ghHeaders }),
+                    ]);
+                    if (!userRes.ok || !reposRes.ok) throw new Error('GitHub API error');
+
+                    const user = await userRes.json();
+                    const repos = await reposRes.json();
+                    const owned = repos.filter((r) => !r.fork && !r.archived);
+
+                    const stars = owned.reduce((sum, r) => sum + (r.stargazers_count || 0), 0);
+                    const latest = owned.reduce((best, r) => {
+                        if (!best || new Date(r.pushed_at) > new Date(best.pushed_at)) return r;
+                        return best;
+                    }, null);
+
+                    const langCounts = {};
+                    owned.forEach((r) => {
+                        if (r.language) langCounts[r.language] = (langCounts[r.language] || 0) + 1;
+                    });
+                    const topLang = Object.entries(langCounts).sort((a, b) => b[1] - a[1])[0];
+
+                    repoEl.textContent = String(user.public_repos ?? owned.length);
+                    starEl.textContent = String(stars);
+                    pushEl.textContent = latest
+                        ? `${latest.name} · ${formatRelative(latest.pushed_at)}`
+                        : 'no pushes yet';
+                    topLangEl.textContent = topLang ? topLang[0] : '—';
+                    renderLangBars(langCounts);
+
+                    const synced = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+                    syncEl.textContent = `live sync OK @ ${synced} · ${owned.length} repos scanned`;
+                } catch {
+                    applyFallback();
+                }
+            })();
+        }
+
+        function initManifesto() {
+            const quotes = [
+                '"If it\'s not deployed, it didn\'t happen."',
+                '"Ship the UI first. Nobody sees your perfect backend."',
+                '"Freelance clients taught me more than any lecture."',
+                '"AI APIs are tools, not magic — prompt design is API design."',
+                '"Code review is a conversation, not a verdict."',
+            ];
+
+            const quoteEl = document.getElementById('manifesto-quote');
+            const counterEl = document.getElementById('manifesto-counter');
+            const dotsEl = document.getElementById('manifesto-dots');
+            const prevBtn = document.getElementById('manifesto-prev');
+            const nextBtn = document.getElementById('manifesto-next');
+            if (!quoteEl || !counterEl || !dotsEl) return;
+
+            let idx = 0;
+            let autoTimer;
+
+            quotes.forEach((_, i) => {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'manifesto-dot w-3 h-3 border-2 border-border chip-surface';
+                dot.setAttribute('aria-label', `Manifesto ${i + 1}`);
+                dot.addEventListener('click', () => goTo(i));
+                dotsEl.appendChild(dot);
+            });
+
+            const updateDots = () => {
+                dotsEl.querySelectorAll('.manifesto-dot').forEach((d, i) => {
+                    d.classList.toggle('manifesto-dot-active', i === idx);
+                });
+            };
+
+            const goTo = (next) => {
+                quoteEl.classList.add('manifesto-exit');
+                setTimeout(() => {
+                    idx = (next + quotes.length) % quotes.length;
+                    quoteEl.textContent = quotes[idx];
+                    counterEl.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(quotes.length).padStart(2, '0')}`;
+                    quoteEl.classList.remove('manifesto-exit');
+                    quoteEl.classList.add('manifesto-enter');
+                    updateDots();
+                    requestAnimationFrame(() => {
+                        quoteEl.classList.remove('manifesto-enter');
+                    });
+                }, 250);
+                clearInterval(autoTimer);
+                autoTimer = setInterval(() => goTo(idx + 1), 7000);
+            };
+
+            prevBtn?.addEventListener('click', () => goTo(idx - 1));
+            nextBtn?.addEventListener('click', () => goTo(idx + 1));
+            updateDots();
+            autoTimer = setInterval(() => goTo(idx + 1), 7000);
+        }
+
+        function initCreditsRoll() {
+            const viewport = document.querySelector('.credits-viewport');
+            const track = document.getElementById('credits-track');
+            const primary = document.getElementById('credits-scroll-primary');
+            if (!viewport || !track || !primary) return;
+
+            track.querySelectorAll('.credits-scroll-clone').forEach((el) => el.remove());
+
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reducedMotion) return;
+
+            const SPEED = 46;
+            const HOLD_MS = 2000;
+            let vh = 0;
+            let blockH = 0;
+            let y = 0;
+            let paused = false;
+            let phase = 'roll';
+            let holdUntil = 0;
+            let lastTs = 0;
+            let rafId = null;
+
+            const layout = () => {
+                vh = viewport.offsetHeight;
+                blockH = primary.offsetHeight;
+            };
+
+            const applyY = () => {
+                track.style.transform = `translate3d(0, ${y}px, 0)`;
+            };
+
+            const startRoll = () => {
+                y = vh;
+                phase = 'roll';
+                applyY();
+            };
+
+            const tick = (ts) => {
+                if (!lastTs) lastTs = ts;
+                const dt = Math.min((ts - lastTs) / 1000, 0.05);
+                lastTs = ts;
+
+                if (phase === 'hold') {
+                    if (ts >= holdUntil) startRoll();
+                } else if (!paused) {
+                    y -= SPEED * dt;
+                    if (y <= -blockH) {
+                        y = -blockH;
+                        phase = 'hold';
+                        holdUntil = ts + HOLD_MS;
+                    }
+                    applyY();
+                }
+
+                rafId = requestAnimationFrame(tick);
+            };
+
+            viewport.addEventListener('mouseenter', () => { paused = true; });
+            viewport.addEventListener('mouseleave', () => { paused = false; });
+
+            layout();
+            if (!vh || !blockH) {
+                requestAnimationFrame(() => {
+                    layout();
+                    startRoll();
+                    rafId = requestAnimationFrame(tick);
+                });
+            } else {
+                startRoll();
+                rafId = requestAnimationFrame(tick);
+            }
+
+            window.addEventListener('resize', () => {
+                layout();
+                if (phase === 'roll' && y > vh) startRoll();
+            });
+            document.fonts?.ready?.then(layout);
+        }
+
+        function initBugHunt() {
+            const spots = [...document.querySelectorAll('.bug-spot')];
+            const countEl = document.getElementById('bug-hunt-count');
+            const hudEl = document.getElementById('bug-hunt-hud');
+            const winEl = document.getElementById('bug-hunt-win');
+            const winClose = document.getElementById('bug-hunt-win-close');
+            if (!spots.length || !countEl || !hudEl) return;
+
+            const STORAGE_KEY = 'monther-bug-hunt-v1';
+            let found = new Set();
+
+            try {
+                const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]');
+                if (Array.isArray(saved)) found = new Set(saved);
+            } catch { /* ignore */ }
+
+            const updateHud = () => {
+                countEl.textContent = String(found.size);
+                hudEl.classList.toggle('bug-hunt-done', found.size >= spots.length);
+            };
+
+            const launchConfetti = () => {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+                const canvas = document.createElement('canvas');
+                canvas.id = 'confetti-canvas';
+                document.body.appendChild(canvas);
+                const ctx = canvas.getContext('2d');
+                const colors = ['#FFC900', '#FF90E8', '#00E5FF', '#00FF88', '#000000', '#ffffff'];
+                let w = canvas.width = window.innerWidth;
+                let h = canvas.height = window.innerHeight;
+                const pieces = Array.from({ length: 120 }, () => ({
+                    x: Math.random() * w,
+                    y: Math.random() * h - h,
+                    r: 4 + Math.random() * 6,
+                    c: colors[Math.floor(Math.random() * colors.length)],
+                    vx: -2 + Math.random() * 4,
+                    vy: 2 + Math.random() * 5,
+                    rot: Math.random() * 360,
+                    vr: -6 + Math.random() * 12,
+                }));
+
+                let frame = 0;
+                const draw = () => {
+                    ctx.clearRect(0, 0, w, h);
+                    pieces.forEach(p => {
+                        p.x += p.vx;
+                        p.y += p.vy;
+                        p.rot += p.vr;
+                        if (p.y > h + 20) { p.y = -20; p.x = Math.random() * w; }
+                        ctx.save();
+                        ctx.translate(p.x, p.y);
+                        ctx.rotate(p.rot * Math.PI / 180);
+                        ctx.fillStyle = p.c;
+                        ctx.fillRect(-p.r / 2, -p.r / 2, p.r, p.r * 0.6);
+                        ctx.restore();
+                    });
+                    frame++;
+                    if (frame < 180) requestAnimationFrame(draw);
+                    else canvas.remove();
+                };
+                draw();
+
+                const onResize = () => {
+                    w = canvas.width = window.innerWidth;
+                    h = canvas.height = window.innerHeight;
+                };
+                window.addEventListener('resize', onResize, { once: true });
+            };
+
+            const showWin = () => {
+                if (!winEl) return;
+                winEl.classList.remove('hidden');
+                launchConfetti();
+            };
+
+            const applyBugFix = (el) => {
+                if (el.dataset.bugType === 'glitch') {
+                    el.classList.remove('bug-glitch');
+                    el.replaceChildren(document.createTextNode(el.dataset.bugFix || 'JavaScript'));
+                } else {
+                    el.textContent = el.dataset.bugFix || el.textContent;
+                }
+            };
+
+            const squashBug = (el) => {
+                const id = el.dataset.bugId;
+                if (!id || found.has(id) || el.classList.contains('bug-found')) return;
+
+                found.add(id);
+                applyBugFix(el);
+                el.classList.add('bug-found');
+                sessionStorage.setItem(STORAGE_KEY, JSON.stringify([...found]));
+                updateHud();
+
+                if (found.size >= spots.length) {
+                    setTimeout(showWin, 400);
+                }
+            };
+
+            spots.forEach(el => {
+                if (found.has(el.dataset.bugId)) {
+                    applyBugFix(el);
+                    el.classList.add('bug-found');
+                }
+                el.setAttribute('role', 'button');
+                el.setAttribute('tabindex', '0');
+                el.setAttribute('aria-label', 'Inspect');
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    squashBug(el);
+                });
+                el.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        squashBug(el);
+                    }
+                });
+            });
+
+            updateHud();
+
+            winClose?.addEventListener('click', () => winEl?.classList.add('hidden'));
+            winEl?.addEventListener('click', (e) => {
+                if (e.target === winEl) winEl.classList.add('hidden');
+            });
+
+            if (found.size >= spots.length) {
+                hudEl.classList.add('bug-hunt-done');
+            }
+        }
+
+        function initCommandPalette() {
+            const palette = document.getElementById('cmd-palette');
+            const input = document.getElementById('cmd-input');
+            const list = document.getElementById('cmd-list');
+            if (!palette || !input || !list) return;
+
+            let activeIdx = 0;
+            const items = () => [...list.querySelectorAll('.cmd-item:not([hidden])')];
+
+            const stdView = document.getElementById('standard-view');
+
+            const openPalette = () => {
+                palette.classList.remove('cmd-hidden');
+                input.value = '';
+                filterCommands('');
+                activeIdx = 0;
+                highlightItem();
+                if (stdView) stdView.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => input.focus(), 50);
+            };
+
+            const closePalette = () => {
+                palette.classList.add('cmd-hidden');
+                if (stdView) stdView.style.overflow = '';
+                document.body.style.overflow = '';
+            };
+
+            window.openCommandPalette = openPalette;
+
+            const highlightItem = () => {
+                items().forEach((el, i) => el.classList.toggle('cmd-active', i === activeIdx));
+                items()[activeIdx]?.scrollIntoView({ block: 'nearest' });
+            };
+
+            const runCommand = (cmd) => {
+                closePalette();
+                if (cmd.startsWith('scroll:')) {
+                    document.querySelector(cmd.slice(7))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else if (cmd === 'theme') {
+                    toggleTheme();
+                } else if (cmd === 'os') {
+                    setAppMode('os');
+                } else if (cmd === 'resume') {
+                    window.open('./Resume.pdf', '_blank');
+                } else if (cmd.startsWith('mailto:')) {
+                    window.location.href = cmd;
+                }
+            };
+
+            const filterCommands = (q) => {
+                const query = q.toLowerCase();
+                list.querySelectorAll('.cmd-item').forEach(el => {
+                    const text = el.textContent.toLowerCase();
+                    el.hidden = query && !text.includes(query);
+                });
+                activeIdx = 0;
+                highlightItem();
+            };
+
+            document.addEventListener('keydown', (e) => {
+                const inField = ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName);
+                if (e.key === '/' && palette.classList.contains('cmd-hidden') && !inField) {
+                    e.preventDefault();
+                    openPalette();
+                    return;
+                }
+                if (palette.classList.contains('cmd-hidden')) return;
+
+                if (e.key === 'Escape') { e.preventDefault(); closePalette(); }
+                else if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx + 1, items().length - 1); highlightItem(); }
+                else if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(activeIdx - 1, 0); highlightItem(); }
+                else if (e.key === 'Enter') { e.preventDefault(); items()[activeIdx]?.click(); }
+            });
+
+            input.addEventListener('input', () => filterCommands(input.value));
+
+            list.querySelectorAll('.cmd-item').forEach(el => {
+                el.addEventListener('click', () => runCommand(el.dataset.cmd));
+            });
+
+            palette.addEventListener('click', (e) => {
+                if (e.target === palette) closePalette();
+            });
+
+            document.getElementById('cmd-dock-btn')?.addEventListener('click', openPalette);
         }
     </script>
 </body>
